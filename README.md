@@ -1,22 +1,11 @@
-# CPIT305 Course Project
-Introduction about your project, describe the problem, and your solution. Project implementation should follow Object-Orianted programming structure.
+# Library Mangement System
+ A software created specifically to handle all of a library's operations is called a library management system. It helps librarians in keeping track of new books, books that members have borrowed, and the due dates for those books. All of your library's operations are fully automated by this system.
 
 ## Group Members
-- First Member
-- Second one
-- ...
-
-## More details about your project
-You may add several titles and description about the project and how do you work as group and role of each member. Also, include some details about how to use the project and other details
+- Mohammed Sami Akif
+- Ziyad Saad Alqahtani
 
 
-## Class Diagram
-Include a class diagram for your project here with short discrition
-
-![Our Awsome Project Class Diagram](/images/class-diagram.png)
 
 
-## Screen Capture
-Here some screen capture from our project:
 
-![Main menu](/images/capture01.png)
