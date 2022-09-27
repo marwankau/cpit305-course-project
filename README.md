@@ -1,8 +1,6 @@
-# Library Management System
- Software created specifically to handle all of a library's operations is called a library management system.
-It helps librarians in keeping track of new books, books that members have borrowed, and the due dates for those books. 
-All of your library's operations are fully automated by this system.
-
+#  Rock paper scissor game 🪨📃✂️
+ Rock-paper-scissors is a game usually played by two players , where players simultaneously form one of three shapes with an outstretched hand. 
+The "rock" beats scissors, the "scissors" beat paper and the "paper" beats rock; if both players throw the same shape, the game is tied.
 ## Group Members
 - Mohammed Sami Akif
 - Ziyad Saad Alqahtani
