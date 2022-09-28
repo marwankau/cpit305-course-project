@@ -2,7 +2,7 @@
 Introduction about your project, describe the problem, and your solution. Project implementation should follow Object-Orianted programming structure.
 
 ## Group Members
-- First Member
+- Rakan Adnan Salama
 - Second one
 - ...
 
