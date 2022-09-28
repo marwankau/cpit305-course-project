@@ -9,6 +9,8 @@ Introduction about your project, describe the problem, and your solution. Projec
 ## More details about your project
 You may add several titles and description about the project and how do you work as group and role of each member. Also, include some details about how to use the project and other details
 
+there are many titels  that can fit for out system but we prefere to stick with the name booking management system and that because its the most descriping title we could find , the project requiers 4 importent 
+
 
 ## Class Diagram
 Include a class diagram for your project here with short discrition
