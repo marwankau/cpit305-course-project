@@ -1,22 +1,17 @@
 # CPIT305 Course Project
-Introduction about your project, describe the problem, and your solution. Project implementation should follow Object-Orianted programming structure.
+Tic-tac-toe or known as XO is stratigy game one of the best kids game that we all loved and played a lot. Basically the game contains 2 player compete on a matrix of 3x3 take turns in drawning 'X' or 'O'  and the first player who get 3 same symbole in a row wins.
 
 ## Group Members
-- First Member
-- Second one
-- ...
+- Basem Bahattab
+- Rayan Alshehri
+- Ammar Alsurayhi
 
-## More details about your project
-You may add several titles and description about the project and how do you work as group and role of each member. Also, include some details about how to use the project and other details
+## Rules
+- Each player should take turns putting their marks in empty squares. 
+- X starts first.
+- First player get 3 grid in a row wins.
+- When all 9 squares is full the game is over (draw).
 
 
 ## Class Diagram
-Include a class diagram for your project here with short discrition
-
-![Our Awsome Project Class Diagram](/images/class-diagram.png)
-
-
-## Screen Capture
-Here some screen capture from our project:
-
-![Main menu](/images/capture01.png)
+Soon
