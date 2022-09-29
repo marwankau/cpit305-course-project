@@ -3,7 +3,7 @@ Tic-tac-toe or known as XO is stratigy game one of the best kids game that we al
 
 ## Group Members
 - Basem Bahattab
-- Rayan Alshehri
+- Ryan Alshehri
 - Ammar Alsurayhi
 
 ## Rules
