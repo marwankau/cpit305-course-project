@@ -1,22 +1,12 @@
-# CPIT305 Course Project
-Introduction about your project, describe the problem, and your solution. Project implementation should follow Object-Orianted programming structure.
+## Group names
 
-## Group Members
-- First Member
-- Second one
-- ...
+## 1-Abdulaziz Alghamdi 1741404
+## 2-Ammar al-sayari    1940335 
 
-## More details about your project
-You may add several titles and description about the project and how do you work as group and role of each member. Also, include some details about how to use the project and other details
+## Intruduction
 
-
-## Class Diagram
-Include a class diagram for your project here with short discrition
-
-![Our Awsome Project Class Diagram](/images/class-diagram.png)
-
-
-## Screen Capture
-Here some screen capture from our project:
-
-![Main menu](/images/capture01.png)
+## food delivery app
+our goal in this project is to create an app for food delivery.
+our project will be used by restaurants, delivery, and end customers.
+the project will contain a database for the users above and a network to connect them.
+our project has the potential to grow.
