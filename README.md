@@ -1,7 +1,6 @@
 # CPIT305 Course Project
-## Project ideas: 
-- Hospital Reservation (Preferred)
-- Car Rental Reservation
+## Project idea: 
+- Hospital Reservation 
 
 
 ## Group Members
