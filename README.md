@@ -1,13 +1,13 @@
 # CPIT305 Course Project
-Introduction about your project, describe the problem, and your solution. Project implementation should follow Object-Orianted programming structure.
+Library management system. We are going to design a system to help a library to orgnaize their operations.
 
 ## Group Members
-- First Member
-- Second one
-- ...
+- Mohammed Alhazmi
+- Khalid Alkhodairi
+- Abdullah Alzubaidi
 
 ## More details about your project
-You may add several titles and description about the project and how do you work as group and role of each member. Also, include some details about how to use the project and other details
+Our system will be able to store books data in terms of which section it belongs on, how many of each book is available ,employees data etc. Handle the borrowing proccess is our main feature. Each member will contribute in each aspect of building this system(network,database,threading....) we all want to equally benefit from this course. 
 
 
 ## Class Diagram
