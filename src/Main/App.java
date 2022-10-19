@@ -1,6 +1,6 @@
 package Main;
 
-import GUI.LoginGUI;
+import GUI.*;
 
 public class App {
     
