@@ -7,17 +7,17 @@ public class Player {
     private String email;
     private String name;
     private String password;
-    private int id;
+    private static int id = 1;
     private ArrayList<Player> arrPlayer = new ArrayList<Player>();
 
-    private Player(String email, String name, String password, int id) {
+    private Player(String email, String name, String password) {
         this.email = email;
         this.name = name;
         this.password = password;
-        this.id = id = 1;
+        id++;
     }
 
-    public void addPlayer(String email, String name, String password, int id) {
+    public void addPlayer(String email, String name, String password) {
         for (Player p : arrPlayer) {
             if (p.getEmail() == email) {
 //                throw new EmailException;
@@ -26,11 +26,23 @@ public class Player {
 //                throw new NameException;
             }
         }
-        new Player(email, name, password, ++id);
+        new Player(email, name, password);
+
     }
 
-    public Player getPlayer(Player p) {
-        return p;
+    public Player getPlayer(String userName, String password) {
+        for(Player p : arrPlayer){
+            if (p.getName() != name) {
+                // throw new NameException;
+            }
+            if (p.getName() == name && p.getPassword() != password) {
+                // throw new PasswordException;
+            }
+            if (p.getName() == name && p.getPassword() == password){
+                return p;
+            }
+        }
+        return null;
     }
 
     public void matchHistroyUpdate() {
@@ -65,8 +77,5 @@ public class Player {
         this.password = password;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
 }
