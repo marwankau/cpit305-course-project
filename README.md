@@ -22,9 +22,9 @@ Patient has 3 attribute { patientID(PK) , patientAge , patientName }
 ![ER-DIAGRAM](/images/ERD.png)
 
 ## Class Diagram
-Include a class diagram for your project here with short discrition
+We have 3 classes Doctor,Patient and Appoint each one of them has own attributes and methods and the relationship between them are association
 
-![Our Awsome Project Class Diagram](/images/class-diagram.png)
+![UML Class Diagram](/images/UML.jpg)
 
 
 ## Screen Capture
