@@ -14,9 +14,8 @@ public class Server {
         System.out.println("Server is Online");
         try {
             while (true) {
-
                 String line;
-
+                int choice;
                 Socket client = server.accept();
                 //---------------------------------------------------------------------
                 InputStream in = client.getInputStream();
@@ -26,11 +25,12 @@ public class Server {
                 Menu m = new Menu(writer);
                 //---------------------------------------------------------------------
                 line = receiver.nextLine();// get the msg from the client
-                System.out.print(line);// ... is connected                  //give an information about who is connected to the server
-                System.out.println();
+                System.out.println(line);// ... is connected                  //give an information about who is connected to the server
                 //---------------------------------------------------------------------
                 m.MainMenu();                                               // sending Mainmenu to the receptionist
                 //---------------------------------------------------------------------
+                //choice = receiver.nextInt();
+                //System.out.println(choice);        
                 writer.close();
             }
         } catch (SocketException e) {// if the client didn't send anything
