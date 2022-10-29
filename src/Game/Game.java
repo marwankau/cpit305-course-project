@@ -1,8 +1,9 @@
 package Game;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+// import javax.swing.ImageIcon;
+// import javax.swing.JLabel;
+// import javax.swing.JOptionPane;
+import javax.swing.*;
 
 import GUI.GameGUI;
 
@@ -18,11 +19,10 @@ public class Game {
     // this.lobbyName = lobbyName;
     // }
 
-    public Game() {}
+    public Game() {
+    }
 
     public JLabel setsignInGUI(GameGUI gui, JLabel label, int x, int y) {
-        
-
 
         if (sign == true) {
             label.setIcon(XIcon);
@@ -33,7 +33,7 @@ public class Game {
         } else {
             label.setIcon(OIcon);
             gameboard[x][y] = 'O';
-            
+
             sign = !sign;
             counter++;
         }
