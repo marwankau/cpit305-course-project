@@ -15,7 +15,8 @@ public class Player {
     private Socket s;
     private PrintWriter WriteToServer;
     private Scanner ReadFromServer;
-  
+    
+    public String welcomMsg ="\n\tROCK \t\tPAPER \t\tSCISSORS \n   _______                 _______                    _______\n---'   ____)            ---'   ____)____           ---'   ____)____\n      (_____)                     ______)                    ______)\n      (_____)                     _______)                __________)\n      (____)                    _______)                 (____)\n---.__(___)             ---.__________)            ---.__(___)\n";
    
     public static void main(String[] args) throws IOException, ParseException, SQLException {
 
@@ -29,8 +30,8 @@ public class Player {
     
     public void menu() throws IOException, ParseException, SQLException {
 
-        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","moe");
-        Statement stat = conn.createStatement();
+       // Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","moe");
+       // Statement stat = conn.createStatement();
         
         Scanner in = new Scanner(System.in);
         String choice = "0";
@@ -40,8 +41,10 @@ public class Player {
         while (true) {
             if (choice.equals("0")) {
                 do{
+                System.out.println("======================================================");    
+                System.out.println(welcomMsg);
                 System.out.println("\n==================== RPS Game ====================");
-                System.out.println("Welcome to out game\n");
+                System.out.println("Welcome to our game\n");
                 System.out.println("1. New player?");
                 System.out.println("2. Login");
                 System.out.println("3. Exit");

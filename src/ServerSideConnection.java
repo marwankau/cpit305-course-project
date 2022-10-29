@@ -10,6 +10,9 @@ import java.sql.Statement;
 
 public class ServerSideConnection extends Thread {
 
+    public String RockShape ="\n Rock \n     _______\n---'   ____)\n      (_____)\n      (_____)\n     (____)\n---.__(___)\n";
+    public String PaperShape ="\n Paper \n      _______\n---'    ____)____\n           ______)\n          _______)\n         _______)\n---.__________)\n";
+    public String ScissorShape ="\n Scissor \n     _______\n---'   ____)____\n          ______)\n       __________)\n      (____)\n---.__(___)\n";
     /**
      *
      */
@@ -79,12 +82,12 @@ public class ServerSideConnection extends Thread {
                     WriteToPlayer2.flush();
 
                     WriteToPlayer2.println("Your Points: "+ P2Points);
-                    WriteToPlayer1.println(" Your points: "+P1Points);
+                    WriteToPlayer1.println("Your points: "+P1Points);
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
 
                     WriteToPlayer2.println("Enemy Points: "+ P1Points);
-                    WriteToPlayer1.println(" Enemy points: "+P2Points);
+                    WriteToPlayer1.println("Enemy points: "+P2Points);
 
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
@@ -92,8 +95,8 @@ public class ServerSideConnection extends Thread {
                 }
 
                 else if (choose1.equals("1") && choose2.equals("2")) {
-                    WriteToPlayer1.println("Lose");
-                    WriteToPlayer2.println("Win");
+                    WriteToPlayer1.println("Lose"+RockShape);
+                    WriteToPlayer2.println("Win"+PaperShape);
                     System.out.println("Player2 win");
                     P2Points+= 10;
                     System.out.println("Player 1 Points: "+ P1Points);
@@ -102,12 +105,12 @@ public class ServerSideConnection extends Thread {
                     WriteToPlayer2.flush();
 
                     WriteToPlayer2.println("Your Points: "+ P2Points);
-                    WriteToPlayer1.println(" Your points: "+P1Points);
+                    WriteToPlayer1.println("Your points: "+P1Points);
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
 
                     WriteToPlayer2.println("Enemy Points: "+ P1Points);
-                    WriteToPlayer1.println(" Enemy points: "+P2Points);
+                    WriteToPlayer1.println("Enemy points: "+P2Points);
 
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
@@ -115,8 +118,8 @@ public class ServerSideConnection extends Thread {
                 }
 
                 else if (choose1.equals("1") && choose2.equals("3")) {
-                    WriteToPlayer1.println("Win");
-                    WriteToPlayer2.println("Lose");
+                    WriteToPlayer1.println("Win"+RockShape);
+                    WriteToPlayer2.println("Lose"+ScissorShape);
                     System.out.println("Player1 win");
                     P1Points+= 10;
                     System.out.println("Player 1 Points: "+ P1Points);
@@ -126,12 +129,12 @@ public class ServerSideConnection extends Thread {
 
 
                     WriteToPlayer2.println("Your Points: "+ P2Points);
-                    WriteToPlayer1.println(" Your points: "+P1Points);
+                    WriteToPlayer1.println("Your points: "+P1Points);
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
 
                     WriteToPlayer2.println("Enemy Points: "+ P1Points);
-                    WriteToPlayer1.println(" Enemy points: "+P2Points);
+                    WriteToPlayer1.println("Enemy points: "+P2Points);
 
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
@@ -139,8 +142,8 @@ public class ServerSideConnection extends Thread {
                 }
 
                 else if (choose1.equals("2") && choose2.equals("1")) {
-                    WriteToPlayer1.println("Win");
-                    WriteToPlayer2.println("Lose");
+                    WriteToPlayer1.println("Win"+PaperShape);
+                    WriteToPlayer2.println("Lose"+RockShape);
                     System.out.println("Player1 win");
                     P1Points+= 10;
                     System.out.println("Player 1 Points: "+ P1Points);
@@ -150,12 +153,12 @@ public class ServerSideConnection extends Thread {
 
 
                     WriteToPlayer2.println("Your Points: "+ P2Points);
-                    WriteToPlayer1.println(" Your points: "+P1Points);
+                    WriteToPlayer1.println("Your points: "+P1Points);
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
 
                     WriteToPlayer2.println("Enemy Points: "+ P1Points);
-                    WriteToPlayer1.println(" Enemy points: "+P2Points);
+                    WriteToPlayer1.println("Enemy points: "+P2Points);
 
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
@@ -163,8 +166,8 @@ public class ServerSideConnection extends Thread {
                 }
 
                 else if (choose1.equals("2") && choose2.equals("3")) {
-                    WriteToPlayer1.println("Lose");
-                    WriteToPlayer2.println("Win");
+                    WriteToPlayer1.println("Lose"+PaperShape);
+                    WriteToPlayer2.println("Win"+ScissorShape);
                     System.out.println("Player2 win");
                     P2Points+= 10;
                     System.out.println("Player 1 Points: "+ P1Points);
@@ -173,12 +176,12 @@ public class ServerSideConnection extends Thread {
                     WriteToPlayer2.flush();
 
                     WriteToPlayer2.println("Your Points: "+ P2Points);
-                    WriteToPlayer1.println(" Your points: "+P1Points);
+                    WriteToPlayer1.println("Your points: "+P1Points);
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
 
                     WriteToPlayer2.println("Enemy Points: "+ P1Points);
-                    WriteToPlayer1.println(" Enemy points: "+P2Points);
+                    WriteToPlayer1.println("Enemy points: "+P2Points);
 
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
@@ -186,8 +189,8 @@ public class ServerSideConnection extends Thread {
                 }
 
                 else if (choose1.equals("3") && choose2.equals("1")) {
-                    WriteToPlayer1.println("Lose");
-                    WriteToPlayer2.println("Win");
+                    WriteToPlayer1.println("Lose"+ScissorShape);
+                    WriteToPlayer2.println("Win"+RockShape);
                     System.out.println("Player2 win");
                     P2Points+= 10;
                     System.out.println("Player 1 Points: "+ P1Points);
@@ -197,12 +200,12 @@ public class ServerSideConnection extends Thread {
 
 
                     WriteToPlayer2.println("Your Points: "+ P2Points);
-                    WriteToPlayer1.println(" Your points: "+P1Points);
+                    WriteToPlayer1.println("Your points: "+P1Points);
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
 
                     WriteToPlayer2.println("Enemy Points: "+ P1Points);
-                    WriteToPlayer1.println(" Enemy points: "+P2Points);
+                    WriteToPlayer1.println("Enemy points: "+P2Points);
 
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
@@ -210,8 +213,8 @@ public class ServerSideConnection extends Thread {
                 }
 
                 else if (choose1.equals("3") && choose2.equals("2")) {
-                    WriteToPlayer2.println("Lose");
-                    WriteToPlayer1.println("Win");
+                    WriteToPlayer2.println("Lose"+RockShape);
+                    WriteToPlayer1.println("Win"+PaperShape);
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
 
@@ -221,12 +224,12 @@ public class ServerSideConnection extends Thread {
                     System.out.println("Player 2 Points: "+ P2Points);
 
                     WriteToPlayer2.println("Your Points: "+ P2Points);
-                    WriteToPlayer1.println(" Your points: "+P1Points);
+                    WriteToPlayer1.println("Your points: "+P1Points);
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
 
                     WriteToPlayer2.println("Enemy Points: "+ P1Points);
-                    WriteToPlayer1.println(" Enemy points: "+P2Points);
+                    WriteToPlayer1.println("Enemy points: "+P2Points);
 
                     WriteToPlayer1.flush();
                     WriteToPlayer2.flush();
