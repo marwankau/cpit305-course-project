@@ -13,10 +13,8 @@ public class Client {
         String ReceptionPassword[] = { "RakanS", "MoathS", "AbdulrahmanN" };
         String ReceptionName[] = { "Rakan", "Moath", "Abdulrahman" };
 
-        Boolean check = true; // For the while loop, If it change the loop will stop ( it will only change if
-                              // the user did login)
-        while (check) { // this loop is made because if the receptionist didn't enter a correct username
-                        // or password, it will ask him again and again.
+        Boolean check = true; // For the while loop, If it change the loop will stop ( it will only change if the user did login)
+        while (check) { // this loop is made because if the receptionist didn't enter a correct username or password, it will ask him again and again.
 
             // Here we take Username And password
             Scanner scanner = new Scanner(System.in);
@@ -29,7 +27,7 @@ public class Client {
             for (i = 0; i < 3; i++) { // it will check all usernames and passwords
 
                 if (ReceptionUserName[i].equals(ScannerUsername) && ReceptionPassword[i].equals(ScannerPassword)) {
-                    connect(ReceptionName, i); // connects the reception with the server
+                    connect(ReceptionName, i, scanner); // connects the reception with the server
                     check = false; // to get out from while loop
                 }
             }
@@ -40,45 +38,30 @@ public class Client {
         }
     }
 
-    public static void connect(String ReceptionName[], int i) throws IOException {
+    public static void connect(String ReceptionName[], int i, Scanner scanner) throws IOException {
         String line;
+        int choice;
         try {
             Socket client = new Socket("localhost", 2000); // it will connect the receptionist with the server
             // -----------------------------------------------------------------------------------------------------------
             InputStream in = client.getInputStream(); // Read bytes from server
-            OutputStream out = client.getOutputStream(); // Send bytes to server // Read and write between server and
-                                                         // receptionist
+            OutputStream out = client.getOutputStream(); // Send bytes to server // Read and write between server and receptionist
             Scanner receiver = new Scanner(in); // Read normally
             PrintWriter writer = new PrintWriter(out, true); // write normally
             // -----------------------------------------------------------------------------------------------------------
             writer.println("( " + ReceptionName[i] + " ) " + "is connected\n"); // This will send a notfication to the server for whom did join.
-
             while (receiver.hasNext()) { // This loop will read the mainMenu
                 line = receiver.nextLine();
-                System.out.println(line);
+                if (line.equals("Enter your choice: ")) // to make it better formated for entering choice
+                    System.out.print(line);
+                else {
+                    System.out.println(line);
+                }
             }
-
+            //choice = scanner.nextInt();
+            //writer.println(choice);
         } catch (ConnectException e) { // if the server was offline it will handel it
             System.out.println("Server is offline");
         }
     }
-
 }
-/*
- * 
- * 
- * Scanner keyboard = new Scanner(System.in);
- * line = keyboard.nextLine();
- * // line = "Client msg :" + line ;
- * writer.println(line);
- * 
- * keyboard.close();
- * receiver.close();
- * client.close();
- * } catch (ConnectException e) {// if the server is off it will catch this
- * exception
- * System.out.println("The server is off");
- * }
- * 
- * }
- */
