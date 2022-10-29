@@ -29,7 +29,7 @@ public class Client {
             for (i = 0; i < 3; i++) { // it will check all usernames and passwords
 
                 if (ReceptionUserName[i].equals(ScannerUsername) && ReceptionPassword[i].equals(ScannerPassword)) {
-                    connect(ReceptionName,i); // connects the reception with the server
+                    connect(ReceptionName, i); // connects the reception with the server
                     check = false; // to get out from while loop
                 }
             }
@@ -41,18 +41,22 @@ public class Client {
     }
 
     public static void connect(String ReceptionName[], int i) throws IOException {
-        
+        String line;
         try {
             Socket client = new Socket("localhost", 2000); // it will connect the receptionist with the server
-            //-----------------------------------------------------------------------------------------------------------
-            InputStream in = client.getInputStream();    // Read bytes from server
-            OutputStream out = client.getOutputStream(); // Send bytes to server                // Read and write between server and receptionist 
-            Scanner receiver = new Scanner(in);                         // Read normally
-            PrintWriter writer = new PrintWriter(out, true); // write normally  
-            //-----------------------------------------------------------------------------------------------------------
-            writer.println("( " + ReceptionName[i] + " ) " + "is connected\n");
-            receiver.close();
-            client.close();
+            // -----------------------------------------------------------------------------------------------------------
+            InputStream in = client.getInputStream(); // Read bytes from server
+            OutputStream out = client.getOutputStream(); // Send bytes to server // Read and write between server and
+                                                         // receptionist
+            Scanner receiver = new Scanner(in); // Read normally
+            PrintWriter writer = new PrintWriter(out, true); // write normally
+            // -----------------------------------------------------------------------------------------------------------
+            writer.println("( " + ReceptionName[i] + " ) " + "is connected\n"); // This will send a notfication to the server for whom did join.
+
+            while (receiver.hasNext()) { // This loop will read the mainMenu
+                line = receiver.nextLine();
+                System.out.println(line);
+            }
 
         } catch (ConnectException e) { // if the server was offline it will handel it
             System.out.println("Server is offline");
@@ -61,11 +65,8 @@ public class Client {
 
 }
 /*
-
-
- * String line;
- * line = receiver.nextLine();
- * System.out.printf("server msg: %s\n", line);
+ * 
+ * 
  * Scanner keyboard = new Scanner(System.in);
  * line = keyboard.nextLine();
  * // line = "Client msg :" + line ;
