@@ -9,34 +9,32 @@ import java.util.Scanner;
 
 public class Server {
     public static void main(String[] args) throws IOException {
-        // 1. Create server socket
         ServerSocket server = new ServerSocket(2000);
 
-        System.out.println("Server waiting for connection...");
-        System.out.println("Welcome to server");
+        System.out.println("Server is Online");
         try {
             while (true) {
                 Menu m = new Menu();
                 String line;
-                Socket client = server.accept();
 
+                Socket client = server.accept();
+                //---------------------------------------------------------------------
                 InputStream in = client.getInputStream();
                 OutputStream out = client.getOutputStream();
-
-                Scanner receiver = new Scanner(in);
+                Scanner receiver = new Scanner(in);                         //read and write betwen server and receptionist
                 PrintWriter writer = new PrintWriter(out, true);
-
-
+                //---------------------------------------------------------------------
                 line = receiver.nextLine();// get the msg from the client
-                System.out.printf(line);// ... is connected  
+                System.out.print(line);// ... is connected
+                System.out.println();
+
+                //writer.println(m.welcome);
+
 
                 
-
-                writer.println(m.welcome);
-
                 receiver.close();
                 client.close();
-
+                writer.close();
             }
 
         } catch (SocketException e) {// if the client didn't send anything

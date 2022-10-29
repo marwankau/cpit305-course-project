@@ -11,54 +11,73 @@ public class Client {
         // arrays that contains login information to enter server
         String ReceptionUserName[] = { "RakanSalama", "MoathAlSolami", "AbdulrahmanNahfawi" };
         String ReceptionPassword[] = { "RakanS", "MoathS", "AbdulrahmanN" };
-        String ReceptionName[] = { "Rakan", "Moath", "Abdulrahman"};
+        String ReceptionName[] = { "Rakan", "Moath", "Abdulrahman" };
 
-        // Here we take Username And password
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter username:");
-        String ScannerUsername = scanner.next();
-        System.out.print("Enter Password:");
-        String ScannerPassword = scanner.next();
-        // After we took the username and password we will compare it with the username
-        // and password in the system, and with the username and password that the
-        // receptionist entered
-        // if it is true, the system will connnect the recepetionist with the server, if
-        // not it will give a msg and exit
-        for (int i = 0; i < 4; i++) {
-            try {
+        Boolean check = true; // For the while loop, If it change the loop will stop ( it will only change if
+                              // the user did login)
+        while (check) { // this loop is made because if the receptionist didn't enter a correct username
+                        // or password, it will ask him again and again.
+
+            // Here we take Username And password
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter username:");
+            String ScannerUsername = scanner.next();
+            System.out.print("Enter Password:");
+            String ScannerPassword = scanner.next();
+
+            int i = 0; // to reset the i , so it can recheck again V
+            for (i = 0; i < 3; i++) { // it will check all usernames and passwords
+
                 if (ReceptionUserName[i].equals(ScannerUsername) && ReceptionPassword[i].equals(ScannerPassword)) {
-                    try {
-                        Socket client = new Socket("localhost", 2000); // Here it will connects the client with the server
-                        InputStream in = client.getInputStream();
-                        OutputStream out = client.getOutputStream();
-
-                        Scanner receiver = new Scanner(in);
-                        PrintWriter writer = new PrintWriter(out, true);
-                        writer.println("( " + ReceptionName[i] + " ) " + "is connected\n");
-                        String line;
-                        line = receiver.nextLine();
-                        System.out.printf("server msg: %s\n", line);
-                        Scanner keyboard = new Scanner(System.in);
-                        line = keyboard.nextLine();
-                        //line = "Client msg :" + line ;
-                        writer.println(line);
-
-                        
-                        keyboard.close();
-                        receiver.close();
-                        client.close();
-                    } catch (ConnectException e) {// if the server is off it will catch this exception
-                        System.out.println("The server is off");
-                    }
-                    
-                    break; // to ignore the below catch
+                    connect(ReceptionName,i); // connects the reception with the server
+                    check = false; // to get out from while loop
                 }
-            } catch (ArrayIndexOutOfBoundsException e) { // it will catch it if the user or password is wrong
-                System.out.println("Username or password wrong");
             }
-            scanner.close();
+            if (check == false) { // it will skip the wrong username and password and get out from the loop.
+                continue;
+            }
+            System.out.println("Username or Password is wrong");
         }
+    }
 
+    public static void connect(String ReceptionName[], int i) throws IOException {
+        
+        try {
+            Socket client = new Socket("localhost", 2000); // it will connect the receptionist with the server
+            //-----------------------------------------------------------------------------------------------------------
+            InputStream in = client.getInputStream();    // Read bytes from server
+            OutputStream out = client.getOutputStream(); // Send bytes to server                // Read and write between server and receptionist 
+            Scanner receiver = new Scanner(in);                         // Read normally
+            PrintWriter writer = new PrintWriter(out, true); // write normally  
+            //-----------------------------------------------------------------------------------------------------------
+            writer.println("( " + ReceptionName[i] + " ) " + "is connected\n");
+            receiver.close();
+            client.close();
+
+        } catch (ConnectException e) { // if the server was offline it will handel it
+            System.out.println("Server is offline");
+        }
     }
 
 }
+/*
+
+
+ * String line;
+ * line = receiver.nextLine();
+ * System.out.printf("server msg: %s\n", line);
+ * Scanner keyboard = new Scanner(System.in);
+ * line = keyboard.nextLine();
+ * // line = "Client msg :" + line ;
+ * writer.println(line);
+ * 
+ * keyboard.close();
+ * receiver.close();
+ * client.close();
+ * } catch (ConnectException e) {// if the server is off it will catch this
+ * exception
+ * System.out.println("The server is off");
+ * }
+ * 
+ * }
+ */
