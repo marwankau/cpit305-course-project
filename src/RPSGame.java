@@ -22,7 +22,7 @@ static Socket s = new Socket();
 public static void main(String[] args) throws IOException, SQLException {
 
     
-    Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","moe");
+    Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cpit305-project", "root", "zid123");
     Statement stat = conn.createStatement();
    
 

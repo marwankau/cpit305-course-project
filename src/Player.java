@@ -16,7 +16,7 @@ public class Player {
     private PrintWriter WriteToServer;
     private Scanner ReadFromServer;
     
-    public String welcomMsg ="\n\tROCK \t\tPAPER \t\tSCISSORS \n   _______                 _______                    _______\n---'   ____)            ---'   ____)____           ---'   ____)____\n      (_____)                     ______)                    ______)\n      (_____)                     _______)                __________)\n      (____)                    _______)                 (____)\n---.__(___)             ---.__________)            ---.__(___)\n";
+    public String welcomMsg ="\n     ROCK                   PAPER                     SCISSORS \n   _______                 _______                    _______\n---'   ____)            ---'   ____)____           ---'   ____)____\n      (_____)                     ______)                    ______)\n      (_____)                     _______)                __________)\n      (____)                    _______)                 (____)\n---.__(___)             ---.__________)            ---.__(___)\n";
    
     public static void main(String[] args) throws IOException, ParseException, SQLException {
     
@@ -30,7 +30,7 @@ public class Player {
     
     public void menu() throws IOException, ParseException, SQLException {
 
-        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cpit305-project", "root", "moe123");
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cpit305-project", "root", "zid123");
         Statement stat = conn.createStatement();
         
         Scanner in = new Scanner(System.in);
@@ -41,9 +41,9 @@ public class Player {
         while (true) {
             if (choice.equals("0")) {
                 do{
-                System.out.println("======================================================");    
+                System.out.println("=====================================================================");    
                 System.out.println(welcomMsg);
-                System.out.println("\n==================== RPS Game ====================");
+                System.out.println("\n============================== RPS Game =============================\n");
                 System.out.println("Welcome to our game\n");
                 System.out.println("1. New player?");
                 System.out.println("2. Login");
@@ -57,10 +57,10 @@ public class Player {
 
                     
                     do{
-                    System.out.println("Enter your username: ");
+                    System.out.print("\nEnter your username: ");
                     name = in.next();
                 
-                    System.out.println("enter your password: ");
+                    System.out.print("enter your password: ");
                     pass = in.next();
        
                       usedName = check(name,stat);
@@ -88,9 +88,9 @@ public class Player {
                     String TryOrBack = "";
 
                     do{
-                    System.out.println("Enter your username: ");
+                    System.out.print("\nEnter your username: ");
                     name = in.next();
-                    System.out.println("enter your password: ");
+                    System.out.print("enter your password: ");
                     pass = in.next();
                                 
 
@@ -183,9 +183,9 @@ public class Player {
                 else if (choice.equals("2") ) {
 
                     do {
-                        System.out.println("not implemented yet.." + " Press " + "1"+" to exit record page");
+                        System.out.println("not implemented yet.." + " Press " + "E"+" to exit record page");
                         choice = in.next();
-                    } while (!choice.equals("1") );
+                    } while (!choice.equalsIgnoreCase("E") );
 
                 }
 
@@ -200,15 +200,15 @@ public class Player {
                                 "* Press" + "1" + " to choose Rock\n" +
                                 "* Press " + "2" + " to choose Paper\n" +
                                 "* Press " + "3" + " tp choose Scissor\n" +
-                                "Press "+"1"+" to exit tutorial page");
+                                "Press "+"E"+" to exit tutorial page");
                         choice = in.next();
-                    } while (!choice.equals("1"));
+                    } while (!choice.equalsIgnoreCase("E"));
 
                 }
 
 
                 else if(choice.equals("4") ){
-                    System.out.println("Thank you for trying our game ^_^");
+                    System.out.println("\nThank you for trying our game ^_^");
                     break;
                 }
 
