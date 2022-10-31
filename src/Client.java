@@ -48,18 +48,12 @@ public class Client {
             OutputStream out = client.getOutputStream(); // Send bytes to server // Read and write between server and receptionist
             Scanner receiver = new Scanner(in); // Read normally
             PrintWriter writer = new PrintWriter(out, true); // write normally
+            Menu m = new Menu(writer);
             // -----------------------------------------------------------------------------------------------------------
             writer.println("( " + ReceptionName[i] + " ) " + "is connected\n"); // This will send a notfication to the server for whom did join.
-            while (receiver.hasNext()) { // This loop will read the mainMenu
-                line = receiver.nextLine();
-                if (line.equals("Enter your choice: ")) // to make it better formated for entering choice
-                    System.out.print(line);
-                else {
-                    System.out.println(line);
-                }
-            }
-            //choice = scanner.nextInt();
-            //writer.println(choice);
+            m.MainMenu();
+            choice = scanner.nextInt();
+            writer.println(choice);
         } catch (ConnectException e) { // if the server was offline it will handel it
             System.out.println("Server is offline");
         }

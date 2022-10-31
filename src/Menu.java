@@ -9,10 +9,10 @@ public class Menu {
     }
 
     public void MainMenu() {
-        writer.print("==========Welcome to Booking Management System==========\n" +
+        System.out.println("==========Welcome to Booking Management System==========\n" +
         "1. Check available rooms\n" +
         "2. Edit a room\n" +
         "3. Book a room\n" +
-        "========================================================\n" + "Enter your choice: ");
+        "========================================================\n" + "Enter your choice: ");;
     }
 }
