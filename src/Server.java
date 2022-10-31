@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Server {
@@ -17,24 +19,30 @@ public class Server {
                 String line;
                 int choice;
                 Socket client = server.accept();
-                //---------------------------------------------------------------------
+                // ---------------------------------------------------------------------
                 InputStream in = client.getInputStream();
                 OutputStream out = client.getOutputStream();
-                Scanner receiver = new Scanner(in);                         //read and write betwen server and receptionist
+                Scanner receiver = new Scanner(in); // read and write betwen server and receptionist
                 PrintWriter writer = new PrintWriter(out, true);
-                Menu m = new Menu(writer);
-                //---------------------------------------------------------------------
+
+                // ---------------------------------------------------------------------
                 line = receiver.nextLine();// get the msg from the client
-                System.out.println(line);// ... is connected                  //give an information about who is connected to the server
-                //---------------------------------------------------------------------
-                m.MainMenu();                                               // sending Mainmenu to the receptionist
-                //---------------------------------------------------------------------
-                //choice = receiver.nextInt();
-                //System.out.println(choice);        
+                System.out.println(line);// ... is connected //give an information about who is connected to the server
+                // ---------------------------------------------------------------------
+                try {
+                    choice = receiver.nextInt();
+                    System.out.println("The choice was: " + choice);
+                } catch (InputMismatchException e) {
+                    System.out.println("Wrong input");
+                }
+                // ---------------------------------------------------------------------
                 writer.close();
             }
         } catch (SocketException e) {// if the client didn't send anything
             System.out.println("Client Didn't send anything");
+        } catch (NoSuchElementException e){
+            System.out.println("Something is missing");
+            
         }
         server.close();
     }
