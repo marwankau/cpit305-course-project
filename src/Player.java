@@ -19,7 +19,7 @@ public class Player {
     public String welcomMsg ="\n\tROCK \t\tPAPER \t\tSCISSORS \n   _______                 _______                    _______\n---'   ____)            ---'   ____)____           ---'   ____)____\n      (_____)                     ______)                    ______)\n      (_____)                     _______)                __________)\n      (____)                    _______)                 (____)\n---.__(___)             ---.__________)            ---.__(___)\n";
    
     public static void main(String[] args) throws IOException, ParseException, SQLException {
-
+    
         Player p = new Player();
         p.menu();
         
@@ -30,7 +30,7 @@ public class Player {
     
     public void menu() throws IOException, ParseException, SQLException {
 
-        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","moe");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cpit305-project", "root", "moe123");
         Statement stat = conn.createStatement();
         
         Scanner in = new Scanner(System.in);
