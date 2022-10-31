@@ -41,6 +41,7 @@ public class Client {
     public static void connect(String ReceptionName[], int i, Scanner scanner) throws IOException {
         String line;
         int choice;
+        
         try {
             Socket client = new Socket("localhost", 2000); // it will connect the receptionist with the server
             // -----------------------------------------------------------------------------------------------------------
@@ -54,6 +55,8 @@ public class Client {
             m.MainMenu();
             choice = scanner.nextInt();
             writer.println(choice);
+
+
         } catch (ConnectException e) { // if the server was offline it will handel it
             System.out.println("Server is offline");
         }

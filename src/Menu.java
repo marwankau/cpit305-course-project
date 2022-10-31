@@ -9,10 +9,13 @@ public class Menu {
     }
 
     public void MainMenu() {
-        System.out.println("==========Welcome to Booking Management System==========\n" +
-        "1. Check available rooms\n" +
-        "2. Edit a room\n" +
-        "3. Book a room\n" +
-        "========================================================\n" + "Enter your choice: ");;
+        System.out.println("==========Welcome to Booking Management System==========");
+        System.out.println("1. Check available rooms");
+        System.out.println("2. Edit a room");
+        System.out.println("3. Book a room");
+        System.out.println("Note: To exit type exit: ");
+        System.out.println("========================================================");
+        System.out.println("Enter your choice: ");
+
     }
 }
