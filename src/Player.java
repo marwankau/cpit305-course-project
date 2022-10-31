@@ -30,7 +30,7 @@ public class Player {
     
     public void menu() throws IOException, ParseException, SQLException {
 
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cpit305-project", "root", "moe123");
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cpit305-project", "root", "moe123");
         Statement stat = conn.createStatement();
         
         Scanner in = new Scanner(System.in);
@@ -151,7 +151,6 @@ public class Player {
                     Scanner tool = new Scanner(System.in);
                     String choose;
                     String res;
-                    String PlayerID = ReadFromServer.nextLine();
 
                     int rounds = 1;
                     while (rounds <= 3) {

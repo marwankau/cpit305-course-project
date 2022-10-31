@@ -22,8 +22,8 @@ static Socket s = new Socket();
 public static void main(String[] args) throws IOException, SQLException {
 
     
-    //Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","moe");
-    //Statement stat = conn.createStatement();
+    Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","moe");
+    Statement stat = conn.createStatement();
    
 
     
@@ -55,7 +55,7 @@ public static void main(String[] args) throws IOException, SQLException {
             
             
 
-         ServerSideConnection ssc = new ServerSideConnection(s,s2,Players);
+         ServerSideConnection ssc = new ServerSideConnection(s,s2,Players,stat);
             ssc.start();
             }
             else{
@@ -63,8 +63,7 @@ public static void main(String[] args) throws IOException, SQLException {
                 if(Players == 0){
                     s.close();
                     s2.close();
-                    System.out.println(s.isClosed());
-                    System.out.println(s.isClosed());
+      
                 }
                 
             }
