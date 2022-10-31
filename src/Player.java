@@ -30,8 +30,8 @@ public class Player {
     
     public void menu() throws IOException, ParseException, SQLException {
 
-       // Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","moe");
-       // Statement stat = conn.createStatement();
+        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","moe");
+        Statement stat = conn.createStatement();
         
         Scanner in = new Scanner(System.in);
         String choice = "0";
@@ -151,7 +151,6 @@ public class Player {
                     Scanner tool = new Scanner(System.in);
                     String choose;
                     String res;
-                    // Ù†Ø­ØªØ§Ø¬Ù‡ Ø¹Ø´Ø§Ù† Ø§Ù„Ø¯Ø§ØªØ§ Ø¨ÙŠØ³    
                     String PlayerID = ReadFromServer.nextLine();
 
                     int rounds = 1;
