@@ -1,60 +1,41 @@
 package Game;
 
-import java.util.ArrayList;
+import Connections.DataBase.DataBase;
 
 public class Player {
 
     private String email;
-    private String name;
+    private String username;
     private String password;
-    private static int id = 1;
-    private ArrayList<Player> arrPlayer = new ArrayList<Player>();
+    private static DataBase db = DataBase.getDatabase();
+    private static int id = db.lastIDRecord();
 
-    private Player(String email, String name, String password) {
-        this.email = email;
-        this.name = name;
-        this.password = password;
-        id++;
-    }
-
-    public void addPlayer(String email, String name, String password) {
-        for (Player p : arrPlayer) {
-            if (p.getEmail() == email) {
-//                throw new EmailException;
-            }
-            if (p.getName() == name) {
-//                throw new NameException;
-            }
-        }
-        new Player(email, name, password);
+    public Player(){
 
     }
 
-    public Player getPlayer(String userName, String password) {
-        for(Player p : arrPlayer){
-            if (p.getName() != name) {
-                // throw new NameException;
-            }
-            if (p.getName() == name && p.getPassword() != password) {
-                // throw new PasswordException;
-            }
-            if (p.getName() == name && p.getPassword() == password){
-                return p;
-            }
-        }
-        return null;
+    public void addPlayer(String email, String username, String password) {
+        db.addPlayerToDatabase(++id, username, password, email);
     }
 
-    public void matchHistroyUpdate() {
+    public static boolean isCorrectLogin(String u, String p){
+        return db.isCorrectLogin(u, p);
+    }
 
+    public boolean isEmailExist(String e){
+        return db.searchEmail(e);
+    }
+
+    public boolean isUsernameExist(String u){
+        return db.searchUsername(u);
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -69,8 +50,8 @@ public class Player {
         this.email = email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {

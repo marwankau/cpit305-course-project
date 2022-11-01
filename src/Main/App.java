@@ -1,10 +1,10 @@
 package Main;
 
-import GUI.*;
+import GUI.LoginGUI;
 
 public class App {
     
     public static void main(String[] args) {
-        new GameGUI().setVisible(true);
+        new LoginGUI().setVisible(true);
     }
 }

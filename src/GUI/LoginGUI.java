@@ -1,8 +1,12 @@
 package GUI;
 
+import javax.swing.JOptionPane;
+
 import Game.Player;
 
 public class LoginGUI extends javax.swing.JFrame {
+
+    private Player player;
 
     public LoginGUI() {
         initComponents();
@@ -98,8 +102,15 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if(Player.isCorrectLogin(username, password)){
+            System.out.println("Username or Password is inccorrect");//TODO log file and database
+            JOptionPane.showMessageDialog(this, "Username or Password is incorrect!!");
+            return;
+        }
         this.dispose();
-        new GameGUI().setVisible(true);
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed

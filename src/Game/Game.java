@@ -43,54 +43,54 @@ public class Game {
     public boolean winner() {
         // Horizontal Win
         if (gameboard[0][0] == 'X' && gameboard[0][1] == 'X' && gameboard[0][2] == 'X') {
-            System.out.println("Player 1 Wins");
+            System.out.println("X Wins");
             return true;
         } else if (gameboard[0][0] == 'O' && gameboard[0][1] == 'O' && gameboard[0][2] == 'O') {
-            System.out.println("Player 2 Wins");
+            System.out.println("O Wins");
             return true;
         } else if (gameboard[1][0] == 'X' && gameboard[1][1] == 'X' && gameboard[1][2] == 'X') {
-            System.out.println("Player 1 Wins");
+            System.out.println("X Wins");
             return true;
         } else if (gameboard[1][0] == 'O' && gameboard[1][1] == 'O' && gameboard[1][2] == 'O') {
-            System.out.println("Player 2 Wins");
+            System.out.println("O Wins");
             return true;
         } else if (gameboard[2][0] == 'X' && gameboard[2][1] == 'X' && gameboard[2][2] == 'X') {
-            System.out.println("Player 1 Wins");
+            System.out.println("X Wins");
             return true;
         } else if (gameboard[2][0] == 'O' && gameboard[2][1] == 'O' && gameboard[2][2] == 'O') {
-            System.out.println("Player 2 Wins");
+            System.out.println("O Wins");
             return true;
         } // Vertical Wins
         else if (gameboard[0][0] == 'X' && gameboard[1][0] == 'X' && gameboard[2][0] == 'X') {
-            System.out.println("Player 1 Wins");
+            System.out.println("X Wins");
             return true;
         } else if (gameboard[0][0] == 'O' && gameboard[1][0] == 'O' && gameboard[2][0] == 'O') {
-            System.out.println("Player 2 Wins");
+            System.out.println("O Wins");
             return true;
         } else if (gameboard[0][1] == 'X' && gameboard[1][1] == 'X' && gameboard[2][1] == 'X') {
-            System.out.println("Player 1 Wins");
+            System.out.println("X Wins");
             return true;
         } else if (gameboard[0][1] == 'O' && gameboard[1][1] == 'O' && gameboard[2][1] == 'O') {
-            System.out.println("Player 2 Wins");
+            System.out.println("O Wins");
             return true;
         } else if (gameboard[0][2] == 'X' && gameboard[1][2] == 'X' && gameboard[2][2] == 'X') {
-            System.out.println("Player 1 Wins");
+            System.out.println("X Wins");
             return true;
         } else if (gameboard[0][2] == 'O' && gameboard[1][2] == 'O' && gameboard[2][2] == 'O') {
-            System.out.println("Player 2 Wins");
+            System.out.println("O Wins");
             return true;
         } // Diagonal Wins
         else if (gameboard[0][0] == 'X' && gameboard[1][1] == 'X' && gameboard[2][2] == 'X') {
-            System.out.println("Player 1 Wins");
+            System.out.println("X Wins");
             return true;
         } else if (gameboard[0][0] == 'O' && gameboard[1][1] == 'O' && gameboard[2][2] == 'O') {
-            System.out.println("Player 2 Wins");
+            System.out.println("O Wins");
             return true;
         } else if (gameboard[0][2] == 'X' && gameboard[1][1] == 'X' && gameboard[2][0] == 'X') {
-            System.out.println("Player 1 Wins");
+            System.out.println("X Wins");
             return true;
         } else if (gameboard[0][2] == 'O' && gameboard[1][1] == 'O' && gameboard[2][0] == 'O') {
-            System.out.println("Player 2 Wins");
+            System.out.println("O Wins");
             return true;
         }
         return false;
