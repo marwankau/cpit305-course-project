@@ -89,7 +89,7 @@ public class DataBase {
         Statement statementAdd;
         ResultSet resultAdd;
         String insertQuery = String.format(
-                "INSERT INTO players (id, username, password, email) VALUES ('%d', '%s', '%s', '%s');\n", id, username,
+                "INSERT INTO players (id, username, password, email) VALUES ('%d', '%s', '%s', '%s');", id, username,
                 password, email);
         try {
             statementAdd = con.createStatement();
@@ -99,7 +99,7 @@ public class DataBase {
             // TODO Auto-generated catch block
             System.out.println(e);
         }
-        System.out.printf("Row added to Database (ID: %d, Username: %s, Password: %s, Email: %s)", id, username, password, email);
+        System.out.printf("Row added to Database (ID: %d, Username: %s, Password: %s, Email: %s)\n", id, username, password, email);
         // TODO Log file to database
     }
 
