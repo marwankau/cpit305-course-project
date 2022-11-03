@@ -255,12 +255,12 @@ public class Player {
         WriteToServer = new PrintWriter(out, true);
         ReadFromServer = new Scanner(in);
 
-        String msg = ReadFromServer.nextLine();
-        String msg2 = ReadFromServer.nextLine();
+        String Notify = ReadFromServer.nextLine();
+        String Notify2 = ReadFromServer.nextLine();
 
         // Alert player
-        System.out.println(msg);
-        System.out.println(msg2);
+        System.out.println(Notify);
+        System.out.println(Notify2);
 
     }
 

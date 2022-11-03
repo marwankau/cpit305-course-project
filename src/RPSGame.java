@@ -19,15 +19,16 @@ public class RPSGame {
     static Socket s2 = new Socket();
     static Socket s = new Socket();
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cpit305-project", "root",
                 "moe123");
         Statement stat = conn.createStatement();
 
+        try {
         ServerSocket server = new ServerSocket(5000);
         System.out.println("server connected..");
-        try {
+      
             while (!server.isClosed()) {
 
                 
@@ -50,7 +51,7 @@ public class RPSGame {
 
                     System.out.println("2 are connected lets start game");
 
-                    ServerSideConnection ssc = new ServerSideConnection(s, s2, Players, stat);
+                     ssc = new ServerSideConnection(s, s2, Players, stat);
                     ssc.start();
                 
 
@@ -63,7 +64,8 @@ public class RPSGame {
 
                 
             }
-        } catch (Exception e) {
+            
+        } catch (IOException e) {
             System.out.println(e);
 
         }

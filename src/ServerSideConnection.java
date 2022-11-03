@@ -14,9 +14,9 @@ import java.sql.ResultSet;
 
 public class ServerSideConnection extends Thread {
 
-    public String RockShape = "\n Rock \n     _______\n---'   ____)\n      (_____)\n      (_____)\n     (____)\n---.__(___)\n";
-    public String PaperShape = "\n Paper \n      _______\n---'    ____)____\n           ______)\n          _______)\n         _______)\n---.__________)\n";
-    public String ScissorShape = "\n Scissor \n     _______\n---'   ____)____\n          ______)\n       __________)\n      (____)\n---.__(___)\n";
+    public String Rock = "\n Rock \n     _______\n---'   ____)\n      (_____)\n      (_____)\n     (____)\n---.__(___)\n";
+    public String Paper = "\n Paper \n      _______\n---'    ____)____\n           ______)\n          _______)\n         _______)\n---.__________)\n";
+    public String Scissor = "\n Scissor \n     _______\n---'   ____)____\n          ______)\n       __________)\n      (____)\n---.__(___)\n";
     /**
      *
      */
