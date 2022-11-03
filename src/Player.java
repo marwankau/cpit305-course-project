@@ -18,7 +18,6 @@ public class Player {
     private PrintWriter WriteToServer;
     private Scanner ReadFromServer;
     
-    public String welcomMsg ="\n\tROCK \t\tPAPER \t\tSCISSORS \n   _______                 _______                    _______\n---'   ____)            ---'   ____)____           ---'   ____)____\n      (_____)                     ______)                    ______)\n      (_____)                     _______)                __________)\n      (____)                    _______)                 (____)\n---.__(___)             ---.__________)            ---.__(___)\n";
    
     public static void main(String[] args) throws IOException, ParseException, SQLException {
 
@@ -41,7 +40,6 @@ public class Player {
             if (choice.equals("0")) {
                 do{
                 System.out.println("======================================================");    
-                System.out.println(welcomMsg);
                 System.out.println("\n==================== RPS Game ====================");
                 System.out.println("Welcome to our game\n");
                 System.out.println("1. New player?");
@@ -246,8 +244,7 @@ public class Player {
     }
 
     private boolean CheckLogin(String name, String pass, Statement stat) throws SQLException {
-        ResultSet r = stat
-                .executeQuery("select * from player where username = '" + name + "' and password ='" + pass + "'");
+        ResultSet r = stat.executeQuery("select * from player where username = '" + name + "' and password ='" + pass + "'");
 
         if (r.next()) {
             return false;
