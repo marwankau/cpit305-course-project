@@ -90,6 +90,9 @@ public class ServerSideConnection extends Thread {
 
                 choose1 = ReadFromPlayer1.nextLine();
                 choose2 = ReadFromPlayer2.nextLine();
+
+                System.out.println("======== Room : "+GID+" ===========");
+
                 if (choose1.equals(choose2)) {
                     WriteToPlayer1.println("Draw");
                     WriteToPlayer2.println("Draw");
@@ -279,6 +282,7 @@ public class ServerSideConnection extends Thread {
 
                 rounds++;
             }
+            System.out.println("======== Room : "+GID+" Closed ===========");
 
             if (P1Points > P2Points) {
                 System.out.println("Player 1 Win the GAME!!");
