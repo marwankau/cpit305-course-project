@@ -132,7 +132,7 @@ public class Player {
                     System.out.println("\n==================== RPS Game ====================\n");
                     System.out.println("Welcome " + name + " ID:" + IDs + "\n");
                     System.out.println("1. Start game");
-                    System.out.println("2. Recored you won");
+                    System.out.println("2. Your Best Record");
                     System.out.println("3. Tutorial");
                     System.out.println("4. Exit");
                     System.out.print("Choose from above: ");
@@ -171,30 +171,46 @@ public class Player {
 
                     }
 
-                    else if (choice.equals("2")) {
+            
+                    else if (choice.equals("2") ) {
 
-                    do {
-                        System.out.println("not implemented yet.." + " Press " + "1"+" to exit record page");
-                        choice = in.next();
-                    } while (!choice.equals("1") );
-
+                     
+                   
+                            do {
+                        
+                                ResultSet r = stat.executeQuery("select Wins from player where username = '"+name+"'");
+                                     if(r.next())
+                                     {
+                                        int winsNum = r.getInt("Wins");
+                                        
+                                        if(winsNum % 2 == 0){
+                                        System.out.println("You have won "+winsNum +" games\n" + "Press " + "1"+" to exit record page");
+                                        }
+                                        else{
+                                        System.out.println("You have won "+winsNum +" game\n" + "Press " + "1"+" to exit record page");
+                                        }
+                                     }                        
+                                          
+                                          choice = in.next();
+                        } while (!choice.equalsIgnoreCase("E") );
+    
                     }
-
-                    else if (choice.equals("3")) {
-
+    
+                    else if (choice.equals("3") ) {
+    
                         do {
                             System.out.println("\n===== Rock Paper Scissors =====\n"
                                     + "* In RPS game you can play online with any player.\n" +
                                     "* You will play for THREE rounds.\n" +
                                     "* The one gets the highest points will win the game.\n\n" +
-
-                                "* Press" + "1" + " to choose Rock\n" +
-                                "* Press " + "2" + " to choose Paper\n" +
-                                "* Press " + "3" + " tp choose Scissor\n" +
-                                "Press "+"1"+" to exit tutorial page");
-                        choice = in.next();
-                    } while (!choice.equals("1"));
-
+    
+                                    "* Press " + "1" + " to choose Rock\n" +
+                                    "* Press " + "2" + " to choose Paper\n" +
+                                    "* Press " + "3" + " tp choose Scissor\n" +
+                                    "Press "+"E"+" to exit tutorial page");
+                            choice = in.next();
+                        } while (!choice.equalsIgnoreCase("E"));
+    
                     }
 
 
