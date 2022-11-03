@@ -37,6 +37,8 @@ public class Player {
         String name = "";
         String pass = "";
         int IDs = 0;
+
+
         while (true) {
             if (choice.equals("0")) {
                 do {
@@ -151,6 +153,9 @@ public class Player {
                         String choose;
                         String res;
 
+                        
+                        WriteToServer.println(name);
+                        WriteToServer.flush();
                         int rounds = 1;
                         while (rounds <= 3) {
                             System.out.println(ReadFromServer.nextLine());
@@ -257,6 +262,7 @@ public class Player {
 
         String Notify = ReadFromServer.nextLine();
         String Notify2 = ReadFromServer.nextLine();
+
 
         // Alert player
         System.out.println(Notify);
