@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -60,7 +61,7 @@ public class Player {
                     System.out.println("enter your password: ");
                     pass = in.next();
        
-                      usedName = check(name,stat);
+                      usedName = check(name,stat,conn);
                       
                       if(usedName){
                        System.out.println("username is used please try another one..");
@@ -70,12 +71,20 @@ public class Player {
                     }while(usedName);
                     
                     System.out.println("Hey " + name + " your registration has been successfully completed");
-                     IDs = UUID.randomUUID().toString().substring(2,5);
-                    System.out.println("Your ID is " + IDs);
-                    stat.executeQuery("insert into player (ID, username, password, Wins) values('"+IDs+"',"+"'"+name+"'"+","+"'"+pass+"'"+","+0+")");
-
-                        
-                        
+                    IDs = UUID.randomUUID().toString().substring(2,5);
+                   System.out.println("Your ID is " + IDs);
+                     PreparedStatement ps = conn.prepareStatement("insert into player (ID, username, password, Wins) values(?,?,?,?)");
+                   
+                      ps.setString(1,IDs);
+                      ps.setString(2,name);
+                      ps.setString(3,pass);
+                      ps.setInt(4,0);
+                      
+                      ps.executeUpdate();
+                   
+                       
+                       
+                           
                             
                   
                 }
@@ -92,7 +101,7 @@ public class Player {
                                 
 
                 
-                   NotRegistered = CheckLogin(name, pass, stat);
+                   NotRegistered = CheckLogin(name, pass, stat, conn);
                             if(NotRegistered){
                              System.out.println("Your username/password is incorrect ");
                                 System.out.println("*type \"back\" to go back or \"press any key\" to continue trying..");
@@ -109,12 +118,18 @@ public class Player {
 
                         } while (NotRegistered);
 
-                        ResultSet r = stat.executeQuery(
-                                "select ID from player where username = '" + name + "' and password = '" + pass + "'");
-
-                        while (r.next()) {
+                        if(!choice.equals("0")){
+                            PreparedStatement ps = conn.prepareStatement("select ID from player where username = ? and password = ?");
+                            
+                               ps.setString(1,name);
+                               ps.setString(2,pass);
+                               ps.execute();
+                              ResultSet r = ps.getResultSet();
+                              
+                            if(r.next()){
                             IDs = r.getString("ID");
-                        }
+                            }
+                                }
 
                     }
 
@@ -230,16 +245,21 @@ public class Player {
 
     }
 
-    private boolean check(String name, Statement stat) throws SQLException {
+    private boolean check(String name, Statement stat, Connection conn) throws SQLException{
+    
+        PreparedStatement ps = conn.prepareStatement("select * from player where username = ?");
+           ps.setString(1, name);
+                   ps.execute();
+                   ResultSet r = ps.getResultSet();
+                  if(r.next()){
+                     return true;
+               }
+                  else{
+                      return false;
+                  }
 
-        ResultSet r = stat.executeQuery("select * from player where username = '" + name + "'");
-        if (r.next()) {
-            return true;
-        } else {
-            return false;
-        }
 
-    }
+}
 
     private void ConnectToServer() throws IOException {
         s = new Socket("localhost", 5000);
@@ -259,16 +279,20 @@ public class Player {
 
     }
 
-    private boolean CheckLogin(String name, String pass, Statement stat) throws SQLException {
-        ResultSet r = stat.executeQuery("select * from player where username = '" + name + "' and password ='" + pass + "'");
+    private boolean CheckLogin(String name, String pass, Statement stat, Connection conn) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement("select ID from player where username = ? and password = ?");
+                
+                   ps.setString(1,name);
+                   ps.setString(2,pass);
+                   ps.execute();
+                  ResultSet r = ps.getResultSet();
+                    if (r.next()) {
+                        return false;
+                    }
 
-        if (r.next()) {
-            return false;
-        }
-
-        else {
-            return true;
-        }
-    }
+                    else {
+                        return true;
+                    }
+}
 
 }
