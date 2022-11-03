@@ -57,6 +57,8 @@ public static void main(String[] args) throws IOException, SQLException {
           ServerSideConnection ssc = new ServerSideConnection(s, s2, Players, stat);
              ssc.start();
              }
+
+
             else{
                  Players = ssc.getPlayerCount();
                  if(Players == 0){
@@ -66,8 +68,8 @@ public static void main(String[] args) throws IOException, SQLException {
                  
  
              }
-    }
-
+            }
+        }
      catch (Exception e) {
             System.out.println(e);
         
