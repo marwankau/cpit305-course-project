@@ -315,7 +315,7 @@ public class ServerSideConnection extends Thread {
                 stat.execute("update player set Wins =" + winsNum + " where username ='" + P1name + "'");
                 stat.execute("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
                         + "','" + P1name + "','" + P2name + "','" + P1name + "','" + P1Points + " - " + P2Points
-                        + "', sysdate)");
+                        + "', CURRENT_DATE()");
 
             } else if (P2Points > P1Points) {
                 int winsNum = 0;
@@ -326,14 +326,15 @@ public class ServerSideConnection extends Thread {
 
                 winsNum += 1;
                 stat.execute("update player set Wins =" + winsNum + " where username ='" + P2name + "'");
+
                 stat.execute("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
                         + "','" + P1name + "','" + P2name + "','" + P2name + "','" + P1Points + " - " + P2Points
-                        + "', sysdate)");
+                        + "', CURRENT_DATE())");
 
             } else {
                 stat.execute("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
                         + "','" + P1name + "','" + P2name + "','no winner' ,'" + P1Points + " - " + P2Points
-                        + "', sysdate)");
+                        + "', CURRENT_DATE())");
 
             }
 
