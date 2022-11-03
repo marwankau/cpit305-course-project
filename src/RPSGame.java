@@ -30,7 +30,7 @@ public class RPSGame {
         try {
             while (!server.isClosed()) {
 
-                if (Players <= 1) {
+                
                     s = server.accept();
                     Players++;
                     OutputStream out = s.getOutputStream();
@@ -52,16 +52,16 @@ public class RPSGame {
 
                     ServerSideConnection ssc = new ServerSideConnection(s, s2, Players, stat);
                     ssc.start();
-                }
+                
 
-                else {
+             
                     Players = ssc.getPlayerCount();
                     if (Players == 0) {
                         s.close();
                         s2.close();
                     }
 
-                }
+                
             }
         } catch (Exception e) {
             System.out.println(e);
