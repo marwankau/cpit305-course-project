@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.text.ParseException;
@@ -228,8 +230,11 @@ public class Player {
     private void ConnectToServer() throws IOException {
         s = new Socket("localhost", 5000);
 
-        WriteToServer = new PrintWriter(s.getOutputStream(), true);
-        ReadFromServer = new Scanner(s.getInputStream());
+        InputStream  in=  s.getInputStream();
+        OutputStream out =  s.getOutputStream();
+
+        WriteToServer = new PrintWriter(out, true);
+        ReadFromServer = new Scanner(in);
 
         String msg = ReadFromServer.nextLine();
         String msg2 = ReadFromServer.nextLine();
