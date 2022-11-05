@@ -31,6 +31,8 @@ public class Player {
         Statement stat = conn.createStatement();
         PreparedStatement ps = conn.prepareStatement("");
 
+        String Tutorial ="\nROCK \t\t\tPAPER \t\t\tSCISSORS \n   _______                 _______                    _______\n---'   ____)            ---'   ____)____           ---'   ____)____\n      (_____)                     ______)                    ______)\n      (_____)                     _______)                __________)\n      (____)                    _______)                 (____)\n---.__(___)             ---.__________)            ---.__(___)\n";
+
         Scanner in = new Scanner(System.in);
         String choice = "0";
         String name = "";
@@ -40,7 +42,6 @@ public class Player {
         while (true) {
             if (choice.equals("0")) {
                 do {
-                    System.out.println("======================================================");
                     System.out.println("\n==================== RPS Game ====================");
                     System.out.println("Welcome to our game\n");
                     System.out.println("1. New player?");
@@ -166,7 +167,7 @@ public class Player {
                                     System.out.println("Try (1:Rock 2:Paper 3:Scissor) :");
                                 }
                             } while (!choose.equals("1") && !choose.equals("2") && !choose.equals("3"));
-                            
+
                             WriteToServer.println(choose);
 
                             res = ReadFromServer.nextLine();
@@ -206,50 +207,47 @@ public class Player {
                                     System.out.println("You have won " + winsNum + " game");
                                 }
                             }
-                            
-                            
-                            
-                             r = stat.executeQuery("select * from gameplay where winner = '" + name + "'");                     
-                               boolean rs;
-                               rs = r.next();
-                               
-                                if (rs){
-                                while(rs){
-                                System.out.print("\n+--------+---------+--------+------------+\n" +
-                                    "| GameID | Player2 | result  | Gdate      |\n" +
-                                    "+--------+---------+--------+------------+\n");
-                                System.out.printf("%4s %9s  %11s %12s", r.getString("GameID"),r.getString("Player2"),r.getString("Result"), r.getString("Gdate"));
-                                System.out.println("\n"+"+--------+---------+--------+------------+");
+
+                            r = stat.executeQuery("select * from gameplay where winner = '" + name + "'");
+                            boolean rs;
+                            rs = r.next();
+
+                            if (rs) {
+                                while (rs) {
+                                    System.out.print("\n+--------+---------+--------+------------+\n" +
+                                            "| GameID | Player2 | result  | Gdate      |\n" +
+                                            "+--------+---------+--------+------------+\n");
+                                    System.out.printf("%4s %9s  %11s %12s", r.getString("GameID"),
+                                            r.getString("Player2"), r.getString("Result"), r.getString("Gdate"));
+                                    System.out.println("\n" + "+--------+---------+--------+------------+");
                                     rs = r.next();
-                                    
+
                                 }
-                                  }
-                            else{
+                            } else {
 
-                            System.out.println("no records found..play harder!");
+                                System.out.println("no records found..play harder!");
                             }
-                       
 
-                             System.out.print("Press " + "E"+ " to exit record page: ");
+                            System.out.print("Press " + "E" + " to exit record page: ");
                             choice = in.next();
                         } while (!choice.equalsIgnoreCase("E"));
-
-
 
                     }
 
                     else if (choice.equals("3")) {
 
                         do {
-                            System.out.println("\n===== Rock Paper Scissors =====\n"
+                            System.out.print("\n===== Rock Paper Scissors =====\n"
                                     + "* In RPS game you can play online with any player.\n" +
                                     "* You will play for THREE rounds.\n" +
-                                    "* The one gets the highest points will win the game.\n\n" +
-
-                                    "* Press " + "1" + " to choose Rock\n" +
+                                    "* The one gets the highest points will win the game.\n" +
+                                        Tutorial
+                                    +
+                                    "\n* Press " + "1" + " to choose Rock\n" +
                                     "* Press " + "2" + " to choose Paper\n" +
                                     "* Press " + "3" + " tp choose Scissor\n" +
-                                    "Press " + "E" + " to exit tutorial page");
+
+                                    "\nPress " + "E" + " to exit tutorial page: ");
                             choice = in.next();
                         } while (!choice.equalsIgnoreCase("E"));
 
