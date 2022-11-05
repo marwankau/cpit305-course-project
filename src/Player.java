@@ -316,7 +316,7 @@ public class Player {
             return true;
         }
     }
-
+ 
     private static int generateID(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
 
