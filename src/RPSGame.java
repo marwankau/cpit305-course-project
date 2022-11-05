@@ -10,7 +10,6 @@ import java.sql.Statement;
 
 public class RPSGame {
 
-    private static int Players = 0;
 
     private static PrintWriter WriteToPlayer1;
     private static PrintWriter WriteToPlayer2;
@@ -33,7 +32,6 @@ public class RPSGame {
 
                 
                     s = server.accept();
-                    Players++;
                     OutputStream out = s.getOutputStream();
 
                     WriteToPlayer1 = new PrintWriter(out, true);
@@ -42,7 +40,6 @@ public class RPSGame {
 
                     s2 = server.accept();
 
-                    Players++;
                     OutputStream out2 = s2.getOutputStream();
 
                     WriteToPlayer2 = new PrintWriter(out2, true);
@@ -51,20 +48,12 @@ public class RPSGame {
 
                     System.out.println("2 are connected lets start game");
 
-                     ssc = new ServerSideConnection(s, s2, Players, stat);
+                     ssc = new ServerSideConnection(s, s2, stat);
                     ssc.start();
-                
-
-             
-                    Players = ssc.getPlayerCount();
-                    if (Players == 0) {
-                        s.close();
-                        s2.close();
-                    }
-
-                
             }
-            
+
+                    
+
         } catch (IOException e) {
             System.out.println(e);
 

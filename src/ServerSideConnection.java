@@ -34,18 +34,22 @@ public class ServerSideConnection extends Thread {
     private Connection conn;
     private String choose1;
     private String choose2;
-    private static int Players;
     private static int P1Points = 0;
     private static int P2Points = 0;
 
-    ServerSideConnection(Socket s, Socket s2, int Players, Statement stat) {
+    ServerSideConnection(Socket s, Socket s2, Statement stat) {
         this.Player1 = s;
         this.Player2 = s2;
-        this.Players = Players;
-        this.conn = conn;
         this.stat = stat;
 
+
+    }
+
+    @Override
+    public void run() {
+
         try {
+
 
             InputStream in = Player1.getInputStream();
             InputStream in2 = Player2.getInputStream();
@@ -58,16 +62,6 @@ public class ServerSideConnection extends Thread {
             WriteToPlayer2 = new PrintWriter(out2);
             ReadFromPlayer2 = new Scanner(in2);
 
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-
-    }
-
-    @Override
-    public void run() {
-
-        try {
 
             String GID = UUID.randomUUID().toString().substring(2, 5);
 
@@ -187,6 +181,8 @@ public class ServerSideConnection extends Thread {
                 }
 
                 else if (choose1.equals("2") && choose2.equals("3")) {
+
+
                     WriteToPlayer1.println("Lose");
                     WriteToPlayer2.println("Win");
                     System.out.println(P2name + " win");
@@ -282,7 +278,6 @@ public class ServerSideConnection extends Thread {
 
                 rounds++;
             }
-            System.out.println("======== Room : "+GID+" Closed ===========");
 
             if (P1Points > P2Points) {
                 System.out.println("Player 1 Win the GAME!!");
@@ -308,6 +303,9 @@ public class ServerSideConnection extends Thread {
 
             }
 
+            System.out.println("======== Room : "+GID+" Closed ===========");
+
+
             if (P1Points > P2Points) {
                 int winsNum = 0;
                 ResultSet r = stat.executeQuery("select Wins from player where username = '" + P1name + "'");
@@ -316,8 +314,8 @@ public class ServerSideConnection extends Thread {
                 }
 
                 winsNum += 1;
-                stat.execute("update player set Wins =" + winsNum + " where username ='" + P1name + "'");
-                stat.execute("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
+                stat.executeUpdate("update player set Wins =" + winsNum + " where username ='" + P1name + "'");
+                stat.executeUpdate("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
                         + "','" + P1name + "','" + P2name + "','" + P1name + "','" + P1Points + " - " + P2Points
                         + "', CURRENT_DATE()");
 
@@ -329,14 +327,14 @@ public class ServerSideConnection extends Thread {
                 }
 
                 winsNum += 1;
-                stat.execute("update player set Wins =" + winsNum + " where username ='" + P2name + "'");
+                stat.executeUpdate("update player set Wins =" + winsNum + " where username ='" + P2name + "'");
 
-                stat.execute("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
+                stat.executeUpdate("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
                         + "','" + P1name + "','" + P2name + "','" + P2name + "','" + P1Points + " - " + P2Points
                         + "', CURRENT_DATE())");
 
             } else {
-                stat.execute("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
+                stat.executeUpdate("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
                         + "','" + P1name + "','" + P2name + "','no winner' ,'" + P1Points + " - " + P2Points
                         + "', CURRENT_DATE())");
 
@@ -349,11 +347,14 @@ public class ServerSideConnection extends Thread {
         } finally {
             try {
 
-                Players = 0;
                 P1Points = 0;
                 P2Points = 0;
                 Player1.close();
                 Player2.close();
+                WriteToPlayer1.close();
+                WriteToPlayer2.close();
+                ReadFromPlayer1.close();
+                ReadFromPlayer2.close();
 
                 System.out.println("Waiting for players to join the server..");
 
@@ -363,10 +364,6 @@ public class ServerSideConnection extends Thread {
 
         }
 
-    }
-
-    public static int getPlayerCount() {
-        return Players;
     }
 
 }
