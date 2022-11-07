@@ -5,6 +5,4 @@ The "rock" beats scissors, the "scissors" beat paper and the "paper" beats rock;
 - Mohammed Sami Akif
 - Ziyad Saad Alqahtani
 ## ER diagram
-![Screenshot (298)](https://user-images.githubusercontent.com/98517446/199821840-2913ae3d-501b-4187-8239-a287a628488a.png)
-
-
+![ER](https://user-images.githubusercontent.com/77313110/200221445-ed1223ea-10dd-4112-97bf-c0694fdd817b.png)
