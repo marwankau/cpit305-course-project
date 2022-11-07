@@ -6,6 +6,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -99,7 +100,48 @@ public class Client {
 
                     
                 } else if (choice.equals("2")) {
+                    int room_number;
+                    String visitor_name;
+                    String check_in;
+                    String check_out;
+                    int state;
+
+                    Statement stmt = con.createStatement();
                     
+                    Scanner updatSc = new Scanner(System.in);
+                    System.out.println("Which room do you want to update?");
+                    room_number = updatSc.nextInt();
+                    
+                    System.out.println("Update visitor name");
+                    visitor_name = updatSc.next();   
+                    System.out.println("Enter check in date DD/MM: ");                
+                   
+                    check_in = updatSc.nextLine();
+                    updatSc.next();
+                    System.out.println("Enter check out date DD/MM: "); 
+                    
+                    check_out = updatSc.nextLine();
+
+                    state =  0;
+                   
+                   
+                  
+
+                  
+                 String query = "UPDATE rooms SET Visitor_Name ='" + visitor_name + "', In_Date = '" + check_in + "' , Out_Date = '" + check_out + "' State = 0 WHERE Room_No = '" + room_number + "'";
+
+                 stmt.executeUpdate(query);
+
+
+                
+
+
+                    
+
+                   
+                    
+                    
+
 
 
                     
