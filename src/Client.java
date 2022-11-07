@@ -4,10 +4,20 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Client {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
+
+        Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/rooms", "root",
+                "*abdo2001*");
+        Statement stmt = con.createStatement();
+        ResultSet result = stmt.executeQuery("SELECT * FROM rooms;");
         // arrays that contains login information to enter server
         String ReceptionUserName[] = { "RakanSalama", "MoathAlSolami", "AbdulrahmanNahfawi" };
         String ReceptionPassword[] = { "RakanS", "MoathS", "AbdulrahmanN" };
@@ -29,7 +39,7 @@ public class Client {
             for (i = 0; i < 3; i++) { // it will check all usernames and passwords
 
                 if (ReceptionUserName[i].equals(ScannerUsername) && ReceptionPassword[i].equals(ScannerPassword)) {
-                    connect(ReceptionName, i, scanner); // connects the reception with the server
+                    connect(ReceptionName, i, scanner, con); // connects the reception with the server
                     check = false; // to get out from while loop
                 }
             }
@@ -40,7 +50,7 @@ public class Client {
         }
     }
 
-    public static void connect(String ReceptionName[], int i, Scanner scanner) throws IOException {
+    public static void connect(String ReceptionName[], int i, Scanner scanner, Connection con) throws IOException, SQLException{
         String line;
         String choice;
 
@@ -68,20 +78,37 @@ public class Client {
                 System.out.print("choose: ");
                 choice = sc.nextLine();
                 if (choice.equals("1")) {
-                    System.out.println("HEEY");
-                }
-                else if (choice.equals("2")) {
+                    Statement stmt = con.createStatement();
+                    ResultSet result = stmt.executeQuery("SELECT * FROM rooms;");
+                    System.out.println("Room Number    Room Type     Visitor Name      CheckIn Date     CheckOut Date    State");
+                    while(result.next()){
+                        int room_no = result.getInt("Room_No");
+            
+                        String room_type = result.getString("Room_Type");
+                       
+                        String visitor_name = result.getString("Visitor_Name");
+            
+                        String in_date = result.getString("In_Date");
+            
+                        String out_date = result.getString("Out_Date");
+            
+                        int state = result.getInt("State");
+            
+                        System.out.println(room_no + "              " + room_type + "        " + visitor_name + "              " + in_date + "             " + out_date + "             " + state);
+                    }
+
                     
-                    System.out.println("AAAAAAAAAAAA");
-                }
-                else if (choice.equals("3")) {
+                } else if (choice.equals("2")) {
+                    
+
+
+                    
+                } else if (choice.equals("3")) {
                     System.out.println("BBBBBBBBBBBB");
-                }
-                else if (choice.equalsIgnoreCase("exit:")) {
+                } else if (choice.equalsIgnoreCase("exit:")) {
                     System.out.println("Thank you for using our system ");
                     break;
-                }
-                else{
+                } else {
                     System.out.println("Wrong input");
                 }
             }

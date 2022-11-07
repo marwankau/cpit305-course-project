@@ -4,8 +4,12 @@
         ".vscode"
     ],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "c:\\Users\\Admin\\Downloads\\mariadb-java-client-3.0.8 (2).jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar"
+        ],
+        "exclude": [
+            "lib/mariadb/mariadb-java-client-3.0.8.jar"
+        ]
+    }
 }
