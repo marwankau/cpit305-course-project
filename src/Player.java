@@ -189,7 +189,7 @@ public class Player {
                            
                             
                             do {
-                                 System.out.print("->");
+                                 System.out.print("-> ");
                                 choose = tool.nextLine();
 
                                 if (!choose.equals("1") && !choose.equals("2") && !choose.equals("3")) {

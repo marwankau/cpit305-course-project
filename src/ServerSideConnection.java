@@ -76,8 +76,7 @@ public class ServerSideConnection extends Thread {
             int PID1 =  dis.readInt();
             int PID2 =  dis2.readInt();
             
-            System.out.println(PID1);
-            System.out.println(PID2);
+            
 
 
             
