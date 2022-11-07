@@ -32,8 +32,6 @@ public class ServerSideConnection extends Thread {
     private String choose2;
     private static int P1Points = 0;
     private static int P2Points = 0;
-    static ReentrantLock lock = new ReentrantLock();
-
 
     ServerSideConnection(Socket s, Socket s2, Statement stat) {
         this.Player1 = s;
@@ -300,7 +298,7 @@ public class ServerSideConnection extends Thread {
 
             if (P1Points > P2Points) {
                 int winsNum = 0;
-                ResultSet r = stat.executeQuery("select Wins from player where username = '" + P1name + "'");
+                 r = stat.executeQuery("select Wins from player where username = '" + P1name + "'");
                 if (r.next()) {
                     winsNum = r.getInt("Wins");
                 }
@@ -317,7 +315,7 @@ public class ServerSideConnection extends Thread {
 
             } else if (P2Points > P1Points) {
                 int winsNum = 0;
-                ResultSet r = stat.executeQuery("select Wins from player where username = '" + P2name + "'");
+                 r = stat.executeQuery("select Wins from player where username = '" + P2name + "'");
                 if (r.next()) {
                     winsNum = r.getInt("Wins");
                 }
@@ -352,10 +350,7 @@ public class ServerSideConnection extends Thread {
         } catch (IOException e) {
             System.err.println("Connection problem");
             System.err.println(e);
-        } catch (InterruptedException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
+        } 
         
         
         finally {
