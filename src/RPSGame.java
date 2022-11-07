@@ -30,8 +30,9 @@ public class RPSGame {
       
             while (!server.isClosed()) {
 
-                
+           
                     s = server.accept();
+
                     OutputStream out = s.getOutputStream();
 
                     WriteToPlayer1 = new PrintWriter(out, true);
@@ -41,15 +42,23 @@ public class RPSGame {
                     s2 = server.accept();
 
                     OutputStream out2 = s2.getOutputStream();
-
                     WriteToPlayer2 = new PrintWriter(out2, true);
                     WriteToPlayer2.println("player #" + 1 + " has connected");
                     WriteToPlayer2.println("player #" + 2 + " has connected");
 
-                    System.out.println("2 are connected lets start game");
-
-                     ssc = new ServerSideConnection(s, s2, stat);
-                    ssc.start();
+                    System.out.println("New 2 players are connected lets start game..");
+                    
+                     
+                      
+                     ssc = new ServerSideConnection(s, s2, stat); 
+                     ssc.start();
+                    
+                    
+                    
+                    
+                    
+                    
+                                     
             }
 
                     
@@ -62,3 +71,5 @@ public class RPSGame {
     }
 
 }
+
+
