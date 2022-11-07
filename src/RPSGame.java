@@ -15,8 +15,8 @@ public class RPSGame {
     private static PrintWriter WriteToPlayer2;
     private static ServerSideConnection ssc;
 
-    static Socket s2 = new Socket();
-    static Socket s = new Socket();
+    private static Socket s2 = new Socket();
+    private static Socket s = new Socket();
 
     public static void main(String[] args) throws SQLException {
 
