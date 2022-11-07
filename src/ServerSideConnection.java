@@ -1,14 +1,12 @@
 
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
-
-
+import java.util.UUID;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -34,6 +32,8 @@ public class ServerSideConnection extends Thread {
     private String choose2;
     private static int P1Points = 0;
     private static int P2Points = 0;
+    static ReentrantLock lock = new ReentrantLock();
+
 
     ServerSideConnection(Socket s, Socket s2, Statement stat) {
         this.Player1 = s;
@@ -66,10 +66,22 @@ public class ServerSideConnection extends Thread {
             WriteToPlayer2 = new PrintWriter(out2,true);
             ReadFromPlayer2 = new Scanner(in2);
             
+
             
-
-
-            int GID = generateID(stat);
+            String GID = UUID.randomUUID().toString().substring(2,5);
+            
+            stat.execute("select GameID from gameplay");
+           ResultSet r = stat.getResultSet();
+           
+           boolean x = r.next();
+           while(x){
+           String id = r.getString("GameID");
+               if( id.equals(GID)){
+               GID = UUID.randomUUID().toString().substring(1,4);
+               
+           } 
+               x = r.next();
+           }
    
             int PID1 =  dis.readInt();
             int PID2 =  dis2.readInt();
@@ -340,6 +352,9 @@ public class ServerSideConnection extends Thread {
         } catch (IOException e) {
             System.err.println("Connection problem");
             System.err.println(e);
+        } catch (InterruptedException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
         }
         
         
@@ -368,19 +383,7 @@ public class ServerSideConnection extends Thread {
 
     }
     
-        private synchronized static int generateID(Statement stat) throws SQLException {
-        
-        ResultSet rs = stat.executeQuery("select MAX(GameID) as 'NEW_ID' FROM GamePlay;");
-
-        if (rs.next() == false) {
-            return 1;
-        }
-
-        else {
-            return rs.getInt("new_id") + 1;
-
-        }
-    }
+    
 
 
 
