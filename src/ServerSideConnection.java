@@ -56,10 +56,8 @@ public class ServerSideConnection extends Thread {
             OutputStream out2 = Player2.getOutputStream();
             
             DataInputStream dis = new DataInputStream(in);
-            DataOutputStream dos = new DataOutputStream(out);
             
               DataInputStream dis2 = new DataInputStream(in2);
-            DataOutputStream dos2 = new DataOutputStream(out2);
             
 
             WriteToPlayer1 = new PrintWriter(out,true);
