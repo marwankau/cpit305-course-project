@@ -370,7 +370,7 @@ public class ServerSideConnection extends Thread {
 
     }
     
-        private static int generateID(Statement stat) throws SQLException {
+        private synchronized static int generateID(Statement stat) throws SQLException {
         
         ResultSet rs = stat.executeQuery("select MAX(GameID) as 'NEW_ID' FROM GamePlay;");
 
