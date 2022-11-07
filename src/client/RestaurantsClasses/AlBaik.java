@@ -12,7 +12,7 @@ public class AlBaik extends Restaurant {
         String tol = "";
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(
-                    "E:\\food_delivery_App\\src\\Al-baik menu"))));
+                    "src\\Al-baik menu"))));
             while ((tol = reader.readLine()) != null) {
 
                 albaikMenu.add(tol);
