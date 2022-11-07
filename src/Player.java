@@ -1,3 +1,4 @@
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -17,6 +18,8 @@ public class Player {
     private Socket s;
     private PrintWriter WriteToServer;
     private Scanner ReadFromServer;
+    private DataOutputStream dos;
+  
 
     public static void main(String[] args) throws IOException, ParseException, SQLException {
 
@@ -55,19 +58,34 @@ public class Player {
                         boolean usedName = false;
 
                         do {
-                            System.out.println("Enter your username: ");
+                            System.out.println("\n#### SIGN-UP ####");
+                             System.out.println("*Your username should be less than 10 charaters*");
+                             System.out.println("*Your password should be less than 10 digits*");
+                            System.out.print("\nEnter your username: ");
                             name = in.next();
-
-                            System.out.println("enter your password: ");
+                            System.out.print("Enter your password: ");
                             pass = in.next();
+                             System.out.print("\n");
+ 
 
                             usedName = checkReg(name, ps, conn);
 
                             if (usedName) {
-                                System.out.println("username is used please try another one..");
+                                System.out.println("Username is used, please try another one!");
                             }
+                            
+                            else if (name.length() > 25){
+                                System.out.println("Your username is more than than 10 charaters!");
+                            }
+                            
+                           else if (pass.length() > 10){
+                           System.out.println("Your password is more than 10 digits!");
 
-                        } while (usedName);
+                           }
+
+                            
+
+                        } while (usedName || name.length() > 25 || pass.length() > 10);
 
                         System.out.println("Hey " + name + " your registration has been successfully completed");
                         IDs = generateID(conn);
@@ -88,26 +106,32 @@ public class Player {
                         String TryOrBack = "";
 
                         do {
-                            System.out.println("Enter your username: ");
+                            System.out.println("\n#### LOGIN ####");
+                            System.out.print("Enter your username: ");
                             name = in.next();
-                            System.out.println("enter your password: ");
+                            System.out.print("Enter your password: ");
                             pass = in.next();
 
                             NotRegistered = CheckLogin(name, pass, ps, conn);
                             if (NotRegistered) {
-                                System.out.println("Your username/password is incorrect ");
-                                System.out
-                                        .println("*type \"back\" to go back or \"press any key\" to continue trying..");
+                            System.out.println("Your username/password is incorrect!");
+
+                                do{
+                             System.out.println("\n#### HELP ####");
+                            System.out.println("b. Back to main menu");
+                            System.out.println("t. Try again");      
+                            System.out.print("Choose from above: ");
+
                                 TryOrBack = in.next();
+                                System.out.print("\n");
+                                }while(!TryOrBack.equalsIgnoreCase("b") && !TryOrBack.equalsIgnoreCase("t"));
 
                             }
 
-                            if (TryOrBack.equalsIgnoreCase("back")) {
+                            if (TryOrBack.equalsIgnoreCase("b")) {
                                 choice = "0";
                                 break;
-                            } else {
-                                continue;
-                            }
+                            } 
 
                         } while (NotRegistered);
 
@@ -153,28 +177,32 @@ public class Player {
                         String choose;
                         String res;
 
+                        dos.writeInt(IDs);
                         WriteToServer.println(name);
-                        WriteToServer.flush();
+              
                         int rounds = 1;
+                         try{
                         while (rounds <= 3) {
+                             
+                            System.out.println("\n"+ReadFromServer.nextLine());
                             System.out.println(ReadFromServer.nextLine());
-                            System.out.println(ReadFromServer.nextLine());
-
+                           
+                            
                             do {
+                                 System.out.print("->");
                                 choose = tool.nextLine();
 
                                 if (!choose.equals("1") && !choose.equals("2") && !choose.equals("3")) {
-                                    System.out.println("Try (1:Rock 2:Paper 3:Scissor) :");
+                                    System.out.println("Try [1:Rock 2:Paper 3:Scissor]:");
                                 }
                             } while (!choose.equals("1") && !choose.equals("2") && !choose.equals("3"));
-
+                            
+                          
                             WriteToServer.println(choose);
 
+               
                             res = ReadFromServer.nextLine();
-                            System.out.println(res);
-
-                            res = ReadFromServer.nextLine();
-                            System.out.println(res);
+                            System.out.println("\n"+res);
 
                             res = ReadFromServer.nextLine();
                             System.out.println(res);
@@ -182,41 +210,42 @@ public class Player {
                             res = ReadFromServer.nextLine();
                             System.out.println(res);
                             rounds++;
-
+                      
                         }
+                            
+                         res = ReadFromServer.nextLine();
+                        System.out.println("\n"+res);
 
-                        res = ReadFromServer.nextLine();
-                        System.out.println(res);
-
-                        s.close();
+                         }
+                            catch(Exception e){
+                            
+                                System.out.println("Enemy has disconnected");
+                                break;
+                            }
+                         
+                         s.close();
                         WriteToServer.close();
                         ReadFromServer.close();
+                    
 
                     }
 
                     else if (choice.equals("2")) {
                         do {
 
-                            ResultSet r = stat.executeQuery("select Wins from player where username = '" + name + "'");
-                            if (r.next()) {
-                                int winsNum = r.getInt("Wins");
+                     
 
-                                if (winsNum % 2 == 0) {
-                                    System.out.println("You have won " + winsNum + " games");
-                                } else {
-                                    System.out.println("You have won " + winsNum + " game");
-                                }
-                            }
-
-                            r = stat.executeQuery("select * from gameplay where winner = '" + name + "'");
+                            ResultSet r = stat.executeQuery("select * from gameplay where winner = '" + name + "'");
                             boolean rs;
                             rs = r.next();
 
                             if (rs) {
+                                
+                System.out.print("\n+--------+---------+--------+------------+\n" +
+                                  "| GameID | Player2 | result  | Gdate      |\n" +
+                                  "+--------+---------+--------+------------+\n");
                                 while (rs) {
-                                    System.out.print("\n+--------+---------+--------+------------+\n" +
-                                            "| GameID | Player2 | result  | Gdate      |\n" +
-                                            "+--------+---------+--------+------------+\n");
+
                                     System.out.printf("%4s %9s  %11s %12s", r.getString("GameID"),
                                             r.getString("Player2"), r.getString("Result"), r.getString("Gdate"));
                                     System.out.println("\n" + "+--------+---------+--------+------------+");
@@ -226,6 +255,18 @@ public class Player {
                             } else {
 
                                 System.out.println("no records found..play harder!");
+                            }
+                            
+                            
+                            r = stat.executeQuery("select Wins from player where username = '" + name + "'");
+                            if (r.next()) {
+                                int winsNum = r.getInt("Wins");
+
+                                if (winsNum % 2 == 0) {
+                                    System.out.println("You have won " + winsNum + " games");
+                                } else {
+                                    System.out.println("You have won " + winsNum + " game");
+                                }
                             }
 
                             System.out.print("Press " + "E" + " to exit record page: ");
@@ -288,9 +329,13 @@ public class Player {
 
         InputStream in = s.getInputStream();
         OutputStream out = s.getOutputStream();
-
+      
+         dos = new DataOutputStream(out);
+        
         WriteToServer = new PrintWriter(out, true);
         ReadFromServer = new Scanner(in);
+        
+        
 
         String Notify = ReadFromServer.nextLine();
         String Notify2 = ReadFromServer.nextLine();
@@ -298,6 +343,7 @@ public class Player {
         // Alert player
         System.out.println(Notify);
         System.out.println(Notify2);
+       
 
     }
 
@@ -318,9 +364,9 @@ public class Player {
     }
  
     private static int generateID(Connection conn) throws SQLException {
-        Statement stmt = conn.createStatement();
+        Statement stat = conn.createStatement();
 
-        ResultSet rs = stmt.executeQuery("SELECT MAX(id) as 'new_id' FROM player;");
+        ResultSet rs = stat.executeQuery("select MAX(ID) as 'NEW_ID' FROM player;");
 
         if (rs.next() == false) {
             return 1;
