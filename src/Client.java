@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) throws IOException, SQLException {
         // arrays that contains login information to enter server
-        String ReceptionUserName[] = { "RakanSalama", "MoathAlSolami", "AbdulrahmanNahfawi" };
-        String ReceptionPassword[] = { "RakanS", "MoathS", "AbdulrahmanN" };
+        String ReceptionUserName[] = { "A", "MoathAlSolami", "AbdulrahmanNahfawi" };
+        String ReceptionPassword[] = { "A", "MoathS", "AbdulrahmanN" };
         String ReceptionName[] = { "Rakan", "Moath", "Abdulrahman" };
 
         Boolean check = true; // For the while loop, If it change the loop will stop ( it will only change if

@@ -10,7 +10,7 @@ import org.mariadb.jdbc.Connection;
 public class Server {
     public static void main(String[] args) throws IOException, SQLException {
 
-        Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/rooms", "root","2037276");
+        Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/rooms", "root","1935160");
         Statement stmt = con.createStatement();
         try {
             stmt.executeQuery("INSERT INTO rooms VALUES (1,'single',NULL,NULL,NULL,1),(2,'double',NULL,NULL,NULL,1),(3,'double',NULL,NULL,NULL,1),(4,'triple',NULL,NULL,NULL,1),(5,'double',NULL,NULL,NULL,1),(6,'triple',NULL,NULL,NULL,1);");
