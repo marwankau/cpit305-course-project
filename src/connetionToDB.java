@@ -7,7 +7,7 @@ import java.sql.Statement;
 import org.sqlite.SQLiteConnection;
 
 
-public class connetionToDB {
+public class connetionToDB { 
     public static void main(String[] args) {
         try  {
             Connection conn = (Connection) DriverManager.getConnection("jdbc:sqlite:C:/Users/kheda/Desktop/cpit305-course-project/mydata");
