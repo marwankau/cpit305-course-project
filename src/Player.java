@@ -30,7 +30,7 @@ public class Player {
     public void menu() throws IOException, ParseException, SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cpit305-project", "root",
-                "zid123");
+                "moe123");
         Statement stat = conn.createStatement();
         PreparedStatement ps = conn.prepareStatement("");
 
@@ -224,6 +224,7 @@ public class Player {
                             }
                          
                          s.close();
+                         tool.close();
                         WriteToServer.close();
                         ReadFromServer.close();
                     
@@ -304,6 +305,7 @@ public class Player {
             }
 
             else if (choice.equals("4") || choice.equals("3")) {
+                in.close();
                 break;
             }
         }

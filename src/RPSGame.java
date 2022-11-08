@@ -21,7 +21,7 @@ public class RPSGame {
     public static void main(String[] args) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cpit305-project", "root",
-                "zid123");
+                "moe123");
         Statement stat = conn.createStatement();
 
         try {
