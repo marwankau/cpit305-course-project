@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 257f35cac329795215d8842bba78a8ac9c40a2e1
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -309,8 +307,8 @@ public class ServerSideConnection extends Thread {
                 winsNum += 1;
                 stat.executeUpdate("update player set Wins =" + winsNum + " where username ='" + P1name + "'");
                 stat.executeUpdate("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
-<<<<<<< HEAD
-                        + "','" + P1name + "','" + P2name + "','" + P1name + "','" + P1Points + " - " + P2Points
+
+                                   + "','" + P1name + "','" + P2name + "','" + P1name + "','" + P1Points + " - " + P2Points
                         + "', CURRENT_DATE())");
                 
                         if(PID1==PID2){
@@ -319,14 +317,13 @@ public class ServerSideConnection extends Thread {
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID1+")");
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID2+")");
                               }
-=======
+
                         + "'','" + P1name + "','" + P2name + "','" + P1name + "','" + P1Points + " - " + P2Points
                         + "', CURRENT_DATE())");
                 
                 
             stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID1+")");
             stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID2+")");
->>>>>>> 257f35cac329795215d8842bba78a8ac9c40a2e1
 
             } else if (P2Points > P1Points) {
                 int winsNum = 0;
@@ -342,37 +339,34 @@ public class ServerSideConnection extends Thread {
                         + "'','" + P1name + "','" + P2name + "','" + P2name + "','" + P1Points + " - " + P2Points
                         + "', CURRENT_DATE())");
                 
-<<<<<<< HEAD
                         if(PID1==PID2){
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID1+")");
                          }else{
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID1+")");
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID2+")");
                               }
-=======
+
                 
             stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID1+")");
             stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID2+")");
 
->>>>>>> 257f35cac329795215d8842bba78a8ac9c40a2e1
             } else {
                 stat.executeUpdate("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
                         + "'','" + P1name + "','" + P2name + "','no winner' ,'" + P1Points + " - " + P2Points
                         + "', CURRENT_DATE())");
                 
                 
-<<<<<<< HEAD
                         if(PID1==PID2){
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID1+")");
                          }else{
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID1+")");
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID2+")");
                               }
-=======
-            stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID1+")");
+
+                stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID1+")");
             stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID2+")");
 
->>>>>>> 257f35cac329795215d8842bba78a8ac9c40a2e1
+
             }
 
 
