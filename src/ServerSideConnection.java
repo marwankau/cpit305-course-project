@@ -307,7 +307,6 @@ public class ServerSideConnection extends Thread {
                 winsNum += 1;
                 stat.executeUpdate("update player set Wins =" + winsNum + " where username ='" + P1name + "'");
                 stat.executeUpdate("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
-
                                    + "','" + P1name + "','" + P2name + "','" + P1name + "','" + P1Points + " - " + P2Points
                         + "', CURRENT_DATE())");
                 
@@ -317,15 +316,14 @@ public class ServerSideConnection extends Thread {
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID1+")");
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID2+")");
                               }
-
-                        + "'','" + P1name + "','" + P2name + "','" + P1name + "','" + P1Points + " - " + P2Points
-                        + "', CURRENT_DATE())");
+                    
                 
-                
-            stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID1+")");
-            stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID2+")");
 
-            } else if (P2Points > P1Points) {
+
+            } 
+            
+            
+            else if (P2Points > P1Points) {
                 int winsNum = 0;
                  r = stat.executeQuery("select Wins from player where username = '" + P2name + "'");
                 if (r.next()) {
@@ -347,8 +345,6 @@ public class ServerSideConnection extends Thread {
                               }
 
                 
-            stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID1+")");
-            stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID2+")");
 
             } else {
                 stat.executeUpdate("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
@@ -363,8 +359,6 @@ public class ServerSideConnection extends Thread {
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID2+")");
                               }
 
-                stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID1+")");
-            stat.executeUpdate("insert into game_player (Game_ID, PID) values ("+GID+","+PID2+")");
 
 
             }
