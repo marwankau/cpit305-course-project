@@ -27,6 +27,8 @@ public class MyThread extends Thread {
             InputStream in = client.getInputStream();
             OutputStream out = client.getOutputStream();
             Scanner receiver = new Scanner(in);
+            Scanner H = new Scanner(in);
+
             PrintWriter writer = new PrintWriter(out, true);
             // -----------------------------------------------------------------------------
             line = receiver.nextLine(); // get the msg from the client
@@ -37,8 +39,10 @@ public class MyThread extends Thread {
                 writer.println("=====================================");
                 writer.println("1. List all rooms");
                 writer.println("2. Update room");
-                writer.println("3. Search by Room Number");
-                writer.println("4. EXIT");
+                writer.println("3. Search by Room Number");//SELCET * FROM ROOMS WHERE ROOM_NO =?
+                writer.println("4. AVALIABLE ROOMS");//SELCET * FROM ROOMS WHERE STATE=1  LOOP
+                writer.println("5. DEAFULT");//"UPDATE rooms SET Visitor_Name=?, In_Date =? , Out_Date = ? , State = 0 WHERE Room_No = ?"
+                writer.println("6. EXIT");
                 writer.println("=====================================");
                 writer.println("choose: ");
                 choice = receiver.nextInt();
@@ -63,8 +67,7 @@ public class MyThread extends Thread {
 
                         int state = result.getInt("State");
 
-                        writer.println(room_no + "              " + room_type + "        " + visitor_name
-                                + "              " + in_date + "             " + out_date + "             " + state);
+                        writer.println(room_no + "              " + room_type + "        " + visitor_name + "              " + in_date + "             " + out_date + "             " + state);
 
                     }
                     writer.println(
@@ -81,20 +84,19 @@ public class MyThread extends Thread {
                     String visitor_name;
                     String check_in;
                     String check_out;
-                    Statement stmt = con.createStatement();
+                 
                     PreparedStatement pstmt = con.prepareStatement("UPDATE rooms SET Visitor_Name=?, In_Date =? , Out_Date = ? , State = 0 WHERE Room_No = ?"); 
-                    Scanner updatSc = new Scanner(System.in);
                     writer.println("Which room do you want to update?");
                     room_number = receiver.nextInt();
 
                     writer.println("Update visitor name");
-                    visitor_name = receiver.nextLine();
+                    visitor_name = receiver.next();
                     writer.println("Enter check in date DD MM: ");
 
-                    check_in = receiver.nextLine();
+                    check_in = receiver.next();
                     writer.println("Enter check out date DD MM: ");
 
-                    check_out = receiver.nextLine();
+                    check_out = receiver.next();
 
                     pstmt.setString(1, visitor_name); 
                     pstmt.setString(2, check_in); 
@@ -103,16 +105,16 @@ public class MyThread extends Thread {
                     pstmt.executeUpdate();
                 }
 
-                /*
-                 * else if (choice == 3) {
-                 * writer.println("BBBBBBBBBBBB");
-                 * } else if (choice == 4) {
-                 * writer.println("Thank you for using our system ");
-                 * break;
-                 * } else {
-                 * writer.println("Wrong input");
-                 * }
-                 */
+                
+                  else if (choice == 3) {
+                  writer.println("BBBBBBBBBBBB");
+                } else if (choice == 4) {
+                  writer.println("Thank you for using our system ");
+                  break;
+                  } else {
+                  writer.println("Wrong input");
+                 }
+                 
             }
 
         } catch (Exception e) {
