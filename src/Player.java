@@ -45,6 +45,7 @@ public class Player {
         while (true) {
             if (choice.equals("0")) {
                 do {
+                    
                     System.out.println("\n==================== RPS Game ====================");
                     System.out.println("Welcome to our game\n");
                     System.out.println("1. New player?");
@@ -52,7 +53,7 @@ public class Player {
                     System.out.println("3. Exit");
                     System.out.print("Choose from above: ");
                     choice = in.next();
-
+                    in.nextLine();
                     if (choice.equals("1")) {
 
                         boolean usedName = false;
@@ -171,7 +172,13 @@ public class Player {
                     choice = in.next();
 
                     if (choice.equals("1")) {
+                        try{
                         ConnectToServer();
+                        }
+                        catch(IOException e){
+                            System.err.println("Sorry, the server is closed, please try again later..");
+                            continue;
+                        }
 
                         Scanner tool = new Scanner(System.in);
                         String choose;
@@ -328,7 +335,7 @@ public class Player {
 
     private void ConnectToServer() throws IOException {
         s = new Socket("localhost", 5000);
-
+        
         InputStream in = s.getInputStream();
         OutputStream out = s.getOutputStream();
       
