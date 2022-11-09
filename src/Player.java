@@ -294,7 +294,7 @@ public class Player {
                                     +
                                     "\n* Press " + "1" + " to choose Rock\n" +
                                     "* Press " + "2" + " to choose Paper\n" +
-                                    "* Press " + "3" + " tp choose Scissor\n" +
+                                    "* Press " + "3" + " to choose Scissor\n" +
 
                                     "\nPress " + "E" + " to exit tutorial page: ");
                             choice = in.next();
