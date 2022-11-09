@@ -4,12 +4,16 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Scanner;
 
+import javax.crypto.NoSuchPaddingException;
+
 public class Client {
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) throws IOException, SQLException, NoSuchAlgorithmException, NoSuchPaddingException {
         String line;
         String choice;
 
@@ -38,6 +42,7 @@ public class Client {
                 System.out.println(line);
                 if (inp.contains(line)) {
                     choice = sc.nextLine();
+                    choice = enc(choice);
                     writer.println(choice);
                 }
             }
@@ -47,4 +52,11 @@ public class Client {
             
         }
     }
+
+    public static String enc(String str) {
+        String encodedString = Base64.getEncoder().encodeToString(str.getBytes());
+        return encodedString;
+        
+    }
+
 }

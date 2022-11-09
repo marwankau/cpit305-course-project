@@ -6,8 +6,9 @@ import java.net.Socket;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Scanner;
+
 
 import org.mariadb.jdbc.Connection;
 
@@ -47,9 +48,11 @@ public class MyThread extends Thread {
                 // Here we take Username And password
                 writer.println("Enter username:");
                 ScannerUsername = receiver.next();
+                ScannerUsername = Decoder(ScannerUsername);
                 writer.println("Enter Password:");
                 ScannerPassword = receiver.next();
-
+                ScannerPassword = Decoder(ScannerPassword);
+                
                 int i = 0; // to reset the i , so it can recheck again V
                 for (i = 0; i < 3; i++) { // it will check all usernames and passwords
 
@@ -80,6 +83,7 @@ public class MyThread extends Thread {
                     writer.println("=====================================");
                     writer.println("choose: ");
                     choice = receiver.next();
+                    choice = Decoder(choice);
 
                     if (choice.equals("1")) {
                         Statement stmt = con.createStatement();
@@ -110,22 +114,28 @@ public class MyThread extends Thread {
                     else if (choice.equals("2")) {
 
                         int room_number;
+                        String roomNo;
                         String visitor_name;
                         String check_in;
                         String check_out;
     
                         PreparedStatement pstmt = con.prepareStatement("UPDATE rooms SET Visitor_Name=?, In_Date =? , Out_Date = ? , State = 0 WHERE Room_No = ?"); 
                         writer.println("Which room do you want to update?");
-                        room_number = receiver.nextInt();
+                        roomNo = receiver.next();
+                        room_number =  Integer.parseInt(Decoder(roomNo));
     
                         writer.println("Update visitor name");
                         visitor_name = receiver.next();
+                        visitor_name = Decoder(visitor_name);
                         writer.println("Enter check in date DD MM: ");
     
                         check_in = receiver.next();
+                        check_in = Decoder(check_in);
                         writer.println("Enter check out date DD MM: ");
     
                         check_out = receiver.next();
+                        check_out = Decoder(check_out);
+
     
                         pstmt.setString(1, visitor_name); 
                         pstmt.setString(2, check_in); 
@@ -140,8 +150,12 @@ public class MyThread extends Thread {
                         String check_in;
                         String check_out;
                         int room_number;
+                        String roomNo;
                         writer.println("ENTER ROOM NO: ");
-                        room_number = receiver.nextInt();
+                        roomNo = receiver.next();
+                        room_number =  Integer.parseInt(Decoder(roomNo));
+
+                        
                         PreparedStatement ps = con.prepareStatement("SELECT * FROM rooms WHERE Room_No = ?;");
 
                         ps.setInt(1, room_number);
@@ -202,11 +216,13 @@ public class MyThread extends Thread {
                         String visitor_name;
                         String check_in;
                         String check_out;
+                        String roomNo;
 
                         PreparedStatement pstmt = con.prepareStatement(
                                 "UPDATE rooms SET Visitor_Name=?, In_Date =? , Out_Date = ? , State = 1 WHERE Room_No = ?");
                         writer.println("Which room do you want to update?");
-                        room_number = receiver.nextInt();
+                        roomNo = receiver.next();
+                        room_number =  Integer.parseInt(Decoder(roomNo));
 
                         visitor_name = "null";
 
@@ -231,6 +247,12 @@ public class MyThread extends Thread {
         } catch (Exception e) {
         }
 
+    }
+
+    public String Decoder(String str) {
+        byte[] decodedBytes = Base64.getDecoder().decode(str);
+        String decodedString = new String(decodedBytes);
+        return decodedString;
     }
 
 }
