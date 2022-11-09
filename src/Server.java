@@ -15,7 +15,7 @@ public class Server {
         UsersWhoLoggedIn.clear();
         try {
             Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/rooms", "root",
-                    "2037276");
+                    "*abdo2001*");
             Statement stmt = con.createStatement();
             try {
                 ResultSet result = stmt.executeQuery("SELECT * FROM rooms;");

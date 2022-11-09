@@ -82,6 +82,7 @@ public class MyThread extends Thread {
                     choice = receiver.next();
 
                     if (choice.equals("1")) {
+                        
                         Statement stmt = con.createStatement();
                         ResultSet result = stmt.executeQuery("SELECT * FROM rooms;");
                         writer.println(
@@ -95,12 +96,25 @@ public class MyThread extends Thread {
 
                             String visitor_name = result.getString("Visitor_Name");
 
+                            if(visitor_name == null){
+                                visitor_name = "     ";
+                            }
+
                             String in_date = result.getString("In_Date");
+                            
+                            if(in_date == null){
+                                in_date = "     ";
+                            }
 
                             String out_date = result.getString("Out_Date");
 
+                            if(out_date == null){
+                              out_date= "     ";
+                            }
+
+
                             int state = result.getInt("State");
-                            writer.printf("%d %19s %12s %14s %16s %15d%n",   room_no, room_type, visitor_name, in_date, out_date, state);
+                            writer.printf("%-14d %-13s %-17s %-16s %-16s %-12d%n",   room_no, room_type, visitor_name, in_date, out_date, state);
 
                         }
                         writer.println(
