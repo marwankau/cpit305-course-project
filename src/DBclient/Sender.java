@@ -5,7 +5,6 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Sender extends Thread {
   Socket socket;
@@ -34,65 +33,57 @@ public class Sender extends Thread {
       // }
 
       while (true) {
-        writer.println(libraryInterface());
-        if (libraryInterface().equalsIgnoreCase("bye"))
-          break;
-
+        libraryInterface(writer);
       }
-
-      socket.shutdownOutput();
 
     } catch (IOException e) {
     }
   }
 
-  public String libraryInterface() {
+  private void libraryInterface(PrintWriter writer) throws IOException {
     String line;
-    StringBuilder sb = null;
-    String command;
+
     String bookRef;
     Scanner keyboard = new Scanner(System.in);
     while (true) {
 
       System.out.println("\tWelcome to library management system\t");
-      System.out.println("\t1.Search for a book by ID\t");
-      System.out.println("\t2.Search for a book by Name\t");
-      System.out.println("\t3.Search for books by Section\t");
+      System.out.println("\t1. List all books\t");
+      System.out.println("\t2.Search for a book by ID\t");
+      System.out.println("\t3.Search for a book by Name\t");
+      System.out.println("\t4.Search for books by Section\t");
+      System.out.println("\t5.exit\t");
       System.out.print("Choice : ");
       line = keyboard.nextLine();
       if (line.equalsIgnoreCase("1")) {
-        command = "SELECT * FROM books WHERE book_id LIKE ";
+        writer.println(line);
+      } else if (line.equalsIgnoreCase("2")) {
+        writer.println(line);
         System.out.print("Enter ID to search for: ");
         bookRef = keyboard.nextLine();
-        sb = new StringBuilder(command);
-        sb.append(bookRef);
-        sb.append(";");
-        return sb.toString();
-      }
-      if (line.equalsIgnoreCase("2")) {
-        command = "SELECT * FROM books WHERE book_name LIKE ";
-        System.out.print("Enter Name to search for: ");
-        bookRef = keyboard.nextLine();
-        sb = new StringBuilder(command);
-        sb.append(bookRef);
-        sb.append(";");
-        return sb.toString();
+        writer.println(bookRef);
       }
       if (line.equalsIgnoreCase("3")) {
-        command = "SELECT * FROM books WHERE bookSec LIKE ";
-        System.out.print("Enter Section to search for: ");
+        writer.println(line);
+        System.out.print("Enter name to search for: ");
         bookRef = keyboard.nextLine();
-        sb = new StringBuilder(command);
-        sb.append(bookRef);
-        sb.append(";");
-        return sb.toString();
-      } else if (line.equalsIgnoreCase("bye")) {
-        sb = new StringBuilder("bye");
+        writer.println(bookRef);
+
+      }
+      if (line.equalsIgnoreCase("4")) {
+        writer.println(line);
+        System.out.print("Enter section to search for: ");
+        bookRef = keyboard.nextLine();
+        writer.println(bookRef);
+
+      } else if (line.equalsIgnoreCase("5")) {
+        writer.println("bye");
         break;
+
       }
 
     }
-    return sb.toString();
-
+    socket.shutdownOutput();
+    keyboard.close();
   }
 }

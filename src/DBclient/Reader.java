@@ -31,7 +31,7 @@ public class Reader extends Thread {
       }
 
       socket.shutdownInput();
-
+      recScanner.close();
     } catch (IOException e) {
     }
   }
