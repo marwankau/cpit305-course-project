@@ -27,7 +27,17 @@ CREATE TABLE IF NOT EXISTS books (
 	CONSTRAINT books_PK PRIMARY KEY (book_id)
 );
 
--- Data exporting was unselected.
+-- Dumping data for table mydata.books: 6 rows
+DELETE FROM "books";
+/*!40000 ALTER TABLE "books" DISABLE KEYS */;
+INSERT INTO "books" ("book_id", "bookName", "bookSec", "isAvailable") VALUES
+	(1, 'cpit305', 'Sciences', 1),
+	(2, 'cpit305', 'Sciences', 1),
+	(3, 'cpit305', 'Sciences', 1),
+	(4, 'cpit305', 'Sciences', 1),
+	(5, 'cpit305', 'Sciences', 1),
+	(6, 'cpit305', 'Sciences', 1);
+/*!40000 ALTER TABLE "books" ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
