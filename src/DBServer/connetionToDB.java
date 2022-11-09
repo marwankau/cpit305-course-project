@@ -17,7 +17,7 @@ public class connetionToDB {
         System.out.println("Server waiting for connection...");
         try {
 
-            conn = (Connection) DriverManager.getConnection("jdbc:sqlite:cpit305-course-project/mydata");
+            conn = (Connection) DriverManager.getConnection("jdbc:sqlite:mydata");
             ServerSocket server = new ServerSocket(2000);
 
             while (true) {
