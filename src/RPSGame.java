@@ -48,18 +48,12 @@ public class RPSGame {
 
                     System.out.println("New 2 players are connected lets start game..");
                     
-                     
-                      
+                  
                      ssc = new ServerSideConnection(s, s2, stat); 
                      ssc.start();
-                    
-                    
-                    
-                    
-                    
-                    
                                      
             }
+            server.close();
 
                     
 

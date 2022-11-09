@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 import java.util.UUID;
+
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -31,8 +32,9 @@ public class ServerSideConnection extends Thread {
     private Statement stat;
     private String choose1;
     private String choose2;
-    private static int P1Points = 0;
-    private static int P2Points = 0;
+    private ResultSet r;
+  
+
 
     ServerSideConnection(Socket s, Socket s2, Statement stat) {
         this.Player1 = s;
@@ -65,25 +67,30 @@ public class ServerSideConnection extends Thread {
             WriteToPlayer2 = new PrintWriter(out2,true);
             ReadFromPlayer2 = new Scanner(in2);
             
-
+              int P1Points = 0;
+              int P2Points = 0;
             
             String GID = UUID.randomUUID().toString().substring(2,5);
             
-            stat.execute("select GameID from gameplay");
-           ResultSet r = stat.getResultSet();
+         
            
-           boolean x = r.next();
-           while(x){
+        
+            stat.execute("select GameID from gameplay");
+             r = stat.getResultSet();
+            boolean x = r.next();
+            while(x){
            String id = r.getString("GameID");
+      
                if( id.equals(GID)){
                GID = UUID.randomUUID().toString().substring(1,4);
-               
+                r.beforeFirst();
            } 
-               x = r.next();
+                x = r.next();
            }
    
             int PID1 =  dis.readInt();
             int PID2 =  dis2.readInt();
+          
             
             
 
@@ -107,6 +114,7 @@ public class ServerSideConnection extends Thread {
                 try{
                 choose1 = ReadFromPlayer1.nextLine();
                 choose2 = ReadFromPlayer2.nextLine();
+                
                 }
                 catch(Exception e){
                     if(choose1 != null){
@@ -123,10 +131,16 @@ public class ServerSideConnection extends Thread {
                     }       
                     break;
                 }
+            
                 System.out.println("\n======== Room : "+GID+" ===========");
 
+                    
                 if (choose1.equals(choose2)) {
 
+
+                    P1Points += 5;
+                    P2Points += 5;
+                
                     System.out.println(P1name + " Points: " + P1Points);
                     System.out.println(P2name + " Points: " + P2Points);
            
@@ -137,14 +151,19 @@ public class ServerSideConnection extends Thread {
 
                     WriteToPlayer2.println("Enemy points: " + P1Points);
                     WriteToPlayer1.println("Enemy points: " + P2Points);
+                    
+                }
 
            
 
-                }
+                
 
                 else if (choose1.equals("1") && choose2.equals("2")) {
-       
+
                     P2Points += 10;
+                
+
+
                     System.out.println(P1name + " Points: " + P1Points);
                     System.out.println(P2name + " Points: " + P2Points);
         
@@ -156,7 +175,7 @@ public class ServerSideConnection extends Thread {
                     WriteToPlayer2.println("Enemy points: " + P1Points);
                     WriteToPlayer1.println("Enemy points: " + P2Points);
 
-          
+                       
 
                 }
 
@@ -326,6 +345,7 @@ public class ServerSideConnection extends Thread {
             else if (P2Points > P1Points) {
                 int winsNum = 0;
                  r = stat.executeQuery("select Wins from player where username = '" + P2name + "'");
+                 
                 if (r.next()) {
                     winsNum = r.getInt("Wins");
                 }
@@ -334,8 +354,8 @@ public class ServerSideConnection extends Thread {
                 stat.executeUpdate("update player set Wins =" + winsNum + " where username ='" + P2name + "'");
 
                 stat.executeUpdate("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
-                        + "'','" + P1name + "','" + P2name + "','" + P2name + "','" + P1Points + " - " + P2Points
-                        + "', CURRENT_DATE())");
+                        + "','" + P1name + "','" + P2name + "','" + P2name + "','" + P1Points + " - " + P2Points
+                            + "', CURRENT_DATE())");
                 
                         if(PID1==PID2){
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID1+")");
@@ -343,12 +363,11 @@ public class ServerSideConnection extends Thread {
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID1+")");
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID2+")");
                               }
-
-                
-
+                    
+              
             } else {
                 stat.executeUpdate("insert into gameplay (GameID, Player1, Player2, Winner, result, Gdate) values ('" + GID
-                        + "'','" + P1name + "','" + P2name + "','no winner' ,'" + P1Points + " - " + P2Points
+                        + "','" + P1name + "','" + P2name + "','no winner' ,'" + P1Points + " - " + P2Points
                         + "', CURRENT_DATE())");
                 
                 
@@ -358,11 +377,14 @@ public class ServerSideConnection extends Thread {
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID1+")");
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID2+")");
                               }
-
 
 
             }
+                
+                P1Points = 0;
+                P2Points = 0;
 
+            
 
         } 
         catch (SQLException e) {
@@ -377,23 +399,20 @@ public class ServerSideConnection extends Thread {
         finally {
             try {
 
-                P1Points = 0;
-                P2Points = 0;
              
-            
-               
+             
                 Player1.close();
                 Player2.close();
-                WriteToPlayer1.close();
-                WriteToPlayer2.close();
                 ReadFromPlayer1.close();
                 ReadFromPlayer2.close();
+                WriteToPlayer1.close();
+                WriteToPlayer2.close();
 
                
 
             } catch (IOException e) {
                 System.err.println(e);
-            }
+            } 
 
         }
 

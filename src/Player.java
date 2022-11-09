@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.text.ParseException;
 import java.util.Scanner;
@@ -37,6 +38,7 @@ public class Player {
         String Tutorial ="\nROCK \t\t\tPAPER \t\t\tSCISSORS \n   _______                 _______                    _______\n---'   ____)            ---'   ____)____           ---'   ____)____\n      (_____)                     ______)                    ______)\n      (_____)                     _______)                __________)\n      (____)                    _______)                 (____)\n---.__(___)             ---.__________)            ---.__(___)\n";
 
         Scanner in = new Scanner(System.in);
+        Scanner tool = new Scanner(System.in);
         String choice = "0";
         String name = "";
         String pass = "";
@@ -180,11 +182,11 @@ public class Player {
                             continue;
                         }
 
-                        Scanner tool = new Scanner(System.in);
                         String choose;
                         String res;
 
                         dos.writeInt(IDs);
+
                         WriteToServer.println(name);
               
                         int rounds = 1;
@@ -230,8 +232,6 @@ public class Player {
                                 break;
                             }
                          
-                         s.close();
-                         tool.close();
                         WriteToServer.close();
                         ReadFromServer.close();
                     
@@ -313,6 +313,8 @@ public class Player {
 
             else if (choice.equals("4") || choice.equals("3")) {
                 in.close();
+                tool.close();
+
                 break;
             }
         }
@@ -334,7 +336,7 @@ public class Player {
     }
 
     private void ConnectToServer() throws IOException {
-        s = new Socket("localhost", 5000);
+        s = new Socket(InetAddress.getLocalHost(), 5000);
         
         InputStream in = s.getInputStream();
         OutputStream out = s.getOutputStream();
