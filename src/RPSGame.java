@@ -15,18 +15,21 @@ public class RPSGame {
     private static PrintWriter WriteToPlayer2;
     private static ServerSideConnection ssc;
 
-    private static Socket s2 = new Socket();
-    private static Socket s = new Socket();
+    private static Socket s2 ;
+    private static Socket s ;
 
     public static void main(String[] args) throws SQLException {
 
-        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cpit305-project", "root",
-                "moe123");
+        Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cpit305-project", "root", "moe123");
         Statement stat = conn.createStatement();
 
         try {
         ServerSocket server = new ServerSocket(5000);
         System.out.println("server connected..");
+
+        s = new Socket();
+        s2 = new Socket();
+       
       
             while (!server.isClosed()) {
 
