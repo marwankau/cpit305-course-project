@@ -101,19 +101,98 @@ public class MyThread extends Thread {
                     pstmt.setString(1, visitor_name); 
                     pstmt.setString(2, check_in); 
                     pstmt.setString(3, check_out); 
-                    pstmt.setInt(4, room_number); 
+                    pstmt.setInt(4, room_number);   
                     pstmt.executeUpdate();
                 }
 
                 
                   else if (choice == 3) {
-                  writer.println("BBBBBBBBBBBB");
-                } else if (choice == 4) {
-                  writer.println("Thank you for using our system ");
-                  break;
-                  } else {
-                  writer.println("Wrong input");
-                 }
+                    String visitor_name;
+                    String check_in;
+                    String check_out;
+                    int room_number;
+                    writer.println("ENTER ROOM NO: ");
+                    room_number = receiver.nextInt();
+                    PreparedStatement ps = con.prepareStatement("SELECT * FROM rooms WHERE Room_No = ?;");
+
+                    ps.setInt(1,room_number );
+                              
+
+                
+                    ResultSet rs = ps.getResultSet();
+                    while (rs.next()) {                 
+                        room_number = rs.getInt("room_number");
+                        visitor_name = rs.getString("visitor_name");
+                        check_in = rs.getString("check_in");
+                        check_out = rs.getString("check_out");
+                        int state = rs.getInt("State");
+
+                        writer.println(room_number+"room_number");
+                        writer.println(visitor_name);
+                        writer.println(check_in);
+                        writer.println(check_out);
+                        writer.println(state);
+
+                    }
+                
+                
+                } 
+                
+                else if (choice == 4) {
+                    Statement stmt = con.createStatement();
+                    ResultSet result = stmt.executeQuery("SELECT * FROM rooms WHERE state =1;");
+                    writer.println(
+                            "========================================================================================");
+                    writer.println(
+                            "Room Number    Room Type     Visitor Name      CheckIn Date     CheckOut Date    State");
+                    while (result.next()) {
+                        int room_no = result.getInt("Room_No");
+
+                        String room_type = result.getString("Room_Type");
+
+                        String visitor_name = result.getString("Visitor_Name");
+
+                        String in_date = result.getString("In_Date");
+
+                        String out_date = result.getString("Out_Date");
+
+                        int state = result.getInt("State");
+
+                        writer.println(room_no + "              " + room_type + "        " + visitor_name + "              " + in_date + "             " + out_date + "             " + state);
+
+                    }
+                    writer.println(
+                            "========================================================================================");
+                } 
+                
+                
+                
+                
+                
+                else if (choice == 5) {
+
+                    
+                        int room_number;
+                        String visitor_name;
+                        String check_in;
+                        String check_out;
+                     
+                        PreparedStatement pstmt = con.prepareStatement("UPDATE rooms SET Visitor_Name=?, In_Date =? , Out_Date = ? , State = 1 WHERE Room_No = ?"); 
+                        writer.println("Which room do you want to update?");
+                        room_number = receiver.nextInt();
+    
+                        visitor_name = "null";
+    
+                        check_in = "null";
+    
+                        check_out = "null";
+    
+                        pstmt.setString(1, visitor_name); 
+                        pstmt.setString(2, check_in); 
+                        pstmt.setString(3, check_out); 
+                        pstmt.setInt(4, room_number);   
+                        pstmt.executeUpdate();
+                    }
                  
             }
 
