@@ -226,7 +226,6 @@ public class MyThread extends Thread {
                         writer.println("try again ");
                     }
                 }
-
             }catch (Exception e) {
             }
         }
