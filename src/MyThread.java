@@ -23,7 +23,7 @@ public class MyThread extends Thread {
     public void run() {
         try {
             String line;
-            int choice;
+            String choice;
             InputStream in = client.getInputStream();
             OutputStream out = client.getOutputStream();
             Scanner receiver = new Scanner(in);
@@ -45,9 +45,9 @@ public class MyThread extends Thread {
                 writer.println("6. EXIT");
                 writer.println("=====================================");
                 writer.println("choose: ");
-                choice = receiver.nextInt();
+                choice = receiver.next();
 
-                if (choice == 1) {
+                if (choice.equals("1")) {
                     Statement stmt = con.createStatement();
                     ResultSet result = stmt.executeQuery("SELECT * FROM rooms;");
                     writer.println(
@@ -79,7 +79,9 @@ public class MyThread extends Thread {
                 
                 
                 
-                else if (choice == 2) {
+                else if (choice.equals("2")) {
+                    
+                      
                     int room_number;
                     String visitor_name;
                     String check_in;
@@ -103,10 +105,11 @@ public class MyThread extends Thread {
                     pstmt.setString(3, check_out); 
                     pstmt.setInt(4, room_number);   
                     pstmt.executeUpdate();
+               
                 }
 
                 
-                  else if (choice == 3) {
+                  else if (choice.equals("3")) {
                     String visitor_name;
                     String check_in;
                     String check_out;
@@ -138,7 +141,7 @@ public class MyThread extends Thread {
                 
                 } 
                 
-                else if (choice == 4) {
+                else if (choice.equals("4")) {
                     Statement stmt = con.createStatement();
                     ResultSet result = stmt.executeQuery("SELECT * FROM rooms WHERE state =1;");
                     writer.println(
@@ -169,7 +172,7 @@ public class MyThread extends Thread {
                 
                 
                 
-                else if (choice == 5) {
+                else if (choice.equals("5")) {
 
                     
                         int room_number;
@@ -193,7 +196,14 @@ public class MyThread extends Thread {
                         pstmt.setInt(4, room_number);   
                         pstmt.executeUpdate();
                     }
-                 
+                    else if (choice.equalsIgnoreCase("EXIT") ||choice.equals("6") ) {
+                        writer.println("THANK YOU : ");
+
+                        break;
+                    }
+                else{
+                    writer.println("try again ");
+                }
             }
 
         } catch (Exception e) {
