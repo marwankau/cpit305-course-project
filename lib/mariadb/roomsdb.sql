@@ -5,7 +5,6 @@
 -- HeidiSQL Version:             11.3.0.6295
 -- --------------------------------------------------------
 
-
 DROP DATABASE IF EXISTS `rooms`;
 CREATE DATABASE IF NOT EXISTS `rooms` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `rooms`;
@@ -21,7 +20,3 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   PRIMARY KEY (`Room_No`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-LOCK TABLES rooms WRITE;
-INSERT INTO rooms VALUES (1,'single',NULL,NULL,NULL,1),(2,'double',NULL,NULL,NULL,1),(3,'double',NULL,NULL,NULL,1),(4,'triple',NULL,NULL,NULL,1),(5,'double',NULL,NULL,NULL,1),(6,'triple',NULL,NULL,NULL,1);
-
-UNLOCK TABLES;
