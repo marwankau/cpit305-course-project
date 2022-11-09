@@ -5,11 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import org.sqlite.SQLiteConnection;
 
 public class connetionToDB {
     public static void main(String[] args) {
@@ -24,7 +20,7 @@ public class connetionToDB {
 
                 Socket socket = server.accept();
 
-                // new Sender(socket,conn).start();
+                // new Sender(socket, conn).start();
                 new Receiver(socket, conn).start();
 
             }
