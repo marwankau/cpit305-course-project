@@ -29,8 +29,8 @@ public class Client {
             inp.add("choose: ");
             inp.add("Which room do you want to update?");
             inp.add("Update visitor name");
-            inp.add("Enter check in date DD MM: ");
-            inp.add("Enter check out date DD MM: ");
+            inp.add("Enter check in date DD/MM: ");
+            inp.add("Enter check out date DD/MM: ");
             inp.add("ENTER ROOM NO: ");
 
             while (true) {

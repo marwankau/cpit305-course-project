@@ -64,7 +64,7 @@ public class MyThread extends Thread {
                 }
                 writer.println("Username or Password is wrong");
             }
-            while (true) {
+
                 while (true) {
                     writer.println("=====================================");
                     writer.println("||Welcome to hotel database browser||");
@@ -120,10 +120,10 @@ public class MyThread extends Thread {
     
                         writer.println("Update visitor name");
                         visitor_name = receiver.next();
-                        writer.println("Enter check in date DD MM: ");
+                        writer.println("Enter check in date DD/MM: ");
     
                         check_in = receiver.next();
-                        writer.println("Enter check out date DD MM: ");
+                        writer.println("Enter check out date DD/MM: ");
     
                         check_out = receiver.next();
     
@@ -227,10 +227,8 @@ public class MyThread extends Thread {
                     }
                 }
 
+            }catch (Exception e) {
             }
-        } catch (Exception e) {
         }
 
     }
-
-}
