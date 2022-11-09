@@ -121,21 +121,23 @@ public class MyThread extends Thread {
                     ps.setInt(1,room_number );
                               
 
-                
+                    if (ps.execute()) {
                     ResultSet rs = ps.getResultSet();
                     while (rs.next()) {                 
-                        room_number = rs.getInt("room_number");
-                        visitor_name = rs.getString("visitor_name");
-                        check_in = rs.getString("check_in");
-                        check_out = rs.getString("check_out");
+                        room_number = rs.getInt("Room_No");
+                        visitor_name = rs.getString("Visitor_Name");
+                        check_in = rs.getString("In_Date");
+                        check_out = rs.getString("Out_Date");
                         int state = rs.getInt("State");
 
-                        writer.println(room_number+"room_number");
-                        writer.println(visitor_name);
-                        writer.println(check_in);
-                        writer.println(check_out);
-                        writer.println(state);
-
+                        writer.println("room_number= "+room_number);
+                        writer.println("visitor_name= "+visitor_name);
+                        writer.println("In_Date= "+check_in);
+                        writer.println("Out_Date= "+check_out);
+                        writer.println("state= "+state);
+                    }
+                    }else {
+                        System.out.println("\nNothing found!\n");
                     }
                 
                 
