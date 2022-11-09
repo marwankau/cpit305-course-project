@@ -151,6 +151,7 @@ public class MyThread extends Thread {
 
                     else if (choice.equals("3")) {
                         String visitor_name;
+                        String RoomType;
                         String check_in;
                         String check_out;
                         int room_number;
@@ -164,16 +165,13 @@ public class MyThread extends Thread {
                             ResultSet rs = ps.getResultSet();
                             while (rs.next()) {
                                 room_number = rs.getInt("Room_No");
+                                RoomType = rs.getString("Room_Type");
                                 visitor_name = rs.getString("Visitor_Name");
                                 check_in = rs.getString("In_Date");
                                 check_out = rs.getString("Out_Date");
                                 int state = rs.getInt("State");
 
-                                writer.println("room_number= " + room_number);
-                                writer.println("visitor_name= " + visitor_name);
-                                writer.println("In_Date= " + check_in);
-                                writer.println("Out_Date= " + check_out);
-                                writer.println("state= " + state);
+                                writer.printf("%-14d %-13s %-17s %-16s %-16s %-12d%n",   room_number, RoomType, visitor_name, check_in, check_out, state);
                             }
                         } else {
                             System.out.println("\nNothing found!\n");

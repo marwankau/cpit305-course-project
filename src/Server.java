@@ -11,11 +11,9 @@ import org.mariadb.jdbc.Connection;
 
 public class Server {
     public static void main(String[] args) throws IOException, SQLException {
-        ArrayList<String> UsersWhoLoggedIn = new ArrayList<String>();
-        UsersWhoLoggedIn.clear();
         try {
             Connection con = (Connection) DriverManager.getConnection("jdbc:mariadb://localhost:3306/rooms", "root",
-                    "*abdo2001*");
+                    "2037276");
             Statement stmt = con.createStatement();
             try {
                 ResultSet result = stmt.executeQuery("SELECT * FROM rooms;");
