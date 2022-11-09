@@ -64,6 +64,8 @@ public class Client {
             inp.add("Update visitor name");
             inp.add("Enter check in date DD MM: ");
             inp.add("Enter check out date DD MM: ");
+            inp.add("ENTER ROOM NO: ");
+
             while (true) {
                 line = receiver.nextLine();
                 System.out.println(line);
