@@ -52,12 +52,15 @@ public class Receiver extends Thread {
                     break;
                 } else if (line.equalsIgnoreCase("1")) {
                     listBooks(out, writer, conn);
+
+                } else if (line.equalsIgnoreCase("5")) {
+                    querytype = recScanner.nextLine();
+                    changeBookStatus(querytype, line, out, writer, conn);
                 } else {
                     querytype = recScanner.nextLine();
                     searchForBook(querytype, line, out, writer, conn);
                 }
             }
-
             socket.shutdownInput();
             recScanner.close();
 
@@ -69,7 +72,6 @@ public class Receiver extends Thread {
     }
 
     private static void listBooks(OutputStream out, PrintWriter writer, Connection conn) {
-
         try {
 
             Statement st = conn.createStatement();
@@ -119,6 +121,42 @@ public class Receiver extends Thread {
 
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private static void changeBookStatus(String queryType, String line, OutputStream out, PrintWriter writer,
+            Connection conn)
+            throws IOException {
+        int newResult = 0;
+        int availability = 0;
+        try {
+
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM books WHERE book_id LIKE ?;");
+
+            ps.setString(1, "%" + queryType + "%");
+            if (ps.execute()) {
+                ResultSet rs = ps.getResultSet();
+                while (rs.next()) {
+
+                    availability = rs.getInt("isAvailable");
+
+                }
+
+            }
+            newResult = availability == 1 ? 0 : 1;
+            ps = conn.prepareStatement("UPDATE books SET isAvailable = ? WHERE book_id = ?;");
+            ps.setInt(1, newResult);
+            ps.setString(2, queryType);
+            ps.executeUpdate();
+            if (newResult == 1) {
+                writer.println("Book ID = " + queryType + " is now available");
+            } else {
+                writer.println("Book ID = " + queryType + " has become not available");
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
