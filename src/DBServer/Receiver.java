@@ -71,7 +71,7 @@ public class Receiver extends Thread {
 
     }
 
-    private static void listBooks(OutputStream out, PrintWriter writer, Connection conn) {
+    private void listBooks(OutputStream out, PrintWriter writer, Connection conn) {
         try {
 
             Statement st = conn.createStatement();
@@ -91,7 +91,7 @@ public class Receiver extends Thread {
         }
     }
 
-    private static void searchForBook(String queryType, String line, OutputStream out, PrintWriter writer,
+    private void searchForBook(String queryType, String line, OutputStream out, PrintWriter writer,
             Connection conn)
             throws IOException {
         PreparedStatement ps = null;
@@ -127,7 +127,7 @@ public class Receiver extends Thread {
 
     }
 
-    private static void changeBookStatus(String queryType, String line, OutputStream out, PrintWriter writer,
+    private void changeBookStatus(String queryType, String line, OutputStream out, PrintWriter writer,
             Connection conn)
             throws IOException {
         int newResult = 0;
@@ -150,7 +150,10 @@ public class Receiver extends Thread {
             ps = conn.prepareStatement("UPDATE books SET isAvailable = ? WHERE book_id = ?;");
             ps.setInt(1, newResult);
             ps.setString(2, queryType);
-            ps.executeUpdate();
+            synchronized (this) {
+                ps.executeUpdate();
+            }
+
             if (newResult == 1) {
                 writer.println("Book ID = " + queryType + " is now available");
             } else {
