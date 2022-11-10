@@ -64,7 +64,7 @@ Search Room by Number
 
 Show available Rooms
 
-![ShowAvailableRooms](/images/ShowAvaroom.png.png)
+![ShowAvailableRooms](/images/ShowAvaroom.png)
 
 Set Room to default
 
