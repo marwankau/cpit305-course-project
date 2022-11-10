@@ -14,7 +14,7 @@ Hospital Reservation System that allows adding doctors and patients to the datab
 ## ER Diagram
 
 Doctor has 3 attribute { doctorID(PK) , doctorName , doctorspecialtly }
-Appointment has 3 attribute { appointmentID(PK)(PK) , appointmentDate , DoctorName(FK) }
+Appointment has 4 attribute { appointmentID(PK), appointmentDate , Doctor_id(FK), Patient_id(FK) }
 Patient has 3 attribute { patientID(PK) , patientAge , patientName }
 
 -each doctor has many appointment and each patient appoint one appointment 
