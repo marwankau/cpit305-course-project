@@ -82,5 +82,22 @@ public class db {
         return tol;
     }
 
+    public boolean Payment(String username,String PayM , int Tprice) throws SQLException{
+
+        PreparedStatement pr = con.prepareStatement("Insert into Payment (`username`,`paymentMethod`,`TotalPrice`) values (?, ?, ?)");
+
+        pr.setString(1, username);
+        pr.setString(2, PayM);
+        pr.setInt(3, Tprice);
+
+        int n = pr.executeUpdate();
+        System.out.println(n);
+        if(n == 1) return true;
+        else if(n == 2) return false;
+
+        con.close();
+        return false;
+    } 
+
 
 }
