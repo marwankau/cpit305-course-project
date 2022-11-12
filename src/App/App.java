@@ -14,14 +14,6 @@ public class App {
         System.out.println("server waiting for connection...");
 
 
-//        db con = new db();
-//        con.DBconnection();
-//        try {
-//            con.deliverDB();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-
 
         while (true){
 
@@ -37,7 +29,7 @@ public class App {
                 db con= new db();
                 con.DBconnection();
                 System.out.println("Thread assigned");
-                con.deliverDB();
+
 
                 Thread tThread = new ClientHandler(socket, reader , writer,con,objectInputStream);
 
@@ -51,13 +43,6 @@ public class App {
 
 
 
-
-
-//            Socket socket = server.accept();
-//
-//            //new Sender(socket).start();
-//            new Receiver(socket).receiveOrderList();
-//            //new Receiver(socket).start();
         }
 
     }

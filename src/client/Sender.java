@@ -40,6 +40,7 @@ public class Sender {
             logInServer();
             sendOrderList();
 
+
         }
 
         objectOutputStream.flush();
@@ -92,9 +93,10 @@ public class Sender {
         writer.flush();
 
         String resp = reader.readLine();
-
-        System.out.println("server response:  "+resp);
-
+        if(resp.equalsIgnoreCase("Login failed")) {
+            System.out.println("server response:  " + resp);
+            logInServer();
+        }
 
     }
 

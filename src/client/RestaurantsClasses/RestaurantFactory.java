@@ -8,7 +8,7 @@ public class RestaurantFactory {
 
         if (newRestaurantIs.equalsIgnoreCase("1")) return new AlBaik();
         else if (newRestaurantIs.equalsIgnoreCase("2"))return new Kfc();
-        //else if (newRestaurantIs.equalsIgnoreCase("3"))return new MacDonalds();
+        else if (newRestaurantIs.equalsIgnoreCase("3"))return new MacDonalds();
         else return null;
     }
 

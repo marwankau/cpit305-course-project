@@ -1,24 +1,25 @@
 package client.RestaurantsClasses;
 
+
 import java.io.*;
 import java.util.ArrayList;
 
-public class AlBaik extends Restaurant {
+public class MacDonalds extends Restaurant {
 
-    //ArrayList<String> albaikMenu = new ArrayList<String>();
-    public AlBaik(){
-        ArrayList<String> albaikMenu = new ArrayList<String>();
-        setName("Al-Baik");
+
+    public MacDonalds(){
+        ArrayList<String> macMenu = new ArrayList<String>();
+        setName("MacDonalds");
         String tol = "";
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(
-                    "E:\\food_delivery_App\\src\\Al-baik_menu"))));
+                    "E:\\food_delivery_App\\src\\MacDonalds"))));
             while ((tol = reader.readLine()) != null) {
 
-                albaikMenu.add(tol);
+                macMenu.add(tol);
 
             }
-            setMenuList(albaikMenu);
+            setMenuList(macMenu);
 
         } catch (IOException e) {
             e.printStackTrace();

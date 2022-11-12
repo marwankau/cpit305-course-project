@@ -1,6 +1,7 @@
 package client;
 
 
+import client.PaymentsClasses.Payment;
 import client.RestaurantsClasses.Restaurant;
 import client.RestaurantsClasses.RestaurantFactory;
 
@@ -55,6 +56,11 @@ public class ClientApp {
                 if (ordTol.equalsIgnoreCase("f")) {
                     Sender senD = new Sender(socket, reader, writer, objectOutputStream, order.getOrderList());
                     senD.contactServer();
+                    order.showFullOrderList();
+                    order.showFullPrice();
+                    //strategy
+                    order.chosePayments();
+                    System.out.println("Thanks for using This Application ~~~ 3afya");
 
                     break;
                 }

@@ -42,13 +42,6 @@ class ClientHandler extends Thread {
                 recOrderList();
             }
 
-            writer.println("how would you like to pay");
-            writer.println("(V)Creditcard\t(C)Cash");
-
-            if(sL.equalsIgnoreCase("V")){
-                
-            }
-
             objectInputStream.close();
 
         } catch (IOException | InterruptedException | SQLException | ClassNotFoundException e) {
@@ -94,9 +87,11 @@ class ClientHandler extends Thread {
 
 
         if (dataBase.loginDBCheck(userName,password)){
-            writer.println("done"+ userName);
+            writer.println("done  "+ userName);
         }else {
-            writer.println("Login failed  ");
+            writer.println("Login failed");
+            writer.flush();
+            logIn();
         }
 
         writer.flush();
@@ -116,9 +111,5 @@ class ClientHandler extends Thread {
         writer.flush();
     }
 
-    public void Payment() throws IOException, ClassNotFoundException, SQLException {
-   
-        
-    }
 
 }

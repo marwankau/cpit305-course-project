@@ -1,5 +1,9 @@
 package client;
 
+import client.PaymentsClasses.CashPayment;
+import client.PaymentsClasses.CreditCard;
+import client.PaymentsClasses.Payment;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -8,6 +12,9 @@ public class Order {
 
     private ArrayList<String> orderList = new ArrayList<String>();
     private ArrayList<String> menuList = new ArrayList<String>();
+
+    // strategy
+    public Payment paymentType;
 
     public Order(ArrayList<String> menuList) {
         this.menuList = menuList;
@@ -73,6 +80,28 @@ public class Order {
 
         }
         System.out.println("this is total:  "+total);
+    }
+
+
+    // strategy
+    public String callPaymentType(){
+        return paymentType.pay();
+    }
+
+    public void setPaymentType(Payment type){
+        paymentType = type;
+    }
+
+    public void chosePayments(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("chose payment method:  (c)cash or (d)card  ");
+        String tols = scan.nextLine();
+        if (tols.equalsIgnoreCase("c")) setPaymentType(new CashPayment());
+        else if (tols.equalsIgnoreCase("d")) setPaymentType(new CreditCard());
+
+        System.out.println(callPaymentType());
+
+
     }
 
 
