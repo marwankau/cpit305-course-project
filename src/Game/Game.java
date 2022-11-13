@@ -30,7 +30,7 @@ public class Game {
 
         try {
             fos = new FileOutputStream(file);
-            String rec = "Game Record \n";
+            String rec = "Game Record\n";
             byte[] b = rec.getBytes();
             fos.write(b);
         } catch (FileNotFoundException e) {
@@ -106,57 +106,98 @@ public class Game {
         return label;
     }
 
-    public boolean winner() {
+    public boolean winner() throws IOException {
+        File file = new File("Game Record.txt");
+        FileOutputStream fos= null;
+        try {
+             fos = new FileOutputStream(file, true);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        String winX = "\nX Wins\n";
+        String winO = "\nO Wins\n";
         // Horizontal Win
         if (gameboard[0][0] == 'X' && gameboard[0][1] == 'X' && gameboard[0][2] == 'X') {
-            System.out.println("X Wins");
+            byte[] By = winX.getBytes();
+            fos.write(By);
+            JOptionPane.showMessageDialog(null,"X Wins\nThank you for Playing!");
             return true;
         } else if (gameboard[0][0] == 'O' && gameboard[0][1] == 'O' && gameboard[0][2] == 'O') {
-            System.out.println("O Wins");
+            JOptionPane.showMessageDialog(null,"O Wins\nThank you for Playing!");
+            byte[] By = winO.getBytes();
+            fos.write(By);
             return true;
         } else if (gameboard[1][0] == 'X' && gameboard[1][1] == 'X' && gameboard[1][2] == 'X') {
-            System.out.println("X Wins");
+            byte[] By = winX.getBytes();
+            fos.write(By);
+            JOptionPane.showMessageDialog(null,"X Wins\nThank you for Playing!");
             return true;
         } else if (gameboard[1][0] == 'O' && gameboard[1][1] == 'O' && gameboard[1][2] == 'O') {
-            System.out.println("O Wins");
+              JOptionPane.showMessageDialog(null,"O Wins\nThank you for Playing!");
+            byte[] By = winO.getBytes();
+            fos.write(By);
             return true;
         } else if (gameboard[2][0] == 'X' && gameboard[2][1] == 'X' && gameboard[2][2] == 'X') {
-            System.out.println("X Wins");
+            byte[] By = winX.getBytes();
+            fos.write(By);
+            JOptionPane.showMessageDialog(null,"X Wins\nThank you for Playing!");
             return true;
         } else if (gameboard[2][0] == 'O' && gameboard[2][1] == 'O' && gameboard[2][2] == 'O') {
-            System.out.println("O Wins");
+              JOptionPane.showMessageDialog(null,"O Wins\nThank you for Playing!");
+            byte[] By = winO.getBytes();
+            fos.write(By);
             return true;
         } // Vertical Wins
         else if (gameboard[0][0] == 'X' && gameboard[1][0] == 'X' && gameboard[2][0] == 'X') {
-            System.out.println("X Wins");
+            byte[] By = winX.getBytes();
+            fos.write(By);
+            JOptionPane.showMessageDialog(null,"X Wins\nThank you for Playing!");
             return true;
         } else if (gameboard[0][0] == 'O' && gameboard[1][0] == 'O' && gameboard[2][0] == 'O') {
-            System.out.println("O Wins");
+              JOptionPane.showMessageDialog(null,"O Wins\nThank you for Playing!");
+            byte[] By = winO.getBytes();
+            fos.write(By);
             return true;
         } else if (gameboard[0][1] == 'X' && gameboard[1][1] == 'X' && gameboard[2][1] == 'X') {
-            System.out.println("X Wins");
+            byte[] By = winX.getBytes();
+            fos.write(By);
+            JOptionPane.showMessageDialog(null,"X Wins\nThank you for Playing!");
             return true;
         } else if (gameboard[0][1] == 'O' && gameboard[1][1] == 'O' && gameboard[2][1] == 'O') {
-            System.out.println("O Wins");
+              JOptionPane.showMessageDialog(null,"O Wins\nThank you for Playing!");
+            byte[] By = winO.getBytes();
+            fos.write(By);
             return true;
         } else if (gameboard[0][2] == 'X' && gameboard[1][2] == 'X' && gameboard[2][2] == 'X') {
-            System.out.println("X Wins");
+            byte[] By = winX.getBytes();
+            fos.write(By);
+            JOptionPane.showMessageDialog(null,"X Wins\nThank you for Playing!");
             return true;
         } else if (gameboard[0][2] == 'O' && gameboard[1][2] == 'O' && gameboard[2][2] == 'O') {
-            System.out.println("O Wins");
+              JOptionPane.showMessageDialog(null,"O Wins\nThank you for Playing!");
+            byte[] By = winO.getBytes();
+            fos.write(By);
             return true;
         } // Diagonal Wins
         else if (gameboard[0][0] == 'X' && gameboard[1][1] == 'X' && gameboard[2][2] == 'X') {
-            System.out.println("X Wins");
+            byte[] By = winX.getBytes();
+            fos.write(By);
+            JOptionPane.showMessageDialog(null,"X Wins\nThank you for Playing!");
             return true;
         } else if (gameboard[0][0] == 'O' && gameboard[1][1] == 'O' && gameboard[2][2] == 'O') {
-            System.out.println("O Wins");
+              JOptionPane.showMessageDialog(null,"O Wins\nThank you for Playing!");
+            byte[] By = winO.getBytes();
+            fos.write(By);
             return true;
         } else if (gameboard[0][2] == 'X' && gameboard[1][1] == 'X' && gameboard[2][0] == 'X') {
-            System.out.println("X Wins");
+            byte[] By = winX.getBytes();
+            fos.write(By);
+            JOptionPane.showMessageDialog(null,"X Wins\nThank you for Playing!");
             return true;
         } else if (gameboard[0][2] == 'O' && gameboard[1][1] == 'O' && gameboard[2][0] == 'O') {
-            System.out.println("O Wins");
+              JOptionPane.showMessageDialog(null,"O Wins\nThank you for Playing!");
+            byte[] By = winO.getBytes();
+            fos.write(By);
             return true;
         }
         return false;

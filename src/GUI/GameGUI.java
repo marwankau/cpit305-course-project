@@ -5,9 +5,27 @@ import javax.swing.JOptionPane;
 
 import Game.Game;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class GameGUI extends javax.swing.JFrame {
 
     public Game game = new Game();
+    File file = new File("Game Record.txt");
+
+    FileOutputStream fos;
+
+    {
+        try {
+            fos = new FileOutputStream(file, true);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    String tie = "\nIt's a Tie!\n";
 
     /**
      * Creates new form GameGUI
@@ -151,11 +169,22 @@ public class GameGUI extends javax.swing.JFrame {
         // Set sign
         jLabel1 = game.setsignInGUI(this, jLabel1, 0, 0);
         // Check winner to close the game
-        if (game.winner() == true) {
-            JOptionPane.showMessageDialog(this, "Thank you for Playing!");
-            System.exit(0);
-        }  if (game.counter == 9) {
-            System.out.println("It's a Tie!");
+        try {
+            if (game.winner() == true) {
+
+                System.exit(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (game.counter == 9) {
+             byte[] By = tie.getBytes();
+            try {
+                fos.write(By);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "It's a Tie!\nThank you for Playing!");
             System.exit(0);
         }
@@ -167,11 +196,21 @@ public class GameGUI extends javax.swing.JFrame {
         // Set sign
         jLabel2 = game.setsignInGUI(this, jLabel2, 0, 1);
         // Check winner to close the game
-        if (game.winner() == true) {
-            JOptionPane.showMessageDialog(this, "Thank you for Playing!");
-            System.exit(0);
-        }  if (game.counter == 9) {
-            System.out.println("It's a Tie!");
+        try {
+            if (game.winner() == true) {
+                 
+                System.exit(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (game.counter == 9) {
+            byte[] By = tie.getBytes();
+            try {
+                fos.write(By);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "It's a Tie!\nThank you for Playing!");
             System.exit(0);
         }
@@ -183,11 +222,21 @@ public class GameGUI extends javax.swing.JFrame {
         // Set sign
         jLabel3 = game.setsignInGUI(this, jLabel3, 0, 2);
         // Check winner to close the game
-        if (game.winner() == true) {
-            JOptionPane.showMessageDialog(this, "Thank you for Playing!");
-            System.exit(0);
-        }  if (game.counter == 9) {
-            System.out.println("It's a Tie!");
+        try {
+            if (game.winner() == true) {
+                 
+                System.exit(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (game.counter == 9) {
+             byte[] By = tie.getBytes();
+            try {
+                fos.write(By);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "It's a Tie!\nThank you for Playing!");
             System.exit(0);
         }
@@ -199,11 +248,21 @@ public class GameGUI extends javax.swing.JFrame {
         // Set sign
         jLabel4 = game.setsignInGUI(this, jLabel4, 1, 0);
         // Check winner to close the game
-        if (game.winner() == true) {
-            JOptionPane.showMessageDialog(this, "Thank you for Playing!");
-            System.exit(0);
-        }  if (game.counter == 9) {
-            System.out.println("It's a Tie!");
+        try {
+            if (game.winner() == true) {
+                 
+                System.exit(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (game.counter == 9) {
+             byte[] By = tie.getBytes();
+            try {
+                fos.write(By);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "It's a Tie!\nThank you for Playing!");
             System.exit(0);
         }
@@ -215,11 +274,21 @@ public class GameGUI extends javax.swing.JFrame {
         // Set sign
         jLabel5 = game.setsignInGUI(this, jLabel5, 1, 1);
         // Check winner to close the game
-        if (game.winner() == true) {
-            JOptionPane.showMessageDialog(this, "Thank you for Playing!");
-            System.exit(0);
-        }  if (game.counter == 9) {
-            System.out.println("It's a Tie!");
+        try {
+            if (game.winner() == true) {
+                 
+                System.exit(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (game.counter == 9) {
+             byte[] By = tie.getBytes();
+            try {
+                fos.write(By);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "It's a Tie!\nThank you for Playing!");
             System.exit(0);
         }
@@ -231,11 +300,21 @@ public class GameGUI extends javax.swing.JFrame {
         // Set sign
         jLabel6 = game.setsignInGUI(this, jLabel6, 1, 2);
         // Check winner to close the game
-        if (game.winner() == true) {
-            JOptionPane.showMessageDialog(this, "Thank you for Playing!");
-            System.exit(0);
-        }  if (game.counter == 9) {
-            System.out.println("It's a Tie!");
+        try {
+            if (game.winner() == true) {
+                 
+                System.exit(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (game.counter == 9) {
+             byte[] By = tie.getBytes();
+            try {
+                fos.write(By);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "It's a Tie!\nThank you for Playing!");
             System.exit(0);
         }
@@ -247,11 +326,21 @@ public class GameGUI extends javax.swing.JFrame {
         // Set sign
         jLabel7 = game.setsignInGUI(this, jLabel7, 2, 0);
         // Check winner to close the game
-        if (game.winner() == true) {
-            JOptionPane.showMessageDialog(this, "Thank you for Playing!");
-            System.exit(0);
-        }  if (game.counter == 9) {
-            System.out.println("It's a Tie!");
+        try {
+            if (game.winner() == true) {
+                 
+                System.exit(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (game.counter == 9) {
+             byte[] By = tie.getBytes();
+            try {
+                fos.write(By);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "It's a Tie!\nThank you for Playing!");
             System.exit(0);
         }
@@ -262,11 +351,20 @@ public class GameGUI extends javax.swing.JFrame {
         // Set sign
         jLabel8 = game.setsignInGUI(this, jLabel8, 2, 1);
         // Check winner to close the game
-        if (game.winner() == true) {
-            JOptionPane.showMessageDialog(this, "Thank you for Playing!");
-            System.exit(0);
-        }  if (game.counter == 9) {
-            System.out.println("It's a Tie!");
+        try {
+            if (game.winner() == true) {
+                System.exit(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (game.counter == 9) {
+             byte[] By = tie.getBytes();
+            try {
+                fos.write(By);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "It's a Tie!\nThank you for Playing!");
             System.exit(0);
         }
@@ -278,11 +376,21 @@ public class GameGUI extends javax.swing.JFrame {
         // Set sign
         jLabel9 = game.setsignInGUI(this, jLabel9, 2, 2);
         // Check winner to close the game
-        if (game.winner() == true) {
-            JOptionPane.showMessageDialog(this, "Thank you for Playing!");
-            System.exit(0);
-        }  if (game.counter == 9) {
-            System.out.println("It's a Tie!");
+        try {
+            if (game.winner() == true) {
+                 
+                System.exit(0);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (game.counter == 9) {
+             byte[] By = tie.getBytes();
+            try {
+                fos.write(By);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(this, "It's a Tie!\nThank you for Playing!");
             System.exit(0);
         }
