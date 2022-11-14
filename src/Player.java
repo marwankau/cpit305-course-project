@@ -126,9 +126,6 @@ public class Player {
 
                             
 
-                        for (int i = 0; i < name.length() ; i++) {
-                        }
-
                         } while (hasSpace||usedName || name.length() > 25 || pass.length() > 10);
 
                         System.out.println("Hey " + name + " your registration has been successfully completed");
