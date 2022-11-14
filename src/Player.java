@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.text.ParseException;
 import java.util.Scanner;
 
+import org.mariadb.jdbc.client.socket.impl.SocketUtility;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -39,6 +41,10 @@ public class Player {
 
         Scanner in = new Scanner(System.in);
         Scanner tool = new Scanner(System.in);
+        Scanner login = new Scanner(System.in);
+        Scanner SignUp = new Scanner(System.in);
+
+
         String choice = "0";
         String name = "";
         String pass = "";
@@ -55,22 +61,24 @@ public class Player {
                     System.out.println("3. Exit");
                     System.out.print("Choose from above: ");
                     choice = in.next();
-                    in.nextLine();
                     if (choice.equals("1")) {
-
                         boolean usedName = false;
+                        boolean hasSpace = false;
 
                         do {
+                            
+                           
+
                             System.out.println("\n#### SIGN-UP ####");
                              System.out.println("*Your username should be less than 10 charaters*");
                              System.out.println("*Your password should be less than 10 digits*");
                             System.out.print("\nEnter your username: ");
-                            name = in.next();
+                            name = SignUp.nextLine();
                             System.out.print("Enter your password: ");
-                            pass = in.next();
-                             System.out.print("\n");
+                            pass = SignUp.nextLine();
+                            System.out.print("\n");
  
-
+                            hasSpace = false;
                             usedName = checkReg(name, ps, conn);
 
                             if (usedName) {
@@ -86,9 +94,42 @@ public class Player {
 
                            }
 
+                           for (int i = 0; i < name.length() ; i++) {
+
+                            if (name.charAt(i) == ' '){
+                                hasSpace = true;                            
+                            }
+
+
+                            if(hasSpace){
+                             System.out.println("Your usrname/password has spaces!");
+                             break;
+                            }
+                            
+                        }
+
+
+                        
+                        for (int i = 0; i < pass.length() ; i++) {
+
+                            if (pass.charAt(i) == ' '){
+                                hasSpace = true;                            
+                            }
+
+
+                            if(hasSpace){
+                             System.out.println("Your usrname/password has spaces!");
+                             break;
+                            }
+                            
+                        }
+
                             
 
-                        } while (usedName || name.length() > 25 || pass.length() > 10);
+                        for (int i = 0; i < name.length() ; i++) {
+                        }
+
+                        } while (hasSpace||usedName || name.length() > 25 || pass.length() > 10);
 
                         System.out.println("Hey " + name + " your registration has been successfully completed");
                         IDs = generateID(conn);
@@ -110,12 +151,16 @@ public class Player {
 
                         do {
                             System.out.println("\n#### LOGIN ####");
-                            System.out.print("Enter your username: ");
-                            name = in.next();
+                            System.out.print("\nEnter your username: ");
+                            name = login.nextLine();
                             System.out.print("Enter your password: ");
-                            pass = in.next();
+                            pass = login.nextLine();
+                            System.out.print("\n");
+
 
                             NotRegistered = CheckLogin(name, pass, ps, conn);
+
+
                             if (NotRegistered) {
                             System.out.println("Your username/password is incorrect!");
 
@@ -131,6 +176,8 @@ public class Player {
 
                             }
 
+                            
+                            
                             if (TryOrBack.equalsIgnoreCase("b")) {
                                 choice = "0";
                                 break;
@@ -150,6 +197,7 @@ public class Player {
                                 IDs = r.getInt("ID");
                             }
                         }
+
 
                     }
 
@@ -186,7 +234,6 @@ public class Player {
                         String res;
 
                         dos.writeInt(IDs);
-
                         WriteToServer.println(name);
               
                         int rounds = 1;
@@ -314,6 +361,10 @@ public class Player {
             else if (choice.equals("4") || choice.equals("3")) {
                 in.close();
                 tool.close();
+                SignUp.close();
+                login.close();
+
+
 
                 break;
             }
@@ -347,15 +398,25 @@ public class Player {
         ReadFromServer = new Scanner(in);
         
         
-
+        
         String Notify = ReadFromServer.nextLine();
+
+        if(Notify.equals("1")){
+
+            System.out.println("Wait for Player 2..");
+        }
+        else{
+            System.out.println("player #" + 1 + " has connected");
+        }
+
+        
+
         String Notify2 = ReadFromServer.nextLine();
 
-        // Alert player
-        System.out.println(Notify);
+        // joined
         System.out.println(Notify2);
        
-
+    
     }
 
     private boolean CheckLogin(String name, String pass, PreparedStatement ps, Connection conn) throws SQLException {
