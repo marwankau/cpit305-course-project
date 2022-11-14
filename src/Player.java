@@ -164,7 +164,7 @@ public class Player {
                                 do{
                              System.out.println("\n#### HELP ####");
                             System.out.println("b. Back to main menu");
-                            System.out.println("t. Try again");      
+                            System.out.println("t. Try login again");      
                             System.out.print("Choose from above: ");
 
                                 TryOrBack = in.next();
