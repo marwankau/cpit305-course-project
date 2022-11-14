@@ -18,4 +18,4 @@ MultiThreads, Networking, and Exceptions.
 ![ER-diagram](https://user-images.githubusercontent.com/98517446/200435200-e54421b0-d691-434c-874c-8e79a9b396bb.png)
 
 ## Class Diagram
-![Class-diagram](https://user-images.githubusercontent.com/98517446/200435153-6f812526-680e-44d2-9a94-30e3cda63678.png)
+![Class-diagram (2)](https://user-images.githubusercontent.com/98517446/201708240-124bb891-57e5-4f3a-b2d4-81c7c6c6c565.png)
