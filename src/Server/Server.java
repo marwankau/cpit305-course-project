@@ -1,4 +1,5 @@
 package Server;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -8,10 +9,11 @@ import java.sql.SQLException;
 
 public class Server {
     static Connection conn;
+
     public static void main(String[] args) throws IOException {
-        
+
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:src/Hospital.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:src/Server/Hospital.db");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -25,6 +27,6 @@ public class Server {
             new ClientHandler(socket, conn).start();
 
         }
-        
+
     }
 }

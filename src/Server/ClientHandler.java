@@ -62,7 +62,13 @@ public class ClientHandler extends Thread {
           dos.writeUTF("4. Update doctor");
           dos.writeUTF("Enter your choice: ");
           line = dis.readUTF();
-          int choice = Integer.parseInt(line);
+          int choice;
+          try {
+            choice = Integer.parseInt(line);
+          } catch (NumberFormatException e) {
+            dos.writeUTF("Enter a valid choice!");
+            continue;
+          }
           if (choice == 1) {
             getAllDoctors(dos);
 
@@ -86,7 +92,43 @@ public class ClientHandler extends Thread {
           dos.writeUTF("4. Update patients");
           dos.writeUTF("Enter your choice: ");
           line = dis.readUTF();
-          int choice = Integer.parseInt(line);
+          int choice;
+          try {
+            choice = Integer.parseInt(line);
+          } catch (NumberFormatException e) {
+            dos.writeUTF("Enter a valid choice!");
+            continue;
+          }
+
+          if (choice == 1) {
+            SelectAllPatient(dos);
+          } else if (choice == 2) {
+            dos.writeUTF("Enter patient name: ");
+            String patient_name = dis.readUTF();
+            dos.writeUTF("Enter date of birth with the following format (YYY-MM-DD): ");
+            String patient_dob = dis.readUTF();
+            insertPatient(dos, patient_name, patient_dob);
+          } else if (choice == 3) {
+            SelectAllPatient(dos);
+            dos.writeUTF("Enter patient ID to be deleted: ");
+            int id = Integer.parseInt(dis.readUTF());
+            deletePatient(dos, id);
+          } else if (choice == 4) {
+            SelectAllPatient(dos);
+            dos.writeUTF("Enter patient id: ");
+            try {
+              int id = Integer.parseInt(dis.readUTF());
+
+              dos.writeUTF("Enter patient name: ");
+              String patient_name = dis.readUTF();
+              dos.writeUTF("Enter date of birth with the following format (YYYY-MM-DD): ");
+              String patient_dob = dis.readUTF();
+              updatePatient(dos, patient_name, patient_dob, id);
+            } catch (Exception e) {
+              dos.writeUTF("Enter a valid ID!");
+              continue;
+            }
+          }
         } else if (choiceMenu == 3) {
           Date day;
           String formatedDate;
@@ -102,23 +144,28 @@ public class ClientHandler extends Thread {
             dos.writeUTF("Please insert Patients to register appointments!");
             continue;
           }
+          try {
 
-          SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
-          if (appointmenDates.size() < 1) {
-            for (int i = 0; i < 7; i++) {
-              // This is used to provide a list from the current date until the next 7 days
-              day = new Date(now.getYear() - 1900, now.getMonthValue() - 1, now.getDayOfMonth() + i);
-              formatedDate = formatter.format(day);
-              System.out.println(formatedDate);
-              appointmenDates.add(formatedDate);
+            SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
+            if (appointmenDates.size() < 1) {
+              for (int i = 0; i < 7; i++) {
+                // This is used to provide a list from the current date until the next 7 days
+                day = new Date(now.getYear() - 1900, now.getMonthValue() - 1, now.getDayOfMonth() + i);
+                formatedDate = formatter.format(day);
+                System.out.println(formatedDate);
+                appointmenDates.add(formatedDate);
+              }
             }
+            dos.writeUTF("Choose one of the following dates");
+            for (int i = 0; i < appointmenDates.size(); i++) {
+              dos.writeUTF(i + 1 + ". " + appointmenDates.get(i));
+            }
+
+            dos.writeUTF("Enter your choice: ");
+            line = dis.readUTF();
+          } catch (Exception e) {
+            System.out.println(e.getMessage());
           }
-          dos.writeUTF("Choose one of the following dates");
-          for (int i = 0; i < appointmenDates.size(); i++) {
-            dos.writeUTF(i + 1 + ". " + appointmenDates.get(i));
-          }
-          dos.writeUTF("Enter your choice: ");
-          line = dis.readUTF();
           int choice = Integer.parseInt(line);
           if (choice > 1 || choice <= 7) {
             dos.writeUTF("Choose a time From 1 PM to 5 PM");
@@ -137,7 +184,7 @@ public class ClientHandler extends Thread {
       }
 
     } catch (Exception e) {
-      // TODO: handle exception
+      System.out.println(e.getMessage());
     }
   }
 
@@ -165,6 +212,22 @@ public class ClientHandler extends Thread {
       }
     } catch (Exception e) {
       // TODO: handle exception
+    }
+  }
+
+  public void SelectAllPatient(DataOutputStream dos) {
+    try {
+
+      PreparedStatement ps = conn.prepareStatement("SELECT * FROM Patient");
+      ResultSet rs = ps.executeQuery();
+      dos.writeUTF("Patient#\t\tPatient_name\t\tpatient_dob");
+      dos.writeUTF("===================================================");
+      while (rs.next()) {
+        dos.writeUTF(
+            rs.getInt("Patient_id") + "\t\t" + rs.getString("patient_name") + "\t\t" + rs.getString("patient_dob"));
+      }
+    } catch (Exception e) {
+
     }
   }
 
@@ -227,11 +290,11 @@ public class ClientHandler extends Thread {
   }
 
   // insert patient
-  public void insertPatient(DataOutputStream dos, String patient_name, Date patient_dob) throws IOException {
+  public void insertPatient(DataOutputStream dos, String patient_name, String patient_dob) throws IOException {
     try {
-      PreparedStatement ps = conn.prepareStatement("INSERT INTO Patient (patient_name, patient_DOB) VALUES (?, ?);");
+      PreparedStatement ps = conn.prepareStatement("INSERT INTO Patient (patient_name, patient_dob) VALUES (?, ?);");
       ps.setString(1, patient_name);
-      ps.setDate(2, patient_dob);
+      ps.setString(2, patient_dob);
       boolean rs = ps.execute();
       dos.writeUTF("Patient has been successfully inserted");
     } catch (Exception e) {
@@ -265,4 +328,18 @@ public class ClientHandler extends Thread {
     }
   }
 
+  public void updatePatient(DataOutputStream dos, String patient_name, String patient_dob, int Patient_id)
+      throws IOException {
+    try {
+      PreparedStatement ps = conn
+          .prepareStatement("UPDATE FROM Patient SET patient_name= ? , patient_dob= ?   WHERE Patient_id = ?");
+      ps.setString(1, patient_name);
+      ps.setString(2, patient_dob);
+      ps.setInt(3, Patient_id);
+      boolean rs = ps.execute();
+      dos.writeUTF("Patient has been successfully updated");
+    } catch (Exception e) {
+
+    }
+  }
 }

@@ -26,8 +26,7 @@ public class Client {
 
         line = dis.readUTF();
         System.out.println(line);
-
-        if ((dis.available()) == 0)
+        if ((dis.available()) < 1)
           break;
       }
 
