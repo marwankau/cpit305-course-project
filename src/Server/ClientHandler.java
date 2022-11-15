@@ -73,11 +73,17 @@ public class ClientHandler extends Thread {
           dos.writeUTF("Enter your choice: ");
           line = dis.readUTF();
           int choice = Integer.parseInt(line);
-          if (choice == 1)
+          if (choice == 1){
             SelectAllPatient(dos);
+        } else if (choice == 2) {
+          dos.writeUTF("Enter patient name: ");
+          String patient_name = dis.readUTF();
+          dos.writeUTF("Enter date of birth: ");
+          String patient_dob = dis.readUTF();
+          insertPatient(dos,patient_name, patient_dob);
+        }  
         }
       }
-
     } catch (Exception e) {
       // TODO: handle exception
     }
@@ -139,11 +145,11 @@ public class ClientHandler extends Thread {
   }
 
   // insert patient
-  public void insertPatient(DataOutputStream dos, String patient_name, Date patient_dob) throws IOException {
+  public void insertPatient(DataOutputStream dos, String patient_name, String patient_dob) throws IOException {
     try {
       PreparedStatement ps = conn.prepareStatement("INSERT INTO Patient (patient_name, patient_DOB) VALUES (?, ?);");
       ps.setString(1, patient_name);
-      ps.setDate(2, patient_dob);
+      ps.setString(2, patient_dob);
       boolean rs = ps.execute();
       dos.writeUTF("Patient has been successfully inserted");
     } catch (Exception e) {
@@ -177,13 +183,13 @@ public class ClientHandler extends Thread {
     }
   }
 
-  public void updatePatient(DataOutputStream dos, String patient_name, Date patient_dob, int Patient_id)
+  public void updatePatient(DataOutputStream dos, String patient_name, String patient_dob, int Patient_id)
       throws IOException {
     try {
       PreparedStatement ps = conn
           .prepareStatement("UPDATE FROM Patient SET patient_name= ? , patient_dob= ?   WHERE Patient_id = ?");
       ps.setString(1, patient_name);
-      ps.setDate(2, patient_dob);
+      ps.setString(2, patient_dob);
       ps.setInt(3, Patient_id);
       boolean rs = ps.execute();
       dos.writeUTF("Patient has been successfully updated");
@@ -202,7 +208,7 @@ public class ClientHandler extends Thread {
       dos.writeUTF("===================================================");
       while (rs.next()) {
         dos.writeUTF(
-            rs.getInt("Patient_id") + "\t\t" + rs.getString("patient_name") + "\t\t" + rs.getDate("patient_dob"));
+            rs.getInt("Patient_id") + "\t\t" + rs.getString("patient_name") + "\t\t" + rs.getString("patient_dob"));
       }
     } catch (Exception e) {
       // TODO: handle exception
