@@ -1,6 +1,8 @@
 package GUI;
 
-import java.util.StringTokenizer;
+/* 
+ * RegisterGUI Class is responsiable to Add Player into Database using Player Class
+ */
 
 import javax.swing.JOptionPane;
 
@@ -14,9 +16,6 @@ public class RegisterGUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -120,14 +119,11 @@ public class RegisterGUI extends javax.swing.JFrame {
                                         .addContainerGap(122, Short.MAX_VALUE))));
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_usernameFieldActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_usernameFieldActionPerformed
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {}
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_registerButtonActionPerformed
-        //TODO not accurate must be fixed(User could add space and will increase the length)
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if(emailField.getText().length() == 0 || usernameField.getText().length() == 0 || passwordField.getText().length() == 0){
             JOptionPane.showMessageDialog(this, "All field must be filled.");
             return;
@@ -153,11 +149,9 @@ public class RegisterGUI extends javax.swing.JFrame {
 
         this.dispose();
         new LoginGUI().setVisible(true);
-    }// GEN-LAST:event_registerButtonActionPerformed
+    }
 
-    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_emailFieldActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_emailFieldActionPerformed
+    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {}
 
     public static void main(String args[]) {
         try {
@@ -180,9 +174,7 @@ public class RegisterGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RegisterGUI.class.getName()).log(java.util.logging.Level.SEVERE, null,
                     ex);
         }
-        // </editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new RegisterGUI().setVisible(true);

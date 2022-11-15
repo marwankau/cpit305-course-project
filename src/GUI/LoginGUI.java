@@ -1,5 +1,10 @@
 package GUI;
 
+/* 
+ * LoginGUI is responsiable to Login the user by using Database from Player Class
+ * Or Send the user to RegisterGUI Class
+ */
+
 import javax.swing.JOptionPane;
 
 import Game.Player;
@@ -12,8 +17,7 @@ public class LoginGUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -93,34 +97,29 @@ public class LoginGUI extends javax.swing.JFrame {
                     .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(83, 83, 83)))
         );
-
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFieldActionPerformed
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {}
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        if(Player.isCorrectLogin(username, password)){
-            System.out.println("Username or Password is inccorrect");//TODO log file and database
+        if(!Player.isCorrectLogin(username, password)){
+            System.out.println("Username or Password is inccorrect");
             JOptionPane.showMessageDialog(this, "Username or Password is incorrect!!");
             return;
         }
+        new JoinGUI().setVisible(true);;
         this.dispose();
-    }//GEN-LAST:event_loginButtonActionPerformed
+    }
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
         new RegisterGUI().setVisible(true);
-    }//GEN-LAST:event_registerButtonActionPerformed
+    }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -138,9 +137,7 @@ public class LoginGUI extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginGUI().setVisible(true);

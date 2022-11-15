@@ -1,62 +1,32 @@
 package Game;
-
-import Connections.DataBase.DataBase;
+import Connection.DataBase.DataBase;
 
 public class Player {
 
-    private String email;
-    private String username;
-    private String password;
     private static DataBase db = DataBase.getDatabase();
     private static int id = db.lastIDRecord();
 
     public Player(){
 
     }
-
+    
+    // Add Player into Database
     public void addPlayer(String email, String username, String password) {
         db.addPlayerToDatabase(++id, username, password, email);
     }
-
+    //Return boolean if Correct Login 
     public static boolean isCorrectLogin(String u, String p){
         return db.isCorrectLogin(u, p);
     }
 
+    //Return boolean if Email exist in Database
     public boolean isEmailExist(String e){
         return db.searchEmail(e);
     }
 
+    //Return boolean if User name exist in Database
     public boolean isUsernameExist(String u){
         return db.searchUsername(u);
     }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 
 }
