@@ -17,3 +17,7 @@ Tic-tac-toe or known as XO is stratigy game one of the best kids game that we al
 Soon
 
 
+
+![UML](https://user-images.githubusercontent.com/86387097/202037847-ae25aac9-95f2-48a7-a282-9ec486455df6.png)
+![UML1](https://user-images.githubusercontent.com/86387097/202037988-46acb663-7bd7-445d-9be2-35a14bbfc14c.png)
+
