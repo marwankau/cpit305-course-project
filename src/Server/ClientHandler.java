@@ -177,4 +177,33 @@ public class ClientHandler extends Thread{
     }
   }
 
+  public void updatePatient(DataOutputStream dos, String patient_name ,Date patient_dob,int Patient_id) throws IOException{
+    try {
+      PreparedStatement ps = conn.prepareStatement("UPDATE FROM Patient SET patient_name= ? , patient_dob= ?   WHERE Patient_id = ?");
+      ps.setString(1, patient_name);
+      ps.setDate(2, patient_dob);
+      ps.setInt(3, Patient_id);
+      boolean rs = ps.execute();
+       dos.writeUTF("Patient has been successfully updated");
+      
+
+    } catch (Exception e) {
+      dos.writeUTF("update has been failed");
+    }
+  }
+
+  public void SelectAllPatient(DataOutputStream dos){
+    try {
+     
+      PreparedStatement ps = conn.prepareStatement("SELECT * FROM Patient");
+      ResultSet rs = ps.executeQuery();
+      dos.writeUTF("Patient#\t\tPatient name\t\tpatient_dob");
+      dos.writeUTF("===================================================");
+      while(rs.next()){
+        dos.writeUTF(rs.getInt("doctor_id") + "\t\t" + rs.getString("doctor_name") + "\t\t" + rs.getDate("patient_dob"));
+      }
+    } catch (Exception e) {
+      // TODO: handle exception
+    }
+  }
 }
