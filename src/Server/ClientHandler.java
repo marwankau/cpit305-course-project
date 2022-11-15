@@ -81,7 +81,12 @@ public class ClientHandler extends Thread {
           dos.writeUTF("Enter date of birth: ");
           String patient_dob = dis.readUTF();
           insertPatient(dos,patient_name, patient_dob);
-        }  
+        }   else if (choice == 3){
+          SelectAllPatient(dos);
+          dos.writeUTF("Enter patient ID to be deleted: ");
+          int id = Integer.parseInt(dis.readUTF());
+          deletePatient(dos, id);
+}
         }
       }
     } catch (Exception e) {
