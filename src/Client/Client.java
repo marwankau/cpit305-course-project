@@ -10,33 +10,35 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
-    public static void main(String[] args) throws IOException {
-        Socket socket = new Socket("localhost", 1999);
+  public static void main(String[] args) throws IOException {
+    Socket socket = new Socket("localhost", 1999);
 
-        InputStream in = socket.getInputStream();
-        OutputStream out = socket.getOutputStream();
+    InputStream in = socket.getInputStream();
+    OutputStream out = socket.getOutputStream();
 
-        DataInputStream dis = new DataInputStream(in);
-        DataOutputStream dos = new DataOutputStream(out);
-        String line;
-        Scanner keyboard = new Scanner(System.in);
-      while(true){
-            //Recieve
-          while(true){
-            line = dis.readUTF();
-            System.out.println(line);
-      
-            if((dis.available()) < 1)break;
-          }
-            
+    DataInputStream dis = new DataInputStream(in);
+    DataOutputStream dos = new DataOutputStream(out);
+    String line;
+    Scanner keyboard = new Scanner(System.in);
+    while (true) {
+      // Recieve
+      while (true) {
 
-            //Send
-            line = keyboard.nextLine();   
-            dos.writeUTF(line);  
-            if(line.equalsIgnoreCase("exit")) break;      
-            // writer.println(line);
-          }
+        line = dis.readUTF();
+        System.out.println(line);
 
-        socket.close();
+        if ((dis.available()) == 0)
+          break;
+      }
+
+      // Send
+      line = keyboard.nextLine();
+      dos.writeUTF(line);
+      if (line.equalsIgnoreCase("exit"))
+        break;
+
     }
+
+    socket.close();
+  }
 }
