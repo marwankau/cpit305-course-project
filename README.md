@@ -16,7 +16,7 @@ Tic-tac-toe or known as XO is a strategy game and one of the best kids' games th
 
 ## Game Describtion:
 #### First of all, when the program is executed the Login window will appear and ask the user to enter his username and his password, but if he didn't have them then he can enter the 'Register' button and the program will move him to the register window which will have the 3 fields that require from the user to enter his email username and password so he can log in successfully. After the user login to his account, the 'Join' window will appear and ask him to insert his local IP and port so he can now access the game. 
-The Game window without any complications is the gameboard that the 2 players are competing on it to win and it has all the probabilities for X and O to win or get a tie. At last, if any player no matter who wins or gets a tie the program will show a message that informs the 2 players who won and who lost and a tie message if there is no winner and generate a Text file that has the record for this game.
+#### The Game window without any complications is the gameboard that the 2 players are competing on it to win and it has all the probabilities for X and O to win or get a tie. At last, if any player no matter who wins or gets a tie the program will show a message that informs the 2 players who won and who lost and a tie message if there is no winner and generate a Text file that has the record for this game.
 
 
 ## Class Diagram
