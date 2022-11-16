@@ -59,5 +59,27 @@ We have 3 classes Doctor,Patient and Appoint each one of them has own attributes
 
 ## Screen Capture
 Here some screen capture from our project:
+ ### Main Menu
+![Main menu](/images/main_menu.jpg)
 
-![Main menu](/images/capture01.png)
+### Manage Doctors
+![Manage Doctors](/images/manage_doctors.jpg)
+
+### All Doctors
+![All Doctors](/images/all_doctors.jpg)
+
+### Manage Patient
+![Manage Patient](/images/manage_patients.jpg)
+
+### Delete Patient
+![Delete Patient](/images/delete_patient.jpg)
+
+### Booking Appointment
+![Booking Appointment](/images/booking_appointment-1.jpg)
+![Booking Appointment](/images/booking_appointment-2.jpg)
+
+## Booking Appointment while having an appointment
+![Booking Appointment](/images/patient_has_appointment.jpg)
+
+## Booking already taken date and time for specific doctor
+![Booking Appointment](/images/booking_taken_date.jpg)
