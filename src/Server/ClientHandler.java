@@ -39,8 +39,11 @@ public class ClientHandler extends Thread {
 
       DataOutputStream dos = new DataOutputStream(out);
       DataInputStream dis = new DataInputStream(in);
+
       Patient patient = new Patient(conn, dos);
       Doctor doctor = new Doctor(conn, dos);
+      Appointment appointment = new Appointment(conn, dos);
+
       String line;
       int choiceMenu;
       while (true) {
@@ -55,7 +58,7 @@ public class ClientHandler extends Thread {
           dos.writeUTF("Enter a valid choice!");
           continue;
         }
-//doctor option menu
+        // doctor option menu
         if (choiceMenu == 1) {
           dos.writeUTF("---------Manage Doctors---------");
           dos.writeUTF("1. Display all doctors");
@@ -102,7 +105,7 @@ public class ClientHandler extends Thread {
               continue;
             }
           }
-          //patients option menu
+          // patients option menu
         } else if (choiceMenu == 2) {
           dos.writeUTF("---------Manage Patients---------");
           dos.writeUTF("1. Display all patients");
@@ -149,9 +152,6 @@ public class ClientHandler extends Thread {
             }
           }
         } else if (choiceMenu == 3) {
-          Date day;
-          String formatedDate;
-          LocalDateTime now = LocalDateTime.now();
 
           if (doctor.getTotalDoctors() < 1) {
             dos.writeUTF("Please insert doctors to register appointments!");
@@ -190,7 +190,12 @@ public class ClientHandler extends Thread {
               dos.writeUTF("Patient already has a booked appointment");
               continue;
             }
-
+            Date day;
+            // To save formatted date
+            String formatedDate;
+            // Get current date
+            LocalDateTime now = LocalDateTime.now();
+            // To format date
             SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
             if (appointmenDates.size() < 1) {
               for (int i = 0; i < 7; i++) {
@@ -201,7 +206,7 @@ public class ClientHandler extends Thread {
                 appointmenDates.add(formatedDate);
               }
             }
-            //to save all dates in one variable
+            // to save all dates in one variable
             String dates = "";
             dos.writeUTF("Choose one of the following dates");
             // Display dates alongside numbers
@@ -233,12 +238,12 @@ public class ClientHandler extends Thread {
               String appointmentDate = appointmenDates.get(choosenDate - 1) + " " + time + " PM";
               // Method to check if the doctor has an appointment in the same chosen date and
               // time
-              boolean takenDate = checkAppointmentDate(appointmentDate, docID);
+              boolean takenDate = appointment.checkAppointmentDate(appointmentDate, docID);
               if (takenDate) {
                 dos.writeUTF("This Date and time is taken, Choose another date");
                 continue;
               }
-              insertAppointment(dos, appointmentDate, docID, patientID);
+              appointment.insertAppointment(dos, appointmentDate, docID, patientID);
             } else {
               dos.writeUTF("Enter a valid choice");
             }
@@ -247,12 +252,12 @@ public class ClientHandler extends Thread {
             continue;
           }
         } else if (choiceMenu == 4) {
-          getAllAppointments(dos);
+          appointment.getAllAppointments(dos);
           dos.writeUTF("Choose appointment ID to be deleted: ");
           int id = Integer.parseInt(dis.readUTF());
-          deleteAppointment(dos, id);
+          appointment.deleteAppointment(dos, id);
         } else if (choiceMenu == 5) {
-          getAllAppointments(dos);
+          appointment.getAllAppointments(dos);
         } else {
           dos.writeUTF("Enter a valid choice!");
         }
@@ -263,7 +268,7 @@ public class ClientHandler extends Thread {
     }
   }
 
-  //wlocome menu
+  // wlocome menu
   public void displayMenu(DataOutputStream dos) throws IOException {
     dos.writeUTF("---------Welcome to Hospital Reservation System---------");
     dos.writeUTF("1. Manage Doctors.");
@@ -275,82 +280,5 @@ public class ClientHandler extends Thread {
     dos.writeUTF("Enter your choice: ");
 
   }
-//display all appointments
-  public void getAllAppointments(DataOutputStream dos) throws SQLException {
-    try {
-      Statement st = conn.createStatement();
-      String listOfDoctors = String.format(
-          "========================================================\n%-10s %-10s %-10s %20s\n",
-          "ID", "Doctor ID", "Patient ID", "Appointment Date");
-      ResultSet rs = st.executeQuery("SELECT * FROM BookAppointment");
-      while (rs.next()) {
-
-        listOfDoctors += String.format("%-10d %-10s %-10s %20s \n",
-            rs.getInt("appointment_id"), rs.getInt("doctor_id"), rs.getInt("patient_id"),
-            rs.getString("appointment_date"));
-      }
-      dos.writeUTF(listOfDoctors);
-    } catch (Exception e) {
-
-    }
-
-  }
-
-  // insert doctor
-  public synchronized void insertAppointment(DataOutputStream dos, String appointment_date, int doctor_id,
-      int patient_id)
-      throws IOException {
-    try {
-      PreparedStatement ps = conn
-          .prepareStatement("INSERT INTO BookAppointment (doctor_id, patient_id, appointment_date) VALUES (?, ?, ?);");
-      ps.setInt(1, doctor_id);
-      ps.setInt(2, patient_id);
-      ps.setString(3, appointment_date);
-      boolean rs = ps.execute();
-      dos.writeUTF("Choosen date: " + appointment_date + "\nSuccessfully inserted");
-
-    } catch (Exception e) {
-      dos.writeUTF("Inserting failed");
-    }
-  }
-
-  // insert doctor
-  public boolean checkAppointmentDate(String appointment_date, int doctor_id)
-      throws IOException {
-    try {
-      PreparedStatement ps = conn
-          .prepareStatement("SELECT * FROM BookAppointment WHERE appointment_date = ? AND doctor_id = ?");
-      ps.setString(1, appointment_date);
-      ps.setInt(2, doctor_id);
-
-      ResultSet rs = ps.executeQuery();
-      String date = rs.getString("appointment_date");
-
-      if (date != null) {
-        return true;
-      }
-
-    } catch (Exception e) {
-
-    }
-    return false;
-  }
-
-  
-
-  // delete appointment
-  public void deleteAppointment(DataOutputStream dos, int appointment_id) throws IOException {
-    try {
-      PreparedStatement ps = conn.prepareStatement("DELETE FROM BookAppointment WHERE appointment_id = ?");
-      ps.setInt(1, appointment_id);
-      boolean rs = ps.execute();
-      dos.writeUTF("Successfully deleted");
-
-    } catch (Exception e) {
-      dos.writeUTF("deleting failed");
-    }
-  }
-
- 
 
 }
