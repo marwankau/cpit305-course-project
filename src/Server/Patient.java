@@ -17,7 +17,7 @@ public class Patient {
         this.conn = conn;
         this.dos = dos;
     }
-
+//dispaly all Patients
     public void SelectAllPatient(DataOutputStream dos) {
         try {
 
@@ -65,7 +65,7 @@ public class Patient {
             dos.writeUTF("delete has been failed");
         }
     }
-
+//if Patient has appointment or not 
     public boolean isPatientBooked(int id) {
         try {
 
@@ -83,7 +83,7 @@ public class Patient {
         }
         return false;
     }
-
+//select patient by ID
     public boolean selectPatientByID(DataOutputStream dos, int id) {
         try {
 
@@ -102,6 +102,7 @@ public class Patient {
         return false;
     }
 
+    //to check if there is Patient or not
     public int getTotalPatient() {
         try {
 
@@ -116,7 +117,7 @@ public class Patient {
         }
         return 0;
     }
-
+//update patient
     public void updatePatient(DataOutputStream dos, String patient_name, String patient_dob, int Patient_id)
             throws IOException {
         try {
