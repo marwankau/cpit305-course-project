@@ -56,7 +56,4 @@ Here some screen capture from our project:
 ![Screenshot_3](https://user-images.githubusercontent.com/86899249/202186980-55049d7f-dc15-41c8-a005-197bf93ce9df.png)
 
 #### Records:
-![Screenshot_6](https://user-images.githubusercontent.com/86899249/202194868-63f003fc-dd81-42cb-a383-03387f603c77.png)
-
-
-
+![Screenshot_6](https://user-images.githubusercontent.com/86899249/202195089-99fe8628-4e21-49ed-bffe-016611848b6e.png)
