@@ -13,10 +13,11 @@ Our system will be able to store books data in terms of which section it belongs
 ## Class Diagram
 Include a class diagram for your project here with short discrition
 
-![Our Awsome Project Class Diagram](/images/class-diagram.png)
-
 
 ## Screen Capture
 Here some screen capture from our project:
 
 ![Main menu](/images/capture01.png)
+![Main menu](/images/uml.png)
+![Main menu](/images/class-diagram.png)
+![Main menu](/images/output.png)
