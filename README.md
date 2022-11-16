@@ -37,6 +37,7 @@ Hospital Reservation System that allows adding and managing doctors and patients
 - [x] Add appointment
 - [x] Delete appointment
 - [x] Display appointments
+- [ ] Update appointments
 
 
 
