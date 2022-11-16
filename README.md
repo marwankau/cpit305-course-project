@@ -28,8 +28,16 @@ Tic-tac-toe or known as XO is a strategy game and one of the best kids' games th
 a game in which two players alternately put X and O in compartments of a figure formed by two vertical lines crossing two horizontal lines and each tries to get a row of three X or three O before the opponent does
 
 
-## Picture
+## Screen Capture
+Here some screen capture from our project:
+#### Register:
 
+#### Login:
+![Screenshot_5](https://user-images.githubusercontent.com/86899249/202188813-38b88e7c-7285-4ded-a8d9-5fd6560bd2b3.png)
+
+#### Join:
+
+#### Game:
 ![1](https://user-images.githubusercontent.com/86387097/202054203-1fa9d5a3-5069-46a4-91d2-754a8ea50543.png)
 ![2](https://user-images.githubusercontent.com/86387097/202054209-5d6ad001-0d33-4231-b3bd-1f746fc35947.png)
 ![3](https://user-images.githubusercontent.com/86387097/202054212-df58a7b2-8f09-44db-a959-48c49a6de8d9.png)
@@ -38,9 +46,13 @@ a game in which two players alternately put X and O in compartments of a figure 
 ![6](https://user-images.githubusercontent.com/86387097/202054219-af381169-f7c2-4122-8b58-78a374807008.png)
 ![7](https://user-images.githubusercontent.com/86387097/202054221-7d3046db-266c-4061-a064-296c2a6471a2.png)
 ![8](https://user-images.githubusercontent.com/86387097/202054223-f4e4d891-aa14-43cf-aa5d-7f776b887539.png)
+
+#### Messages:
 ![Screenshot_1](https://user-images.githubusercontent.com/86899249/202186969-4f72902e-4483-4778-9c44-3046cf4a3bac.png)
 ![Screenshot_2](https://user-images.githubusercontent.com/86899249/202186975-d181745d-e2f6-4946-870f-9c87b2bd9722.png)
 ![Screenshot_3](https://user-images.githubusercontent.com/86899249/202186980-55049d7f-dc15-41c8-a005-197bf93ce9df.png)
+
+#### Records:
 ![Screenshot_4](https://user-images.githubusercontent.com/86899249/202187502-6a1d0da2-3e39-4840-b78e-56ffc844d780.png)
 
 
