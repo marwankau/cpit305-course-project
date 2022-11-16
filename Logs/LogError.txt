@@ -1,1 +1,40 @@
 2022/11/15 22:46:19	java.sql.SQLException: No suitable driver found for jdbc:mariadb://localhost:3306/tictactoc
+2022/11/16 22:31:44	Unable to connect to the address: localhost:1999 | Starting a server
+2022/11/16 22:32:02	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:03	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:04	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:04	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:04	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:04	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:05	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:06	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:07	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:07	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:08	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:08	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:32:52	Unable to connect to the address: localhost:1999 | Starting a server
+2022/11/16 22:33:09	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:33:12	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:33:12	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:33:13	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:33:13	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:33:14	java.net.SocketException: Connection reset
+2022/11/16 22:34:17	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:35:42	Unable to connect to the address: localhost:1999 | Starting a server
+2022/11/16 22:36:03	java.io.IOException: The system cannot find the path specified
+2022/11/16 22:36:03	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:36:06	java.io.IOException: The system cannot find the path specified
+2022/11/16 22:36:06	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:36:07	java.io.IOException: The system cannot find the path specified
+2022/11/16 22:36:07	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:36:08	java.io.IOException: The system cannot find the path specified
+2022/11/16 22:36:08	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:36:08	java.io.IOException: The system cannot find the path specified
+2022/11/16 22:36:08	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:36:08	java.io.IOException: The system cannot find the path specified
+2022/11/16 22:36:08	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:36:09	java.io.IOException: The system cannot find the path specified
+2022/11/16 22:36:09	java.io.FileNotFoundException: Log\Game Record.txt (The system cannot find the path specified)
+2022/11/16 22:36:10	java.net.SocketException: Connection reset
+2022/11/16 22:37:06	Unable to connect to the address: localhost:1999 | Starting a server
+2022/11/16 22:37:38	java.net.SocketException: Connection reset

@@ -1,0 +1,20 @@
+2022/11/16 22:31:44	Unable to connect to the address: localhost:1999 | Starting a server
+2022/11/16 22:31:44	Server is Initlized 
+Waiting for other player to connect!! 
+2022/11/16 22:31:58	Successfully connected to the server.
+2022/11/16 22:31:58	CLIENT HAS REQUESTED TO JOIN, AND WE HAVE ACCEPTED
+2022/11/16 22:32:52	Unable to connect to the address: localhost:1999 | Starting a server
+2022/11/16 22:32:52	Server is Initlized 
+Waiting for other player to connect!! 
+2022/11/16 22:33:07	Successfully connected to the server.
+2022/11/16 22:33:07	CLIENT HAS REQUESTED TO JOIN, AND WE HAVE ACCEPTED
+2022/11/16 22:35:42	Unable to connect to the address: localhost:1999 | Starting a server
+2022/11/16 22:35:42	Server is Initlized 
+Waiting for other player to connect!! 
+2022/11/16 22:36:02	Successfully connected to the server.
+2022/11/16 22:36:02	CLIENT HAS REQUESTED TO JOIN, AND WE HAVE ACCEPTED
+2022/11/16 22:37:06	Unable to connect to the address: localhost:1999 | Starting a server
+2022/11/16 22:37:06	Server is Initlized 
+Waiting for other player to connect!! 
+2022/11/16 22:37:30	Successfully connected to the server.
+2022/11/16 22:37:30	CLIENT HAS REQUESTED TO JOIN, AND WE HAVE ACCEPTED

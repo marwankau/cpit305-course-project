@@ -354,7 +354,15 @@ public class Game implements Runnable {
     
     //Print the game to File
     public static void printBoard(char[][] gameboard) {
-        File file = new File("Game Record.txt");
+        File file = new File("Logs/Game Record.txt");
+        if(!file.exists())
+            try {
+                file.createNewFile();
+            } catch (IOException e1) {
+                log.writeInFile("logerror", e1.toString());
+                e1.printStackTrace();
+            }
+        
         FileOutputStream fos = null;
 
         try {

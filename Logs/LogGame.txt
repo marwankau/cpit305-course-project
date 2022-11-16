@@ -1,0 +1,54 @@
+2022/11/16 22:31:44	Initializing Game Object.
+2022/11/16 22:31:58	Initializing Game Object.
+2022/11/16 22:31:59	BufferReader Has been defined.
+2022/11/16 22:32:01	BufferReader Has been defined.
+2022/11/16 22:32:51	Initializing Game Object.
+2022/11/16 22:33:07	Initializing Game Object.
+2022/11/16 22:33:10	BufferReader Has been defined.
+2022/11/16 22:33:10	BufferReader Has been defined.
+2022/11/16 22:34:16	Initializing Game Object.
+2022/11/16 22:35:42	Initializing Game Object.
+2022/11/16 22:36:02	Initializing Game Object.
+2022/11/16 22:36:03	BufferReader Has been defined.
+2022/11/16 22:36:05	BufferReader Has been defined.
+2022/11/16 22:37:06	Initializing Game Object.
+2022/11/16 22:37:30	Initializing Game Object.
+2022/11/16 22:37:30	BufferReader Has been defined.
+2022/11/16 22:37:31	Played in x: 0   y: 0
+
+2022/11/16 22:37:33	BufferReader Has been defined.
+2022/11/16 22:37:34	Played in x: 0   y: 0
+
+2022/11/16 22:37:34	From Client: x: 0   y: 0
+
+2022/11/16 22:37:34	Hide Button 1x1
+2022/11/16 22:37:34	Draw Sign in Label 1
+2022/11/16 22:37:34	From Client: x: 0   y: 0
+
+2022/11/16 22:37:34	Hide Button 1x1
+2022/11/16 22:37:34	Draw Sign in Label 1
+2022/11/16 22:37:34	Played in x: 0   y: 1
+
+2022/11/16 22:37:34	From Client: x: 0   y: 1
+
+2022/11/16 22:37:34	Hide Button 1x2
+2022/11/16 22:37:34	Draw Sign in Label 2
+2022/11/16 22:37:35	Played in x: 1   y: 0
+
+2022/11/16 22:37:35	From Client: x: 1   y: 0
+
+2022/11/16 22:37:35	Hide Button 2x1
+2022/11/16 22:37:35	Draw Sign in Label 4
+2022/11/16 22:37:35	Played in x: 1   y: 1
+
+2022/11/16 22:37:35	From Client: x: 1   y: 1
+
+2022/11/16 22:37:35	Hide Button 2x2
+2022/11/16 22:37:35	Draw Sign in Label 5
+2022/11/16 22:37:36	Played in x: 2   y: 0
+
+2022/11/16 22:37:36	From Client: x: 2   y: 0
+
+2022/11/16 22:37:36	O Wins
+2022/11/16 22:37:36	Hide Button 3x1
+2022/11/16 22:37:36	Draw Sign in Label 7

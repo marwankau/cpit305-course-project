@@ -1,0 +1,44 @@
+2022/11/16 22:31:24	root has Connected to Database.
+2022/11/16 22:31:27	Looking for Email a in Database.
+2022/11/16 22:31:27	Looking for Username 123 in Database.
+2022/11/16 22:31:27	Looking for Email a in Database.
+2022/11/16 22:31:27	Add player into DataBase 
+ID: 1 
+Username: 123 
+Email: a
+2022/11/16 22:31:28	Verfiy login Username a in Database.
+2022/11/16 22:31:32	Looking for Email a in Database.
+2022/11/16 22:31:35	Looking for Email a in Database.
+2022/11/16 22:31:37	Looking for Email aa in Database.
+2022/11/16 22:31:37	Looking for Username aa in Database.
+2022/11/16 22:31:37	Looking for Email aa in Database.
+2022/11/16 22:31:37	Add player into DataBase 
+ID: 2 
+Username: aa 
+Email: aa
+2022/11/16 22:31:39	Verfiy login Username aa in Database.
+2022/11/16 22:31:39	Verfied Login Username aa
+2022/11/16 22:31:51	root has Connected to Database.
+2022/11/16 22:31:51	Verfiy login Username a in Database.
+2022/11/16 22:31:53	Verfiy login Username aa in Database.
+2022/11/16 22:31:53	Verfied Login Username aa
+2022/11/16 22:32:45	root has Connected to Database.
+2022/11/16 22:32:45	Verfiy login Username aa in Database.
+2022/11/16 22:32:45	Verfied Login Username aa
+2022/11/16 22:33:02	root has Connected to Database.
+2022/11/16 22:33:02	Verfiy login Username aa in Database.
+2022/11/16 22:33:02	Verfied Login Username aa
+2022/11/16 22:35:35	root has Connected to Database.
+2022/11/16 22:35:35	Verfiy login Username aa in Database.
+2022/11/16 22:35:35	Verfied Login Username aa
+2022/11/16 22:35:52	root has Connected to Database.
+2022/11/16 22:35:52	Verfiy login Username localhost in Database.
+2022/11/16 22:35:56	Verfiy login Username aa in Database.
+2022/11/16 22:35:56	Verfied Login Username aa
+2022/11/16 22:36:59	root has Connected to Database.
+2022/11/16 22:36:59	Verfiy login Username a in Database.
+2022/11/16 22:37:01	Verfiy login Username aa in Database.
+2022/11/16 22:37:01	Verfied Login Username aa
+2022/11/16 22:37:23	root has Connected to Database.
+2022/11/16 22:37:23	Verfiy login Username aa in Database.
+2022/11/16 22:37:23	Verfied Login Username aa
