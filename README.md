@@ -11,13 +11,15 @@ Our system will be able to store books data in terms of which section it belongs
 
 
 ## Class Diagram
-Include a class diagram for your project here with short discrition
+### in DB we get the connection from java to sqlite
+### in DBServer the server create the Server Socket and start Login thread
+### Login start Mediator thread and create User
+### Worker create Socket and start thread linkToServer 
+![class digram of our project](/images/uml.png)
 
 
 ## Screen Capture
 Here some screen capture from our project:
-
-![Main menu](/images/capture01.png)
-![Main menu](/images/uml.png)
-![Main menu](/images/class-diagram.png)
+we have three type of user admin,manager and employee
+Each one has specific operations 
 ![Main menu](/images/output.png)
