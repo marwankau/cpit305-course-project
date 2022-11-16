@@ -24,6 +24,7 @@ Tic-tac-toe or known as XO is a strategy game and one of the best kids' games th
 ![UML1](https://user-images.githubusercontent.com/86387097/202037988-46acb663-7bd7-445d-9be2-35a14bbfc14c.png)
 
 ## ER Diagram
+![Screenshot_9](https://user-images.githubusercontent.com/86899249/202215259-87affab4-bdd5-4aed-90d2-1ebd8c05857f.png)
 
 
 ## Explain
@@ -34,11 +35,15 @@ a game in which two players alternately put X and O in compartments of a figure 
 ## Screen Capture
 Here some screen capture from our project:
 #### Register:
+![Screenshot_8](https://user-images.githubusercontent.com/86899249/202215224-152de092-f90f-42cc-aec6-b5a386b55c71.png)
+
 
 #### Login:
 ![Screenshot_5](https://user-images.githubusercontent.com/86899249/202188813-38b88e7c-7285-4ded-a8d9-5fd6560bd2b3.png)
 
 #### Join:
+![Screenshot_7](https://user-images.githubusercontent.com/86899249/202213052-477757cb-d5ed-4740-9c9d-76c5b45a6f5d.png)
+
 
 #### Game:
 ![1](https://user-images.githubusercontent.com/86387097/202054203-1fa9d5a3-5069-46a4-91d2-754a8ea50543.png)
