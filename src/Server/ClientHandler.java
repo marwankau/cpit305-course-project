@@ -182,6 +182,13 @@ public class ClientHandler extends Thread {
               continue;
             }
 
+            // call method to check if patient has booked an appointment before or not
+            boolean patientBooked = isPatientBooked(patientID);
+            if (patientBooked) {
+              dos.writeUTF("Patient already has a booked appointment");
+              continue;
+            }
+
             SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd");
             if (appointmenDates.size() < 1) {
               for (int i = 0; i < 7; i++) {
@@ -215,6 +222,10 @@ public class ClientHandler extends Thread {
               dos.writeUTF("Enter your choice: ");
               line = dis.readUTF();
               int time = Integer.parseInt(line);
+              if (time < 1 || time > 5) {
+                dos.writeUTF("Not a valid time");
+                continue;
+              }
 
               String appointmentDate = appointmenDates.get(choosenDate - 1) + " " + time + " PM";
               insertAppointment(dos, appointmentDate, docID, patientID);
@@ -225,6 +236,10 @@ public class ClientHandler extends Thread {
             dos.writeUTF("Not a valid choice");
             continue;
           }
+        } else if (choiceMenu == 4) {
+
+        } else if (choiceMenu == 5) {
+          getAllAppointments(dos);
         } else {
           dos.writeUTF("Enter a valid choice!");
         }
@@ -241,6 +256,7 @@ public class ClientHandler extends Thread {
     dos.writeUTF("2. Manage Patients.");
     dos.writeUTF("3. Book Appointment.");
     dos.writeUTF("4. Cancel Appointment.");
+    dos.writeUTF("5. Display Appointments.");
     dos.writeUTF("10. Exit.");
     dos.writeUTF("Enter your choice: ");
 
@@ -250,12 +266,12 @@ public class ClientHandler extends Thread {
     try {
       Statement st = conn.createStatement();
       String listOfDoctors = String.format(
-          "========================================================\n%-5s %-30s %-30s %-30s\n",
+          "========================================================\n%-10s %-10s %-10s %20s\n",
           "ID", "Doctor ID", "Patient ID", "Appointment Date");
       ResultSet rs = st.executeQuery("SELECT * FROM BookAppointment");
       while (rs.next()) {
 
-        listOfDoctors += String.format("%-5d %-30s %-30s %-30s \n",
+        listOfDoctors += String.format("%-10d %-10s %-10s %20s \n",
             rs.getInt("appointment_id"), rs.getInt("doctor_id"), rs.getInt("patient_id"),
             rs.getString("appointment_date"));
       }
@@ -323,6 +339,28 @@ public class ClientHandler extends Thread {
     }
   }
 
+  public void selectAllAppointments(DataOutputStream dos) {
+    try {
+
+      PreparedStatement ps = conn.prepareStatement("SELECT * FROM BookAppointment");
+      ResultSet rs = ps.executeQuery();
+
+      String listOfAppointments = String.format(
+          "========================================================\n%-5d %-10d %-10d %-30s\n",
+          "ID", "Doctor ID", "Patient ID", "Appointment Date");
+      while (rs.next()) {
+
+        listOfAppointments += String.format("%-5s %-10s %-10s %-30s \n",
+            rs.getInt("appointment_id"), rs.getInt("doctor_id"), rs.getInt("patient_id"),
+            rs.getString("appointment_date"));
+
+      }
+      dos.writeUTF(listOfAppointments);
+    } catch (Exception e) {
+
+    }
+  }
+
   public boolean selectDoctorByID(DataOutputStream dos, int id) {
     try {
 
@@ -330,11 +368,29 @@ public class ClientHandler extends Thread {
       ps.setInt(1, id);
       ResultSet rs = ps.executeQuery();
       String name = rs.getString("doctor_name");
-      String listOfPatient = "===================================================\n";
+
       if (name != null) {
         return true;
       }
-      dos.writeUTF(listOfPatient);
+
+    } catch (Exception e) {
+
+    }
+    return false;
+  }
+
+  public boolean isPatientBooked(int id) {
+    try {
+
+      PreparedStatement ps = conn.prepareStatement("SELECT * FROM BookAppointment WHERE patient_id = ?");
+      ps.setInt(1, id);
+      ResultSet rs = ps.executeQuery();
+      String date = rs.getString("appointment_date");
+
+      if (date != null) {
+        return true;
+      }
+
     } catch (Exception e) {
 
     }
