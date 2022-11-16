@@ -39,7 +39,7 @@ public class ClientHandler extends Thread {
 
       DataOutputStream dos = new DataOutputStream(out);
       DataInputStream dis = new DataInputStream(in);
-
+      Patient patient = new Patient(conn, dos);
       String line;
       int choiceMenu;
       while (true) {
@@ -118,20 +118,20 @@ public class ClientHandler extends Thread {
           }
 
           if (choice == 1) {
-            SelectAllPatient(dos);
+            patient.SelectAllPatient(dos);
           } else if (choice == 2) {
             dos.writeUTF("Enter patient name: ");
             String patient_name = dis.readUTF();
             dos.writeUTF("Enter date of birth with the following format (YYYY-MM-DD): ");
             String patient_dob = dis.readUTF();
-            insertPatient(dos, patient_name, patient_dob);
+            patient.insertPatient(dos, patient_name, patient_dob);
           } else if (choice == 3) {
-            SelectAllPatient(dos);
+            patient.SelectAllPatient(dos);
             dos.writeUTF("Enter patient ID to be deleted: ");
             int id = Integer.parseInt(dis.readUTF());
-            deletePatient(dos, id);
+            patient.deletePatient(dos, id);
           } else if (choice == 4) {
-            SelectAllPatient(dos);
+            patient.SelectAllPatient(dos);
             dos.writeUTF("Enter patient id: ");
             try {
               int id = Integer.parseInt(dis.readUTF());
@@ -140,7 +140,7 @@ public class ClientHandler extends Thread {
               String patient_name = dis.readUTF();
               dos.writeUTF("Enter date of birth with the following format (YYYY-MM-DD): ");
               String patient_dob = dis.readUTF();
-              updatePatient(dos, patient_name, patient_dob, id);
+              patient.updatePatient(dos, patient_name, patient_dob, id);
             } catch (Exception e) {
               dos.writeUTF("Enter a valid ID!");
               continue;
@@ -156,7 +156,7 @@ public class ClientHandler extends Thread {
             continue;
           }
 
-          if (getTotalPatient() < 1) {
+          if (patient.getTotalPatient() < 1) {
             dos.writeUTF("Please insert Patients to register appointments!");
             continue;
           }
@@ -172,18 +172,18 @@ public class ClientHandler extends Thread {
               dos.writeUTF("Not a valid doctor ID");
               continue;
             }
-            SelectAllPatient(dos);
+            patient.SelectAllPatient(dos);
             dos.writeUTF("Choose a patient by id: ");
             int patientID = Integer.parseInt(dis.readUTF());
             // Check if patient ID is valid
-            validID = selectPatientByID(dos, patientID);
+            validID = patient.selectPatientByID(dos, patientID);
             if (!validID) {
               dos.writeUTF("Not a valid patient ID");
               continue;
             }
 
             // call method to check if patient has booked an appointment before or not
-            boolean patientBooked = isPatientBooked(patientID);
+            boolean patientBooked = patient.isPatientBooked(patientID);
             if (patientBooked) {
               dos.writeUTF("Patient already has a booked appointment");
               continue;
@@ -351,27 +351,6 @@ public class ClientHandler extends Thread {
 
   }
 
-  public void SelectAllPatient(DataOutputStream dos) {
-    try {
-
-      PreparedStatement ps = conn.prepareStatement("SELECT * FROM Patient");
-      ResultSet rs = ps.executeQuery();
-
-      String listOfPatient = String.format(
-          "========================================================\n%-5s %-30s %-30s\n",
-          "ID", "Patient name", "Patient Date of birth");
-      while (rs.next()) {
-
-        listOfPatient += String.format("%-5d %-30s %-30s \n",
-            rs.getInt("Patient_id"), rs.getString("patient_name"), rs.getString("patient_dob"));
-
-      }
-      dos.writeUTF(listOfPatient);
-    } catch (Exception e) {
-
-    }
-  }
-
   public void selectAllAppointments(DataOutputStream dos) {
     try {
 
@@ -412,63 +391,12 @@ public class ClientHandler extends Thread {
     return false;
   }
 
-  public boolean isPatientBooked(int id) {
-    try {
-
-      PreparedStatement ps = conn.prepareStatement("SELECT * FROM BookAppointment WHERE patient_id = ?");
-      ps.setInt(1, id);
-      ResultSet rs = ps.executeQuery();
-      String date = rs.getString("appointment_date");
-
-      if (date != null) {
-        return true;
-      }
-
-    } catch (Exception e) {
-
-    }
-    return false;
-  }
-
-  public boolean selectPatientByID(DataOutputStream dos, int id) {
-    try {
-
-      PreparedStatement ps = conn.prepareStatement("SELECT * FROM Patient WHERE patient_id = ?");
-      ps.setInt(1, id);
-      ResultSet rs = ps.executeQuery();
-      String name = rs.getString("patient_name");
-      String listOfPatient = "===================================================\n";
-      if (name != null) {
-        return true;
-      }
-      dos.writeUTF(listOfPatient);
-    } catch (Exception e) {
-
-    }
-    return false;
-  }
-
   public int getTotalDoctors() {
     try {
 
       Statement stmt = conn.createStatement();
       // Retrieving the data
       ResultSet rs = stmt.executeQuery("select count(*) from Doctor");
-      rs.next();
-      // Moving the cursor to the last row
-      return rs.getInt("count(*)");
-    } catch (Exception e) {
-      // TODO: handle exception
-    }
-    return 0;
-  }
-
-  public int getTotalPatient() {
-    try {
-
-      Statement stmt = conn.createStatement();
-      // Retrieving the data
-      ResultSet rs = stmt.executeQuery("select count(*) from Patient");
       rs.next();
       // Moving the cursor to the last row
       return rs.getInt("count(*)");
@@ -519,32 +447,6 @@ public class ClientHandler extends Thread {
     }
   }
 
-  // insert patient
-  public void insertPatient(DataOutputStream dos, String patient_name, String patient_dob) throws IOException {
-    try {
-      PreparedStatement ps = conn.prepareStatement("INSERT INTO Patient (patient_name, patient_dob) VALUES (?, ?);");
-      ps.setString(1, patient_name);
-      ps.setString(2, patient_dob);
-      boolean rs = ps.execute();
-      dos.writeUTF("Patient has been successfully inserted");
-    } catch (Exception e) {
-      dos.writeUTF("Inserting has been failed");
-    }
-  }
-
-  // delelet Patients
-  public void deletePatient(DataOutputStream dos, int Patient_id) throws IOException {
-    try {
-      PreparedStatement ps = conn.prepareStatement("DELETE FROM Patient WHERE Patient_id = ?");
-      ps.setInt(1, Patient_id);
-      boolean rs = ps.execute();
-      dos.writeUTF("Patient has been successfully deleted");
-
-    } catch (Exception e) {
-      dos.writeUTF("delete has been failed");
-    }
-  }
-
   public void updateDoctor(DataOutputStream dos, String doctor_name, String doctor_speciality, int doctor_id)
       throws IOException {
     try {
@@ -561,18 +463,4 @@ public class ClientHandler extends Thread {
     }
   }
 
-  public void updatePatient(DataOutputStream dos, String patient_name, String patient_dob, int Patient_id)
-      throws IOException {
-    try {
-      PreparedStatement ps = conn
-          .prepareStatement("UPDATE Patient SET patient_name = ?, patient_dob = ?  WHERE patient_id = ?");
-      ps.setString(1, patient_name);
-      ps.setString(2, patient_dob);
-      ps.setInt(3, Patient_id);
-      boolean rs = ps.execute();
-      dos.writeUTF("Patient has been successfully updated");
-    } catch (Exception e) {
-
-    }
-  }
 }
