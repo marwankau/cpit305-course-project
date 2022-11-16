@@ -41,4 +41,6 @@ a game in which two players alternately put X and O in compartments of a figure 
 ![Screenshot_1](https://user-images.githubusercontent.com/86899249/202186969-4f72902e-4483-4778-9c44-3046cf4a3bac.png)
 ![Screenshot_2](https://user-images.githubusercontent.com/86899249/202186975-d181745d-e2f6-4946-870f-9c87b2bd9722.png)
 ![Screenshot_3](https://user-images.githubusercontent.com/86899249/202186980-55049d7f-dc15-41c8-a005-197bf93ce9df.png)
+![Screenshot_4](https://user-images.githubusercontent.com/86899249/202187502-6a1d0da2-3e39-4840-b78e-56ffc844d780.png)
+
 
