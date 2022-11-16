@@ -32,9 +32,9 @@ public class Client {
 
       // Send
       line = keyboard.nextLine();
-      dos.writeUTF(line);
-      if (line.equalsIgnoreCase("exit"))
+      if (line.equalsIgnoreCase("0"))
         break;
+      dos.writeUTF(line);
 
     }
 

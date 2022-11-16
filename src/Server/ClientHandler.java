@@ -228,6 +228,13 @@ public class ClientHandler extends Thread {
               }
 
               String appointmentDate = appointmenDates.get(choosenDate - 1) + " " + time + " PM";
+              // Method to check if the doctor has an appointment in the same chosen date and
+              // time
+              boolean takenDate = checkAppointmentDate(appointmentDate, docID);
+              if (takenDate) {
+                dos.writeUTF("This Date and time is taken, Choose another date");
+                continue;
+              }
               insertAppointment(dos, appointmentDate, docID, patientID);
             } else {
               dos.writeUTF("Enter a valid choice");
@@ -237,7 +244,10 @@ public class ClientHandler extends Thread {
             continue;
           }
         } else if (choiceMenu == 4) {
-
+          getAllAppointments(dos);
+          dos.writeUTF("Choose appointment ID to be deleted: ");
+          int id = Integer.parseInt(dis.readUTF());
+          deleteAppointment(dos, id);
         } else if (choiceMenu == 5) {
           getAllAppointments(dos);
         } else {
@@ -257,7 +267,7 @@ public class ClientHandler extends Thread {
     dos.writeUTF("3. Book Appointment.");
     dos.writeUTF("4. Cancel Appointment.");
     dos.writeUTF("5. Display Appointments.");
-    dos.writeUTF("10. Exit.");
+    dos.writeUTF("0. Exit.");
     dos.writeUTF("Enter your choice: ");
 
   }
@@ -283,7 +293,8 @@ public class ClientHandler extends Thread {
   }
 
   // insert doctor
-  public void insertAppointment(DataOutputStream dos, String appointment_date, int doctor_id, int patient_id)
+  public synchronized void insertAppointment(DataOutputStream dos, String appointment_date, int doctor_id,
+      int patient_id)
       throws IOException {
     try {
       PreparedStatement ps = conn
@@ -297,6 +308,28 @@ public class ClientHandler extends Thread {
     } catch (Exception e) {
       dos.writeUTF("Inserting failed");
     }
+  }
+
+  // insert doctor
+  public boolean checkAppointmentDate(String appointment_date, int doctor_id)
+      throws IOException {
+    try {
+      PreparedStatement ps = conn
+          .prepareStatement("SELECT * FROM BookAppointment WHERE appointment_date = ? AND doctor_id = ?");
+      ps.setString(1, appointment_date);
+      ps.setInt(2, doctor_id);
+
+      ResultSet rs = ps.executeQuery();
+      String date = rs.getString("appointment_date");
+
+      if (date != null) {
+        return true;
+      }
+
+    } catch (Exception e) {
+
+    }
+    return false;
   }
 
   public void getAllDoctors(DataOutputStream dos) throws SQLException {
@@ -465,6 +498,19 @@ public class ClientHandler extends Thread {
     try {
       PreparedStatement ps = conn.prepareStatement("DELETE FROM Doctor WHERE doctor_id = ?");
       ps.setInt(1, doctor_id);
+      boolean rs = ps.execute();
+      dos.writeUTF("Successfully deleted");
+
+    } catch (Exception e) {
+      dos.writeUTF("deleting failed");
+    }
+  }
+
+  // delete appointment
+  public void deleteAppointment(DataOutputStream dos, int appointment_id) throws IOException {
+    try {
+      PreparedStatement ps = conn.prepareStatement("DELETE FROM BookAppointment WHERE appointment_id = ?");
+      ps.setInt(1, appointment_id);
       boolean rs = ps.execute();
       dos.writeUTF("Successfully deleted");
 
