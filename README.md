@@ -54,7 +54,7 @@ Patient has 3 attribute { patientID(PK) , patientAge , patientName }
 ## Class Diagram
 We have 3 classes Doctor,Patient and Appoint each one of them has own attributes and methods and the relationship between them are association
 
-![UML Class Diagram](/images/UML.jpg)
+![UML Class Diagram](/images/updatedUML.png)
 
 
 ## Screen Capture
