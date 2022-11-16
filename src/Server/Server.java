@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class Server {
     static Connection conn;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
 
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:src/Server/Hospital.db");
