@@ -23,6 +23,9 @@ Tic-tac-toe or known as XO is a strategy game and one of the best kids' games th
 ![305UML2](https://user-images.githubusercontent.com/86387097/202040446-56ab3916-d525-4bf7-996d-5258de5a524f.png)
 ![UML1](https://user-images.githubusercontent.com/86387097/202037988-46acb663-7bd7-445d-9be2-35a14bbfc14c.png)
 
+## ER Diagram
+
+
 ## Explain
 
 a game in which two players alternately put X and O in compartments of a figure formed by two vertical lines crossing two horizontal lines and each tries to get a row of three X or three O before the opponent does
