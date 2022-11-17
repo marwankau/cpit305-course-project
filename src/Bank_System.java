@@ -1,6 +1,9 @@
-
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
 import java.util.Scanner;
 
 public class Bank_System {
@@ -85,7 +88,7 @@ public class Bank_System {
                                     System.out.print("Please Enter User Name: ");
                                     answerUser = sc.next();
 
-                                    System.out.print("Please Enter Passwoard: ");
+                                    System.out.print("Please Enter Password: ");
                                     answerPass = sc.next();
 
                                     bank.check_Username_passwoard(answerUser, answerPass);
@@ -158,7 +161,7 @@ public class Bank_System {
                             System.out.println();
                             bank.ExitMessage();
 
-                            System.out.print("DO You Want To Reaset File Y - N: \n");
+                            System.out.print("DO You Want To Reset File Y - N: \n");
                             String FileReset = sc.next();
 
                             if (FileReset.equalsIgnoreCase("y")) {
