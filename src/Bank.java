@@ -115,7 +115,7 @@ public class Bank {
 
     public void printFile() throws IOException {
         FileOutputStream fos = new FileOutputStream(
-                "C:\\Users\\m7md\\OneDrive - SFC Hackathon\\Desktop\\" + FileName + ".txt", true);
+                "X:/Documents/Programming/Java//" + FileName + ".txt", true);
         OutputStreamWriter fw = new OutputStreamWriter(fos);
 
         fw.write("--------- FCIT Bank ---------\n");
@@ -131,7 +131,7 @@ public class Bank {
 
     public void ExitMessage() throws IOException {
         FileOutputStream fos = new FileOutputStream(
-                "C:\\Users\\m7md\\OneDrive - SFC Hackathon\\Desktop\\" + FileName + ".txt", true);
+                "X:/Documents/Programming/Java//" + FileName + ".txt", true);
         OutputStreamWriter fw = new OutputStreamWriter(fos);
         fw.write("\t\n ** USER HAS EXIT FROM PROGRAM **");
         fw.write("\t\t\t\t\tin -->" + printDate() + "\n");
@@ -141,7 +141,7 @@ public class Bank {
 
     public void ResetFile() throws IOException {
         FileOutputStream fos = new FileOutputStream(
-                "C:\\Users\\m7md\\OneDrive - SFC Hackathon\\Desktop\\" + FileName + ".txt");
+                "X:/Documents/Programming/Java//" + FileName + ".txt");
         fos.close();
     }
 
