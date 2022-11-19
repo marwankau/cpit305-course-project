@@ -7,8 +7,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.text.ParseException;
 import java.util.Scanner;
-
-
+import java.util.concurrent.locks.ReentrantLock;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -361,11 +360,24 @@ public class Player {
                                   "| GameID | Player2 | result  | Game date  |\n" +
                                   "+--------+---------+--------+------------+\n");
                                 while (rs) {
-
+                                    String otherPlayer =r.getString("Player2");
+                                    
+                                    if (!otherPlayer.equals(name)){
                                     System.out.printf("%4s %9s  %11s %12s", r.getString("GameID"),
-                                            r.getString("Player2"), r.getString("Result"), r.getString("Gdate"));
+                                            otherPlayer, r.getString("Result"), r.getString("Gdate"));
                                     System.out.println("\n" + "+--------+---------+--------+------------+");
                                     rs = r.next();
+                                    }
+
+                                     else if (otherPlayer.equals(name)){
+
+                                            System.out.printf("%4s %9s  %11s %12s", r.getString("GameID"),
+                                            r.getString("Player1"), r.getString("Result"), r.getString("Gdate"));
+                                            System.out.println("\n" + "+--------+---------+--------+------------+");
+                                            rs = r.next();
+                                            }
+
+                 
 
                                 }
                             } else {

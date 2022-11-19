@@ -70,6 +70,7 @@ public class RPSGame {
                     // thread that will take only two players and Statement variable to store and fetch data from database
                      ssc = new ServerSideConnection(s, s2, stat); 
                      ssc.start();
+                     
                                      
             }
 

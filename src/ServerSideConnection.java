@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 import java.util.UUID;
-
+import java.util.concurrent.locks.ReentrantLock;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -27,7 +27,7 @@ public class ServerSideConnection extends Thread {
     private String choose1;
     private String choose2;
     private ResultSet r;
-  
+
 
     // store clients sockets and statemnt variable in constructor
     ServerSideConnection(Socket s, Socket s2, Statement stat) {
@@ -409,6 +409,7 @@ public class ServerSideConnection extends Thread {
                 if (r.next()) {
                     winsNum = r.getInt("Wins");
                 }
+             
 
                 winsNum += 1;
 
@@ -467,7 +468,6 @@ public class ServerSideConnection extends Thread {
         
         finally {
             try {
-
              
              // close tools
                 Player1.close();
