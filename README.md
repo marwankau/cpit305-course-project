@@ -24,7 +24,7 @@ MultiThreads, Networking, and Exceptions.
 Here some screen capture from our project:
 
 - Screenshot of sign up and login with handling wrong inputs
-![Screenshot with user mistakes](https://user-images.githubusercontent.com/98517446/202233337-a0738a48-89ad-4c96-85f5-d1e187857ac1.png)
+![ScreenshotOfSignin-up](https://user-images.githubusercontent.com/77313110/202861216-f5075d32-70c4-4c4e-9020-ddaabe5ed442.png)
 
 - Screenshot of the Tutorial and Best Record
 ![Screenshot T Bs](https://user-images.githubusercontent.com/98517446/202233768-4837751d-6e58-42b9-8809-80dbba11cc28.png)
