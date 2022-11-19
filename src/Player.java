@@ -78,7 +78,7 @@ public class Player {
                            
                             // sign-up 
                             System.out.println("\n#### SIGN-UP ####");
-                             System.out.println("*Your username should be less than 10 charaters*");
+                             System.out.println("*Your username should be less than 5 charaters*");
                              System.out.println("*Your password should be less than 10 digits*");
                             System.out.print("\nEnter your username: ");
                             name = SignUp.nextLine();
@@ -96,9 +96,9 @@ public class Player {
                             }
                             
                             // checking the length of name and password to be able to store it in database
-                            else if (name.length() > 25){
+                            else if (name.length() > 4){
                                  // if true then it will print a warning message
-                                System.out.println("Your username is more than than 10 charaters!");
+                                System.out.println("Your username is more than than 5 charaters!");
                             }
                             
                            else if (pass.length() > 10){
@@ -146,7 +146,7 @@ public class Player {
 
                             
                         // repeat asking the users inputs for name and password as long as one of these conditions are true
-                        } while (hasSpace||usedName || name.length() > 25 || pass.length() > 10);
+                        } while (hasSpace||usedName || name.length() > 5 || pass.length() > 10);
 
 
                         // after registration the program will print a successful message
@@ -360,8 +360,10 @@ public class Player {
                                   "| GameID | Player2 | result  | Game date  |\n" +
                                   "+--------+---------+--------+------------+\n");
                                 while (rs) {
+                                    // get player2 name
                                     String  otherPlayer =r.getString("Player2");
                                     
+                                    // if player2 of game  is not  the same winner player name
                                     if (!otherPlayer.equals(name)){
                                     System.out.printf("%4s %9s  %11s %12s", r.getString("GameID"),
                                             otherPlayer, r.getString("Result"), r.getString("Gdate"));
@@ -369,6 +371,7 @@ public class Player {
                                     rs = r.next();
                                     }
 
+                                    // if player2 of game is the same winner player name
                                      else if (otherPlayer.equals(name)){
 
                                             System.out.printf("%4s %9s  %11s %12s", r.getString("GameID"),
