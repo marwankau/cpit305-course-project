@@ -10,22 +10,25 @@ import java.sql.SQLException;
 public class Server {
     static Connection conn;
 
-    public static void main(String[] args) throws IOException, SQLException {
+    public static void main(String[] args) {
 
         try {
             conn = DriverManager.getConnection("jdbc:sqlite:src/Server/Hospital.db");
+
+            // Create server socket
+            ServerSocket server = new ServerSocket(1999);
+
+            System.out.println("Server waiting for connection...");
+
+            while (true) {
+                Socket socket = server.accept();
+                new ClientHandler(socket, conn).start();
+
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        // 1. Create server socket
-        ServerSocket server = new ServerSocket(1999);
-
-        System.out.println("Server waiting for connection...");
-
-        while (true) {
-            Socket socket = server.accept();
-            new ClientHandler(socket, conn).start();
-
+            System.out.println("Could not access database");
+        } catch (IOException e) {
+            System.out.println(e);
         }
 
     }

@@ -34,7 +34,7 @@ public class Appointment {
       }
       dos.writeUTF(listOfDoctors);
     } catch (Exception e) {
-
+      System.out.println("An error occured while getting all appointments " + e);
     }
 
   }
@@ -57,7 +57,6 @@ public class Appointment {
     }
   }
 
-  // insert doctor
   public boolean checkAppointmentDate(String appointment_date, int doctor_id)
       throws IOException {
     try {
