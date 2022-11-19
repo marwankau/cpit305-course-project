@@ -360,7 +360,7 @@ public class Player {
                                   "| GameID | Player2 | result  | Game date  |\n" +
                                   "+--------+---------+--------+------------+\n");
                                 while (rs) {
-                                    String otherPlayer =r.getString("Player2");
+                                    String  otherPlayer =r.getString("Player2");
                                     
                                     if (!otherPlayer.equals(name)){
                                     System.out.printf("%4s %9s  %11s %12s", r.getString("GameID"),

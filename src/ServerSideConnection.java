@@ -444,7 +444,7 @@ public class ServerSideConnection extends Thread {
                          // insertion if the 2 players were playing from the diffrenet account
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID1+")");
                             stat.executeUpdate("insert into game_player (Game_ID, PID) values ('"+GID+"',"+PID2+")");
-                              }
+                              } 
 
 
             }

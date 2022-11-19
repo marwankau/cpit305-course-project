@@ -1,4 +1,4 @@
-#  Rock paper scissor game 🪨📃✂️
+#  RPS Game 🪨📃✂️
  Rock-paper-scissors is a game usually played by two players , where players simultaneously form one of three shapes with an outstretched hand. 
 The "rock" beats scissors, the "scissors" beat paper and the "paper" beats rock; if both players throw the same shape, the game is tied.
 ## Group Members
@@ -19,3 +19,18 @@ MultiThreads, Networking, and Exceptions.
 
 ## Class Diagram
 ![Class-diagram (2)](https://user-images.githubusercontent.com/98517446/201708240-124bb891-57e5-4f3a-b2d4-81c7c6c6c565.png)
+
+## Screen Capture
+Here some screen capture from our project:
+
+- Screenshot of sign up and login with handling wrong inputs
+![Screenshot with user mistakes](https://user-images.githubusercontent.com/98517446/202233337-a0738a48-89ad-4c96-85f5-d1e187857ac1.png)
+
+- Screenshot of the Tutorial and Best Record
+![Screenshot T Bs](https://user-images.githubusercontent.com/98517446/202233768-4837751d-6e58-42b9-8809-80dbba11cc28.png)
+
+- Screenshot of Players in the Game
+![Screenshot Game](https://user-images.githubusercontent.com/98517446/202234286-79c14d19-4f92-4d87-880c-4d6b599c76b7.png)
+
+
+
