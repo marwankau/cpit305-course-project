@@ -109,11 +109,14 @@ public class MyThread extends Thread {
                     }
                 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                     else if (choice.equals("2")) {
-                        PreparedStatement pstmt = con.prepareStatement("UPDATE rooms SET Visitor_Name=?, In_Date =? , Out_Date = ? , State = 0 WHERE Room_No = ?"); 
+                        
+                        
+
+                        PreparedStatement pstmt = con.prepareStatement("UPDATE rooms SET Visitor_Name=?, In_Date =? , Out_Date = ? , State = 0 WHERE Room_No = ? && state = 1"); 
 
                         writer.println("Which room do you want to update?");
                         room_number = receiver.nextInt();
-
+                       
                         writer.println("Update visitor name");
                         visitor_name = receiver.next();
 
@@ -193,10 +196,13 @@ public class MyThread extends Thread {
                         writer.println("===================================");
                         break;
                     }
+
                 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
                     else {
                         writer.println("Wrong choice :(");
+                        
                     }
+                    
                 }
             }catch (Exception e) {
             }
