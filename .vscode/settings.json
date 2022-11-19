@@ -1,24 +1,25 @@
 {
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar",
-        "x:\\Documents\\Programming\\Databases\\MariaDB\\mariadb-java-client-3.0.5-sources.jar",
-        "x:\\Documents\\Programming\\Databases\\Connector\\mariadb-java-client-3.0.5-sources.jar"
-    ],
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MariaDB",
-            "name": "BankSQL",
-            "database": "bankdb",
-            "username": "user1",
-            "password": "password1"
-        }
-    ]
+  "java.project.sourcePaths": ["src"],
+  "java.project.outputPath": "bin",
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "x:\\Documents\\Programming\\Databases\\MariaDB\\mariadb-java-client-3.0.5-sources.jar",
+    "x:\\Documents\\Programming\\Databases\\Connector\\mariadb-java-client-3.0.5-sources.jar",
+    "x:\\Documents\\Programming\\Databases\\SQLite\\sqlite-jdbc-3.39.3.0.jar"
+  ],
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MariaDB",
+      "name": "BankSQL",
+      "database": "bankdb",
+      "username": "user1",
+      "password": "password1"
+    }
+  ]  
 }

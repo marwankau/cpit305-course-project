@@ -13,7 +13,7 @@ public class SQL_Bank_Server {
 
         try {
             Class.forName("org.sqlite.JDBC");
-            con = DriverManager.getConnection("jdbc:sqlite:bankdb.db");
+            con = DriverManager.getConnection("jdbc:sqlite:BankServer.db");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -22,7 +22,24 @@ public class SQL_Bank_Server {
 
 }
 
+// end JDBCExample
+
 /*
+ * public static Connection conn() {
+ * Connection con = null;
+ * 
+ * try {
+ * Class.forName("org.sqlite.JDBC");
+ * con = DriverManager.getConnection("jdbc:sqlite:bankdb.db");
+ * } catch (ClassNotFoundException | SQLException ex) {
+ * System.out.println(ex.getMessage());
+ * }
+ * return con;
+ * }
+ * 
+ * }
+ * 
+ * /*
  * import java.sql.*;
  * import java.util.logging.Level;
  * import java.util.logging.Logger;
