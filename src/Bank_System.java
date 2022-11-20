@@ -13,6 +13,7 @@ public class Bank_System {
         Scanner sc = new Scanner(System.in);
 
         Socket s = new Socket("localhost", 50999);
+
         System.out.println("\t\t ** Welcome To FCIT Server ** ");
         System.out.print("Login As: ");
         String n = sc.nextLine();
@@ -114,7 +115,7 @@ public class Bank_System {
                                     break;
                             }
 
-                            System.out.println("\n\t-- Welcom to FCIT Bank -- : " + bank.User_name);
+                            System.out.println("\n\t-- Welcom to FCIT Bank -- : " + bank.UserName);
 
                             while (true) {
                                 System.out.println("\n1. Display all account details \n2. "

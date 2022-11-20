@@ -5,7 +5,8 @@
     "lib/**/*.jar",
     "x:\\Documents\\Programming\\Databases\\MariaDB\\mariadb-java-client-3.0.5-sources.jar",
     "x:\\Documents\\Programming\\Databases\\Connector\\mariadb-java-client-3.0.5-sources.jar",
-    "x:\\Documents\\Programming\\Databases\\SQLite\\sqlite-jdbc-3.39.3.0.jar"
+    "x:\\Documents\\Programming\\Databases\\SQLite\\sqlite-jdbc-3.39.3.0.jar",
+    "x:\\Documents\\Programming\\Databases\\Lite\\sqlite-jdbc-3.39.3.0.jar"
   ],
   "sqltools.connections": [
     {
@@ -15,9 +16,9 @@
       "previewLimit": 50,
       "server": "localhost",
       "port": 3306,
-      "driver": "MariaDB",
-      "name": "BankSQL",
-      "database": "bankdb",
+      "driver": "sqlite",
+      "name": "BankServer",
+      "database": "BankServer",
       "username": "user1",
       "password": "password1"
     }

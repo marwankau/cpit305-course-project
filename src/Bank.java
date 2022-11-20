@@ -9,11 +9,11 @@ public class Bank {
 
     Scanner sc = new Scanner(System.in);
 
-    public String account_number;
+    public String Accountnum;
     public String name;
-    public String User_name;
+    public String UserName;
     public String Passwoard;
-    public long balance;
+    public float B;
     public String FileName;
 
     public Bank() {
@@ -27,22 +27,23 @@ public class Bank {
         FileName = sc.next();
 
         System.out.print("\nPlease Enter Account No: ");
-        account_number = sc.next();
+        Accountnum = sc.next();
 
         System.out.print("Please Enter Name: ");
         name = sc.next();
 
-        System.out.print("Please Enter User Name: ");
-        User_name = sc.next();
+        System.out.print("Enter Balance: ");
+        B = sc.nextLong();
 
         System.out.print("Please Enter Passwoard: ");
         Passwoard = sc.next();
 
-        System.out.print("Enter Balance: ");
-        balance = sc.nextLong();
+        System.out.print("Please Enter User Name: ");
+        UserName = sc.next();
+
         System.out.println("");
 
-        InsertRow(account_number, name, balance);
+        InsertRow(Accountnum, name, B, Passwoard, UserName);
 
     }
 
@@ -54,7 +55,7 @@ public class Bank {
 
         System.out.printf(fmt, "------------", "  -------------", "  ------------");
         printDate();
-        System.out.printf(fmt2, name, "SA" + account_number, balance);
+        System.out.printf(fmt2, name, "SA" + Accountnum, B);
         System.out.println();
 
     }
@@ -65,7 +66,7 @@ public class Bank {
         System.out.print("How much do you want to deposit: ");
         deposit = sc.nextLong();
         System.out.print("Successful to deposit " + deposit + "\t\t");
-        balance = balance + deposit;
+        B = B + deposit;
     }
 
     // -----------method to withdraw money
@@ -75,9 +76,9 @@ public class Bank {
         System.out.print("Enter the amount you want to withdraw: ");
         amount_of_width = sc.nextLong();
 
-        if (balance >= amount_of_width) {
-            balance = balance - amount_of_width;
-            System.out.print("Balance after withdrawal: " + balance + "\t\t");
+        if (B >= amount_of_width) {
+            B = B - amount_of_width;
+            System.out.print("Balance after withdrawal: " + B + "\t\t");
         } else {
             System.out.println("Your balance is less than " + amount_of_width + "\tTransaction failed...!!");
         }
@@ -89,9 +90,9 @@ public class Bank {
     // showAccount();
     // }
     // }
-    public void check_Username_passwoard(String username, String passwoard) {
+    public void check_Username_passwoard(String UserName, String passwoard) {
 
-        if (username.equals(User_name) && passwoard.equals(Passwoard)) {
+        if (UserName.equals(UserName) && passwoard.equals(Passwoard)) {
             System.out.println("\tSucsses Login.......");
 
         } else {
@@ -121,8 +122,8 @@ public class Bank {
         fw.write("--------- FCIT Bank ---------\n");
         fw.write("\t\n Welcome User: " + name);
         fw.write("\t\t\t\t\t\t " + printDate() + "\n");
-        fw.write("\t\n Your Account Number :" + "SA" + account_number + "\n");
-        fw.write("\t Your Balance :" + balance + "\n");
+        fw.write("\t\n Your Account Number :" + "SA" + Accountnum + "\n");
+        fw.write("\t Your Balance :" + B + "\n");
         fw.write("\n-------------------------------------------------------\n");
         fw.write("\n");
         fw.close();
@@ -145,27 +146,51 @@ public class Bank {
         fos.close();
     }
 
-    public void InsertRow(String Accountnum, String name, long B) {
-        try {
-            Connection con = SQL_Bank_Server.conn();
-            PreparedStatement ps = null;
+    public void InsertRow(String Accountnum, String name, float B, String Passwoard, String UserName) {
 
-            String s = "INSERT INTO USER(AccountNumber, Name, Balance) VALUES(?,?,?)";
-            ps = con.prepareStatement(s);
-            ps.setString(1, Accountnum);
-            ps.setString(2, name);
-            ps.setInt(3, (int) B);
-            ps.execute();
-            Thread.sleep(2000);
-            for (int i = 0; i < 7; i++) {
-                System.out.print(".");
-            }
-            System.out.println("Done");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        } catch (InterruptedException ex) {
-            System.err.println(ex.getMessage());
+        String sql = "INSERT INTO user(Accountnum, Name, B, passwoard , UserName) VALUES(?,?,?,?,?)";
+
+        try (Connection conn = SQL_Bank_Server.conn();
+                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, Accountnum);
+            pstmt.setString(2, name);
+            pstmt.setInt(3, (int) B);
+            pstmt.setString(4, Passwoard);
+            pstmt.setString(5, UserName);
+            pstmt.executeUpdate();
+            conn.commit();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
 
+        /*
+         * try {
+         * Connection con = SQL_Bank_Server.conn();
+         * PreparedStatement ps = null;
+         * 
+         * String s =
+         * "INSERT INTO USER(Accountnum, Name, B, passwoard , UserName) VALUES(?,?,?,?,?)"
+         * ;
+         * ps = con.prepareStatement(s);
+         * ps.setString(1, Accountnum);
+         * ps.setString(2, name);
+         * ps.setInt(3, (int) B);
+         * ps.setString(4, Passwoard);
+         * ps.setString(5, UserName);
+         * ps.executeUpdate();
+         * Thread.sleep(2000);
+         * for (int i = 0; i < 7; i++) {
+         * System.out.print(".");
+         * }
+         * System.out.println("Done");
+         * } catch (SQLException ex) {
+         * System.out.println(ex.getMessage());
+         * } catch (InterruptedException ex) {
+         * System.err.println(ex.getMessage());
+         * }
+         * 
+         * }
+         */
     }
+
 }
